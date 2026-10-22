@@ -124,6 +124,9 @@ public class TurnOnPlannerTests
         var two = TurnOnPlanner.Plan(new[] { Item(1, "Bakery"), Item(2, "Bakery") }, new string[0], new HashSet<ulong>());
         Assert.Empty(two.ToAdd);
         Assert.Contains("More than one", two.Notes.Single());
+        // Still ambiguous when one of the two was turned on before.
+        var history = TurnOnPlanner.Plan(new[] { Item(1, "Bakery"), Item(2, "Bakery") }, new string[0], new HashSet<ulong> { 1 });
+        Assert.Empty(history.ToAdd);
     }
 }
 

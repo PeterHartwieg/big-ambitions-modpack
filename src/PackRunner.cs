@@ -20,9 +20,10 @@ namespace HARTModPack
 
         static PackRunner instance;
         static bool modsLoaded;
+        static HashSet<string> initEntries;      // startup-scope entries when that scope finished loading
+        static bool startupNoticesQueued;        // once per session, even if a second copy of the pack takes over
 
         bool running;
-        bool startupNoticesQueued;
         SteamState steam = SteamState.NotConnected;
         List<SubscribedItem> subscribed;
         readonly HashSet<ulong> turnedOn = new HashSet<ulong>();
@@ -30,7 +31,6 @@ namespace HARTModPack
         public static void Begin()
         {
             if (instance != null) return;
-            modsLoaded = false;
             ModEvents.onModsLoaded += OnModsLoaded;
             var go = new GameObject("HARTModPack");
             DontDestroyOnLoad(go);
@@ -52,7 +52,13 @@ namespace HARTModPack
             instance.StartCoroutine(instance.Run(false));
         }
 
-        static void OnModsLoaded() { modsLoaded = true; }
+        // The first call after this mod loads is the end of the Initialization scope, this mod's own.
+        static void OnModsLoaded()
+        {
+            if (modsLoaded) return;
+            modsLoaded = true;
+            try { initEntries = GameScan.InitializationEntryIds(); } catch (Exception) { initEntries = null; }
+        }
 
         IEnumerator Run(bool atStartup)
         {
@@ -86,6 +92,11 @@ namespace HARTModPack
                     {
                         try { result = listing.Result; }
                         catch (Exception ex) { Log.Warn("Couldn't list Workshop subscriptions: " + ex.GetBaseException().Message); }
+                    }
+                    if (result != null && !WorkshopMembers.LooksComplete(result))
+                    {
+                        Log.Warn("Steam's list of subscriptions (" + result.Count + " mods) misses mods the game loaded; checked without it.");
+                        result = null;
                     }
                     steam = result != null ? SteamState.Listed : SteamState.ListingFailed;
                     subscribed = result;
@@ -123,11 +134,11 @@ namespace HARTModPack
         {
             try
             {
-                var snapshot = GameScan.Snapshot(steam, subscribed, turnedOn);
+                var snapshot = GameScan.Snapshot(steam, subscribed, turnedOn, initEntries);
                 var statuses = StatusEvaluator.Evaluate(snapshot);
                 var lines = statuses.Select(Texts.Line).ToList();
                 if (log) foreach (string line in lines) Log.Info(line);
-                StatusPage.Show(Texts.Summary(statuses, steam), lines, StatusEvaluator.ExcludedOn(snapshot).Select(Texts.ExcludedLine).ToList());
+                StatusPage.Show(Texts.Summary(statuses, steam) + " Checked at " + DateTime.Now.ToString("HH:mm:ss") + ".", lines, StatusEvaluator.ExcludedOn(snapshot).Select(Texts.ExcludedLine).ToList());
                 return statuses;
             }
             catch (Exception ex)

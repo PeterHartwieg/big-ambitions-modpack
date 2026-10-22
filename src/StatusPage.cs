@@ -65,12 +65,13 @@ namespace HARTModPack
             lines.AddRange(memberLines);
             lines.AddRange(notes);
             if (lastLines != null && lastLines.SequenceEqual(lines)) return;
-            lastLines = lines;
             if (!WriteTable(lines))
             {
+                lastLines = null;
                 Build(null, true);
                 return;
             }
+            lastLines = lines;
             var built = new List<string>();
             for (int i = 0; i < lines.Count; i++) built.Add(LocaleFile.Key(i));
             Build(built, false);

@@ -31,18 +31,18 @@ namespace HARTModPack.Core
                     plan.Notes.Add(member.Title + " runs from ModsLocal, so its Workshop copy stays off.");
                     continue;
                 }
-                var candidates = group.Where(s => !turnedOnBefore.Contains(s.Id)).ToList();
-                if (candidates.Count == 0)
+                var all = group.ToList();
+                if (all.Count > 1)
+                {
+                    plan.Notes.Add("More than one subscribed Workshop item carries " + name + ".dll (" + string.Join(", ", all.Select(c => c.Id.ToString()).ToArray()) + "); left off.");
+                    continue;
+                }
+                if (turnedOnBefore.Contains(all[0].Id))
                 {
                     plan.Notes.Add(member.Title + " was turned on once before and is off again; left off.");
                     continue;
                 }
-                if (candidates.Count > 1)
-                {
-                    plan.Notes.Add("More than one subscribed Workshop item carries " + name + ".dll (" + string.Join(", ", candidates.Select(c => c.Id.ToString()).ToArray()) + "); left off.");
-                    continue;
-                }
-                plan.ToAdd.Add(candidates[0].Id);
+                plan.ToAdd.Add(all[0].Id);
             }
             return plan;
         }

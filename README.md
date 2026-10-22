@@ -25,7 +25,9 @@ The tested versions live in `Core/TestedVersions.cs`: Real Life Overhaul 0.45.0 
 
 **Mods page.** Settings > Mods > HART. Mod Pack shows a summary, a "Check again" button and one line per member with its state, version and source. The lines change at runtime while the game's option labels are localisation keys, so the mod writes them as a small locale table to `HARTModPack/StatusLocale/` in the game's data folder and registers it with the game. The page is rebuilt only when a line changes. Every line also goes to `Player.log`.
 
-**Two copies of the pack.** With a Workshop and a `ModsLocal` copy both on, the first copy works and the other waits. If the working copy is switched off, the waiting one takes over.
+**Two copies of the pack.** With a Workshop and a `ModsLocal` copy both on, the first copy works and the other waits. If the working copy is switched off, the waiting one takes over; at quit this can leave a few cleanup warnings in `Player.log`.
+
+**Incomplete Steam answers.** Steam's helper returns an empty page when it times out. A listing that misses a Workshop mod the game loaded this launch, or is empty while mods are enabled, counts as failed: nothing is turned on and the check notice skips that launch.
 
 ## Game code it uses
 
@@ -37,8 +39,9 @@ All public classes in the game's own assemblies; `tools/check-api.sh` resolves e
 | `SteamHelper.IsConnectedToSteam()` | Skipping the Steam step without Steam. | Low. |
 | `ModManifest.Add(ulong)`, `ModManifest.Contains(ulong)` | Turning a member on; reading whether it's on. | Medium: `ModsInternal` has no stability promise. If the game moves away from `steam_mod_manifest.txt`, turning on stops and the check still runs. |
 | `ModDiscoveryRegistry.Entries`, `.FailedModReasons`, `.ModsLocalPath`, `.OnDiscoveryUpdated`; `ModLifecycleLoader.FailedModMessages`, `.ActiveModIdsByScope` | Which mods the game discovered, refused or started, and where `ModsLocal` is. | Medium, `ModsInternal` again. A change fails the build or `check-api.sh`. |
-| `ModEvents.onModsLoaded` | Starting the check once the startup mods have loaded. Falls back to 10 s. | Low. |
-| `Object.FindAnyObjectByType<ModsPanel>()` | Waiting while the Mods panel is open. | Low to medium: if the panel's object stays active when closed, turning on waits for good, after one line in `Player.log`. |
+| `ModEvents.onModsLoaded` | Starting the check once the startup mods have loaded, and noting which startup mods were discovered then. Falls back to 10 s, and then no startup mod counts as failed for not having started. | Low. |
+| `ModManifest.GetIds()` | Telling an empty Steam answer (timeout) from no subscriptions. | Medium, `ModsInternal`. |
+| `Object.FindAnyObjectByType<ModsPanel>()`, `<UploadModPanel>()` | Waiting while the Mods panel or the Mod Creator is open. | Low to medium: if the panel's object stays active when closed, turning on waits for good, after one line in `Player.log`. |
 | `OptionsService.Register`, `.RemoveModOptions`, `ModOptions` | The Mods page. | Low, the documented mod API. |
 | `LocalizorManager.RegisterExternalLocalization`, `.UnregisterExternalLocalization`, `.LoadedLocale` | The changing status lines. | Low to medium. If it breaks, the page shows keys instead of text and `Player.log` still has the lines. |
 | `Notifications.Show`, `Notifications.onShow` | The notices. A notice waits until the game has a notification list. | Low. |
@@ -70,7 +73,7 @@ Checked means seen in the game. Code reading and offline checks are not checks.
 
 - Everything that needs Steam: the reflected subscribed listing, `ModManifest.Add` taking effect after a restart, and how often the pack itself starts switched off. If Steam downloaded HART. Mod Pack while the game was closed, the game leaves it off too, and it can't turn itself on; the player turns it on once in Main menu > Mods.
 - Whether the main menu has a notification list, or the notices wait for a city. The main menu's load screen and options call `Notifications.Show`, which suggests it has one.
-- The double-load and failure-clearing readings above, and that the Mods panel's object is inactive while closed.
+- The double-load and failure-clearing readings above, and that the Mods panel's and Mod Creator's objects carry the `ModsPanel` and `UploadModPanel` components and are inactive while closed.
 - The tested-version table against the final HART. Mode Patch 0.5.0, City Performance 0.5.0 and HART Rival Balance 0.2.0 builds.
 
 ## Licence

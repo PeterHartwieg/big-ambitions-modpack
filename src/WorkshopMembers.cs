@@ -96,11 +96,27 @@ namespace HARTModPack
         }
 
         // The Mods panel loads every mod added to the manifest while it is open as soon as it closes
-        // (ModsView.OnManifestChanged), so the pack waits until it is closed. The panel's object is inactive when closed.
+        // (ModsView.OnManifestChanged), so the pack waits until it is closed. The Mod Creator replaces the panel
+        // while that session lasts, so it counts too. Both objects are inactive when closed; FindAnyObjectByType skips inactive ones.
         public static bool ModsPanelOpen()
         {
-            try { return UnityEngine.Object.FindAnyObjectByType<BigAmbitions.ModsPanel>() != null; }
+            try
+            {
+                return UnityEngine.Object.FindAnyObjectByType<BigAmbitions.ModsPanel>() != null
+                    || UnityEngine.Object.FindAnyObjectByType<BigAmbitions.UploadModPanel>() != null;
+            }
             catch (Exception) { return false; }
+        }
+
+        // Steam's helper answers with an empty page when it times out or loses the connection, which looks like
+        // "no subscriptions". Every Workshop mod the game discovered this launch is subscribed, so a listing
+        // without one of them, or an empty one while mods are enabled, is incomplete.
+        public static bool LooksComplete(List<SubscribedItem> items)
+        {
+            var listed = new HashSet<ulong>();
+            foreach (var item in items) listed.Add(item.Id);
+            foreach (ulong id in GameScan.DiscoveredWorkshopIds()) if (!listed.Contains(id)) return false;
+            return items.Count > 0 || ModManifest.GetIds().Count == 0;
         }
     }
 }

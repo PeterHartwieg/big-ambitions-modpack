@@ -12,31 +12,37 @@ namespace HARTModPack
     // Reads what the game discovered, loaded and refused this launch. Read-only: it never writes to a mod folder.
     static class GameScan
     {
-        public static PackSnapshot Snapshot(SteamState steam, List<SubscribedItem> subscribed, HashSet<ulong> turnedOn)
+        // initStarted: the startup-scope entries the game had discovered when it finished loading that scope,
+        // or null when that moment wasn't seen (then no entry counts as failed for not having started).
+        public static PackSnapshot Snapshot(SteamState steam, List<SubscribedItem> subscribed, HashSet<ulong> turnedOn, ICollection<string> initEntries)
         {
+            // Copies with fresh enabled flags: the player may have switched mods in the Mods menu since the listing.
+            var current = (subscribed ?? new List<SubscribedItem>())
+                .Select(s => new SubscribedItem { Id = s.Id, AssemblyName = s.AssemblyName, Enabled = ModManifest.Contains(s.Id) }).ToList();
             var snapshot = new PackSnapshot
             {
                 Steam = steam,
-                Subscribed = subscribed ?? new List<SubscribedItem>(),
+                Subscribed = current,
                 TurnedOnThisLaunch = turnedOn ?? new HashSet<ulong>(),
             };
             var workshopNames = snapshot.Subscribed.Where(s => s.AssemblyName != null).GroupBy(s => s.Id.ToString()).ToDictionary(g => g.Key, g => g.First().AssemblyName);
 
             // Mods whose start failed are still discovered entries; they count as failed, not loaded. The game keeps
             // start failures only until the next scope loads (ModLifecycleLoader.SyncDiscoveryFailures), so an
-            // Initialization-scope entry that isn't among the active mods of that scope also counts as failed.
+            // Initialization-scope entry that isn't among the active mods of that scope also counts as failed, if the game
+            // had discovered it when it finished loading that scope. Entries discovered later (after a rescan) wait for a restart.
             // Entries of later scopes (main menu, city) count as on once discovered: they start with their scene.
             var failedIds = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             foreach (var pair in ModDiscoveryRegistry.FailedModReasons) failedIds[pair.Key] = pair.Value;
             foreach (var pair in ModLifecycleLoader.FailedModMessages) failedIds[pair.Key] = pair.Value;
             HashSet<string> started;
             if (!ModLifecycleLoader.ActiveModIdsByScope.TryGetValue(ModActivationScope.Initialization, out started)) started = new HashSet<string>();
-            List<DiscoveredModEntry> initEntries;
-            if (ModDiscoveryRegistry.Entries.TryGetValue(ModActivationScope.Initialization, out initEntries))
+            List<DiscoveredModEntry> initDiscovered;
+            if (initEntries != null && ModDiscoveryRegistry.Entries.TryGetValue(ModActivationScope.Initialization, out initDiscovered))
             {
-                foreach (var entry in initEntries)
+                foreach (var entry in initDiscovered)
                 {
-                    if (entry != null && !string.IsNullOrEmpty(entry.ModId) && !started.Contains(entry.ModId) && !failedIds.ContainsKey(entry.ModId))
+                    if (entry != null && !string.IsNullOrEmpty(entry.ModId) && initEntries.Contains(entry.ModId) && !started.Contains(entry.ModId) && !failedIds.ContainsKey(entry.ModId))
                         failedIds[entry.ModId] = (entry.ModDisplayName ?? entry.ModId) + ": didn't start. Player.log has the error.";
                 }
             }
@@ -78,6 +84,29 @@ namespace HARTModPack
         }
 
         // Assembly names of the mod folders in ModsLocal, read from DLL metadata without loading anything.
+        // Mod IDs of the Workshop mods the game discovered this launch; all of them are subscribed.
+        public static List<ulong> DiscoveredWorkshopIds()
+        {
+            var ids = new List<ulong>();
+            foreach (var entries in ModDiscoveryRegistry.Entries.Values)
+                foreach (var entry in entries)
+                {
+                    ulong id;
+                    if (entry != null && ulong.TryParse(entry.ModId, out id) && id != 0 && !ids.Contains(id)) ids.Add(id);
+                }
+            return ids;
+        }
+
+        // IDs of the startup-scope entries discovered so far.
+        public static HashSet<string> InitializationEntryIds()
+        {
+            var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            List<DiscoveredModEntry> entries;
+            if (ModDiscoveryRegistry.Entries.TryGetValue(ModActivationScope.Initialization, out entries))
+                foreach (var entry in entries) if (entry != null && !string.IsNullOrEmpty(entry.ModId)) ids.Add(entry.ModId);
+            return ids;
+        }
+
         public static List<string> LocalAssemblyNames()
         {
             var names = new List<string>();
