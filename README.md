@@ -1,0 +1,78 @@
+# HART. Mod Pack
+
+The Workshop item for the mods of the HART modded series of Big Ambitions. Its Workshop page lists every pack member under Steam's Required items. The mod itself is small: it finds the members, turns on the ones the game left off, and tells you once what's missing or untested.
+
+Version 1.0.0, built for game build 3682. No Harmony, nothing written into saves.
+
+## What it does
+
+**Finds the members by DLL name.** The game identifies a mod by the assembly name of the one DLL in its folder, so the pack does the same and never relies on a Workshop ID. Required: RealLifeOverhaul, DynamicRivals, HARTRivalBalance, HardModePatch, CityPerformance, FoodTrucks, DrivenRides, Roadster, AlcwareSeasons, RetailCapacityUpgrades, InternetCafe, Bakery, PolyModsHyperreal and CampaignObjectives. Optional: CameraTools, HARTFreeCamera and BigCopilotLink. The names come from the installed copies on 22 October 2026. Persistent City is not part of the pack.
+
+**Turns on members the game left off.** When Steam downloads a subscription while the game is closed, the game never adds it to its list of enabled Workshop mods (`steam_mod_manifest.txt`), so it stays off. Once the other mods have loaded, the pack asks Steam for the subscribed mods (a read-only query), finds required members that are subscribed but off, adds them to that list and shows one notice: "HART. Mod Pack turned on N mods. Restart the game to load them." The rules:
+
+- It only adds. It never switches anything off.
+- Required members only. Optional members and Persistent City stay as they are.
+- Each Workshop item at most once. If you switch a member off after the pack turned it on, it stays off and the pack reports it instead.
+- A member that has a copy in `ModsLocal` keeps its Workshop copy off, so it isn't loaded twice. Two subscribed items with the same DLL name are both left off.
+- It finds members by DLL name only, so another author's mod with the same DLL name counts as that member.
+- While the Mods panel is open it waits: the game loads mods added during that time as soon as the panel closes.
+- It reads `ModsLocal` but never writes there.
+- Without Steam it skips this step and writes one line to `Player.log`. The game loads no Workshop mods without Steam, so this only matters for a `ModsLocal` copy of the pack.
+
+**Checks the pack once per launch.** One notice lists required members that are missing, switched off, waiting for a restart, refused by the game or failed during their start, members whose version this pack wasn't tested with, and members loaded from both the Workshop and `ModsLocal`. The game forgets start failures when the next scene's mods load, so a startup-scope member that isn't among the game's started mods counts as failed. The notice waits until the game can show notices and is worded from a fresh scan at that moment. Click it to hide it until the list changes or the pack updates; the choice is kept in PlayerPrefs. The check notice skips a launch that turned members on (a restart is pending anyway) and a launch where Steam didn't answer, because switched-off members would then read as missing. Once per pack version, and once HART. Mode Patch is on, the pack reminds you that the series settings come from Settings > Mods > HART. Mode Patch > Apply HART series settings.
+
+The tested versions live in `Core/TestedVersions.cs`: Real Life Overhaul 0.45.0 and 0.49.0, HART Rival Balance 0.2.0, HART. Mode Patch 0.5.0, City Performance 0.5.0, Campaign Objectives 1.2.0, HART Free Camera 1.1.0 and 1.1.1. These are the builds this release goes out with; the evidence section says which have run together in the game. The check reads each member's informational version, else its assembly version. Most other members report 0.0.0.0, which says nothing, so they are never flagged.
+
+**Mods page.** Settings > Mods > HART. Mod Pack shows a summary, a "Check again" button and one line per member with its state, version and source. The lines change at runtime while the game's option labels are localisation keys, so the mod writes them as a small locale table to `HARTModPack/StatusLocale/` in the game's data folder and registers it with the game. The page is rebuilt only when a line changes. Every line also goes to `Player.log`.
+
+**Two copies of the pack.** With a Workshop and a `ModsLocal` copy both on, the first copy works and the other waits. If the working copy is switched off, the waiting one takes over.
+
+## Game code it uses
+
+All public classes in the game's own assemblies; `tools/check-api.sh` resolves each one against a game install without running it.
+
+| Call | What for | Risk on a game update |
+| --- | --- | --- |
+| `SteamHelper.GetUserSubscribedItems(int, string, string, SteamId)`, by reflection, reading `Item.Id.Value` and `Item.Directory` | Subscribed Workshop mods and their folders, read-only. Steam's types live in `Facepunch.Steamworks.Win64` on Windows and `.Posix` on the Mac, so the mod doesn't compile against them. | Medium. A changed signature makes the listing fail with one log line; the check then runs without Steam data. `check-api.sh` checks these members on both platforms. Not `SteamModLoadingService.GetSubscribedMods`, which also downloads and enables any subscribed item without a folder. |
+| `SteamHelper.IsConnectedToSteam()` | Skipping the Steam step without Steam. | Low. |
+| `ModManifest.Add(ulong)`, `ModManifest.Contains(ulong)` | Turning a member on; reading whether it's on. | Medium: `ModsInternal` has no stability promise. If the game moves away from `steam_mod_manifest.txt`, turning on stops and the check still runs. |
+| `ModDiscoveryRegistry.Entries`, `.FailedModReasons`, `.ModsLocalPath`, `.OnDiscoveryUpdated`; `ModLifecycleLoader.FailedModMessages`, `.ActiveModIdsByScope` | Which mods the game discovered, refused or started, and where `ModsLocal` is. | Medium, `ModsInternal` again. A change fails the build or `check-api.sh`. |
+| `ModEvents.onModsLoaded` | Starting the check once the startup mods have loaded. Falls back to 10 s. | Low. |
+| `Object.FindAnyObjectByType<ModsPanel>()` | Waiting while the Mods panel is open. | Low to medium: if the panel's object stays active when closed, turning on waits for good, after one line in `Player.log`. |
+| `OptionsService.Register`, `.RemoveModOptions`, `ModOptions` | The Mods page. | Low, the documented mod API. |
+| `LocalizorManager.RegisterExternalLocalization`, `.UnregisterExternalLocalization`, `.LoadedLocale` | The changing status lines. | Low to medium. If it breaks, the page shows keys instead of text and `Player.log` still has the lines. |
+| `Notifications.Show`, `Notifications.onShow` | The notices. A notice waits until the game has a notification list. | Low. |
+| `PlayerPrefs`, `Application.persistentDataPath` | Remembering hidden notices and turned-on items; the locale folder. | Low. |
+
+The behaviour these calls rely on, from reading the decompile of build 3682 (22 September 2026): `SteamModDownloader.EnsureModInstalled` adds an item to the manifest only when it downloaded the item itself; discovery runs Workshop and `ModsLocal` mods as two separate groups, so the duplicate-name check never compares a Workshop copy with a local one, and the second copy then gets the first one's DLL and starts a second instance of its mod class; `ModLifecycleLoader.LoadScopeAsync` replaces the start failures with the discovery failures each time a scope loads; and closing the Mods panel loads every mod added to the manifest while it was open.
+
+## Build and test
+
+- `dotnet test tests/HARTModPack.Core.Tests.csproj`: the pure rules in `Core/`.
+- `tools/build.sh`: runs the tests, compiles `HARTModPack.dll` with the .NET SDK's C# compiler against the game's assemblies, and packages `build/HARTModPack/`, `build/HARTModPack-1.0.0.zip` and their SHA-256 files. Game DLLs come from `BA_GAME_DLLS`, else `../big-ambitions-hard-mode-patch/build/game-dlls`.
+- `tools/check-api.sh [Managed folder]`: resolves every game reference in the built DLL, and the members it reads by reflection, against the build 3682 Windows DLLs and, when present, this Mac's Steam install.
+- `dotnet run --project tools/VersionProbe -- <ModsLocal or Workshop content folder>`: prints each mod's assembly name and versions, for updating the tested-version table.
+
+## Evidence
+
+Checked means seen in the game. Code reading and offline checks are not checks.
+
+**Checked:** nothing yet.
+
+**Offline, 22 October 2026:** the Core tests pass. `HARTModPack.dll` compiles against the build 3682 Windows DLLs (`BigAmbitions.dll` SHA-256 `9427561b…e911`), and every game reference, plus the reflected Steam members, resolves against those and against the Mac Steam install. Assembly names confirmed from the agent rig's `ModsLocal` and the Mac Workshop content folder.
+
+**Pending:**
+
+- Load the package from `ModsLocal` on the agent rig: Mods page, status lines, the check notice and its click, the reminder, and no Steam step without Steam.
+- Peter's clean Windows profile, installing from the Workshop only: Steam's prompt for required items, the pack turning members on, the restart notice, and a full pack with no check notice.
+
+**Unverified:**
+
+- Everything that needs Steam: the reflected subscribed listing, `ModManifest.Add` taking effect after a restart, and how often the pack itself starts switched off. If Steam downloaded HART. Mod Pack while the game was closed, the game leaves it off too, and it can't turn itself on; the player turns it on once in Main menu > Mods.
+- Whether the main menu has a notification list, or the notices wait for a city. The main menu's load screen and options call `Notifications.Show`, which suggests it has one.
+- The double-load and failure-clearing readings above, and that the Mods panel's object is inactive while closed.
+- The tested-version table against the final HART. Mode Patch 0.5.0, City Performance 0.5.0 and HART Rival Balance 0.2.0 builds.
+
+## Licence
+
+MIT for this mod's code, see `LICENSE.txt`. The pack members belong to their authors and keep their own terms; this repository contains none of their files and no game files.

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Pure rules with no game or Unity references, so the tests run anywhere. tools/build.sh compiles these files into the mod. -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <RootNamespace>HARTModPack.Core</RootNamespace>
+  </PropertyGroup>
+</Project>

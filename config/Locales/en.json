@@ -1,0 +1,8 @@
+{
+  "hartmodpack_title": "HART. Mod Pack",
+  "hartmodpack_checking": "Checking the pack...",
+  "hartmodpack_check_again": "Check again",
+  "hartmodpack_members_header": "Pack members",
+  "hartmodpack_notice": "{text}",
+  "hartmodpack_unavailable": "The status list couldn't be shown here. Player.log has it, in the lines that start with [HART. Mod Pack]."
+}

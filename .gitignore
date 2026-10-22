@@ -1,0 +1,10 @@
+bin/
+obj/
+build/
+*.user
+.vs/
+.idea/
+CLAUDE.local.md
+
+# Game DLLs and other authors' mods belong to their owners and are never committed.
+*.dll
