@@ -37,13 +37,15 @@ namespace HARTModPack
             foreach (var pair in ModLifecycleLoader.FailedModMessages) failedIds[pair.Key] = pair.Value;
             HashSet<string> started;
             if (!ModLifecycleLoader.ActiveModIdsByScope.TryGetValue(ModActivationScope.Initialization, out started)) started = new HashSet<string>();
+            var lateIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             List<DiscoveredModEntry> initDiscovered;
             if (initEntries != null && ModDiscoveryRegistry.Entries.TryGetValue(ModActivationScope.Initialization, out initDiscovered))
             {
                 foreach (var entry in initDiscovered)
                 {
-                    if (entry != null && !string.IsNullOrEmpty(entry.ModId) && initEntries.Contains(entry.ModId) && !started.Contains(entry.ModId) && !failedIds.ContainsKey(entry.ModId))
-                        failedIds[entry.ModId] = (entry.ModDisplayName ?? entry.ModId) + ": didn't start. Player.log has the error.";
+                    if (entry == null || string.IsNullOrEmpty(entry.ModId) || started.Contains(entry.ModId) || failedIds.ContainsKey(entry.ModId)) continue;
+                    if (initEntries.Contains(entry.ModId)) failedIds[entry.ModId] = (entry.ModDisplayName ?? entry.ModId) + ": didn't start. Player.log has the error.";
+                    else lateIds.Add(entry.ModId);
                 }
             }
 
@@ -58,6 +60,12 @@ namespace HARTModPack
                     if (workshop && workshopRoot == null && !string.IsNullOrEmpty(entry.ModFolder)) workshopRoot = SafeParent(entry.ModFolder);
                     if (failedIds.ContainsKey(entry.ModId) || !seen.Add(entry.ModId)) continue;
                     Assembly assembly = entry.EntryType.Assembly;
+                    if (lateIds.Contains(entry.ModId))
+                    {
+                        // Discovered by a rescan after startup: the game won't start it before a restart.
+                        snapshot.AwaitingRestart.Add(assembly.GetName().Name);
+                        continue;
+                    }
                     var info = (AssemblyInformationalVersionAttribute)Attribute.GetCustomAttribute(assembly, typeof(AssemblyInformationalVersionAttribute));
                     snapshot.Loaded.Add(new LoadedCopy
                     {

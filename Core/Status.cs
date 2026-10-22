@@ -40,6 +40,7 @@ namespace HARTModPack.Core
         public List<LoadedCopy> Loaded = new List<LoadedCopy>();
         public List<SubscribedItem> Subscribed = new List<SubscribedItem>();
         public List<FailedMod> Failed = new List<FailedMod>();
+        public List<string> AwaitingRestart = new List<string>(); // discovered after startup, starts after a restart
         public HashSet<ulong> TurnedOnThisLaunch = new HashSet<ulong>();
     }
 
@@ -91,6 +92,7 @@ namespace HARTModPack.Core
             }
             var subscribed = snapshot.Subscribed.Where(s => Same(s.AssemblyName, member.AssemblyName)).ToList();
             if (subscribed.Any(s => snapshot.TurnedOnThisLaunch.Contains(s.Id))) status.State = MemberState.TurnedOn;
+            else if (snapshot.AwaitingRestart.Any(a => Same(a, member.AssemblyName))) status.State = MemberState.NotLoaded;
             else if (subscribed.Any(s => s.Enabled)) status.State = MemberState.NotLoaded;
             else if (subscribed.Count > 0) status.State = MemberState.SwitchedOff;
             else status.State = MemberState.Missing;

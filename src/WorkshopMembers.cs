@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using BigAmbitions.ModsInternal;
@@ -69,6 +70,8 @@ namespace HARTModPack
         {
             var turnedOn = new HashSet<ulong>();
             var before = new HashSet<ulong>();
+            // Fresh flags: the player may have switched mods on while the pack waited for the Mods panel.
+            items = items.Select(i => new SubscribedItem { Id = i.Id, AssemblyName = i.AssemblyName, Enabled = ModManifest.Contains(i.Id) }).ToList();
             foreach (var item in items)
             {
                 if (UnityEngine.PlayerPrefs.GetInt(NoticePolicy.TurnedOnPrefix + item.Id, 0) == 1) before.Add(item.Id);
@@ -79,8 +82,7 @@ namespace HARTModPack
             {
                 try
                 {
-                    ModManifest.Add(id);
-                    if (!ModManifest.Contains(id)) continue;
+                    if (!ModManifest.Add(id)) continue; // false: already on, so not the pack's doing
                     UnityEngine.PlayerPrefs.SetInt(NoticePolicy.TurnedOnPrefix + id, 1);
                     turnedOn.Add(id);
                     var item = items.Find(i => i.Id == id);

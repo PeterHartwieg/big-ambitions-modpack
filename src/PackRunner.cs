@@ -138,7 +138,7 @@ namespace HARTModPack
                 var statuses = StatusEvaluator.Evaluate(snapshot);
                 var lines = statuses.Select(Texts.Line).ToList();
                 if (log) foreach (string line in lines) Log.Info(line);
-                StatusPage.Show(Texts.Summary(statuses, steam) + " Checked at " + DateTime.Now.ToString("HH:mm:ss") + ".", lines, StatusEvaluator.ExcludedOn(snapshot).Select(Texts.ExcludedLine).ToList());
+                StatusPage.Show(Texts.Summary(statuses, steam), lines, StatusEvaluator.ExcludedOn(snapshot).Select(Texts.ExcludedLine).ToList());
                 return statuses;
             }
             catch (Exception ex)

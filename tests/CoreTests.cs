@@ -192,6 +192,16 @@ public class StatusTests
     }
 
     [Fact]
+    public void Mod_discovered_after_startup_waits_for_a_restart()
+    {
+        var snap = new PackSnapshot { Steam = SteamState.Listed };
+        snap.AwaitingRestart.Add("FoodTrucks");
+        var all = StatusEvaluator.Evaluate(snap);
+        Assert.Equal(MemberState.NotLoaded, Of(all, "FoodTrucks").State);
+        Assert.Contains("Restart the game to load: HART. Street Food.", Texts.Check(all).Text);
+    }
+
+    [Fact]
     public void Notice_is_empty_when_the_pack_is_complete()
     {
         var snap = new PackSnapshot { Steam = SteamState.Listed };
