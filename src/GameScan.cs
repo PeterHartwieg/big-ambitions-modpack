@@ -91,7 +91,6 @@ namespace HARTModPack
             return snapshot;
         }
 
-        // Assembly names of the mod folders in ModsLocal, read from DLL metadata without loading anything.
         // Mod IDs of the Workshop mods the game discovered this launch; all of them are subscribed.
         public static List<ulong> DiscoveredWorkshopIds()
         {
@@ -115,6 +114,7 @@ namespace HARTModPack
             return ids;
         }
 
+        // Assembly names of the mod folders in ModsLocal, read from DLL metadata without loading anything.
         public static List<string> LocalAssemblyNames()
         {
             var names = new List<string>();
