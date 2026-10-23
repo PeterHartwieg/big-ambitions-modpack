@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 (23 October 2026)
+
+- Integrate all HardModePatch 0.5.0 settings, gameplay rules, compatibility fixes and the RLO hash guard into HARTModPack.dll. Preserve rule defaults, preset values and save markers.
+- Put the series button, rule toggles and member status on one HART. Mod Pack page.
+- Stop the integrated gameplay if HardModePatch.dll is loaded, in either load order. Show one notice to unsubscribe from Mod Pack Patch, remove any ModsLocal copy and restart. Keep the member checker available.
+- Remove HardModePatch from required members. Thriving Rivals and City Performance remain separate requirements.
+- Package pinned Harmony in Dependencies/; no other mod DLLs are bundled.
+- Offline validation and merged-runtime acceptance are recorded in docs/merge-1.1.0.md.
+
 ## 1.0.0 (22 October 2026)
 
 - First release. Checks required pack members, turns on subscribed required mods the game left off, and reports missing, failed, duplicate or untested members.

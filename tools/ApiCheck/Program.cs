@@ -17,7 +17,7 @@ var context = new AssemblyLoadContext("ApiCheck");
 context.Resolving += (ctx, name) =>
 {
     if (skip.Contains(name.Name)) return null;
-    string path = Path.Combine(game, name.Name + ".dll");
+    string path = name.Name == "0Harmony" ? Path.Combine(repo, "build/HARTModPack/Dependencies/0Harmony.dll") : Path.Combine(game, name.Name + ".dll");
     return File.Exists(path) ? ctx.LoadFromAssemblyPath(path) : null;
 };
 var mod = context.LoadFromAssemblyPath(modDll);

@@ -14,10 +14,9 @@ namespace HARTModPack.Core
     {
         static readonly Dictionary<string, string[]> Table = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            // 0.45.0 ran Episode 1 on 21 October 2026. 0.49.0 is the Workshop build on 22 October, accepted by HART. Mode Patch 0.5.0.
+            // 0.45.0 ran Episode 1 on 21 October 2026. 0.49.0 is the Workshop build on 22 October, reviewed by the integrated gameplay rules.
             { "RealLifeOverhaul", new[] { "0.45.0", "0.49.0" } },
             { "HARTRivalBalance", new[] { "0.2.0" } },
-            { "HardModePatch", new[] { "0.5.0" } },
             { "CityPerformance", new[] { "0.5.0" } },
             { "CampaignObjectives", new[] { "1.2.0", "1.2.1" } },
             // Optional: 1.1.0 is the Workshop build, 1.1.1 the local build, both seen 22 October 2026.

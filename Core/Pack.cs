@@ -22,8 +22,8 @@ namespace HARTModPack.Core
 
     public static class Pack
     {
-        public const string Version = "1.0.0";
-        public const string SettingsModTitle = "HART. Mod Pack Patch";
+        public const string Version = "1.1.0";
+        public const string SettingsModTitle = "HART. Mod Pack";
         public const string SettingsButton = "Apply HART series settings";
 
         // Assembly simple names confirmed from the installed copies on 22 October 2026
@@ -33,7 +33,6 @@ namespace HARTModPack.Core
             new PackMember("RealLifeOverhaul", "Real Life Overhaul", true),
             new PackMember("DynamicRivals", "Dynamic Rivals", true),
             new PackMember("HARTRivalBalance", "HART. Thriving Rivals", true),
-            new PackMember("HardModePatch", "HART. Mod Pack Patch", true),
             new PackMember("CityPerformance", "City Performance", true),
             new PackMember("FoodTrucks", "HART. Street Food", true),
             new PackMember("DrivenRides", "HART. Self Driving", true),

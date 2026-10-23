@@ -16,7 +16,7 @@ namespace HARTModPack.Core
             return dismissed != notice.Fingerprint;
         }
 
-        // The settings reminder shows once per pack version, and only once HART. Mode Patch (which has the button) is on.
+        // The settings reminder shows once per pack version, and only while the integrated gameplay (which has the button) is active.
         public static bool ShowReminder(string reminded, bool settingsModOn, bool restartPending)
         {
             return !restartPending && settingsModOn && reminded != Pack.Version;

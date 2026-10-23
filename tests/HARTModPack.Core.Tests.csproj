@@ -10,6 +10,7 @@
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" PrivateAssets="all" />
     <ProjectReference Include="../Core/HARTModPack.Core.csproj" />
+    <None Include="../modpack.json" Link="modpack.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <None Include="../config/Locales/*.json" Link="Locales/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

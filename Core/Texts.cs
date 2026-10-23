@@ -15,6 +15,8 @@ namespace HARTModPack.Core
     // Every English line the player sees. The game only shows them.
     public static class Texts
     {
+        public const string LegacyPatchNotice = "HART. Mod Pack: HardModePatch.dll is loaded. The pack's gameplay features are paused to prevent duplicate rules. Unsubscribe from HART. Mod Pack Patch, remove its HardModePatch folder from ModsLocal if present, then restart the game. Apply the series settings in Settings > Mods > HART. Mod Pack.";
+
         public static string TurnedOn(int count)
         {
             return "HART. Mod Pack turned on " + count + (count == 1 ? " mod" : " mods") + ". Restart the game to load " + (count == 1 ? "it." : "them.");

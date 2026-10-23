@@ -4,8 +4,9 @@ The Workshop item for the HART modded series pack. It finds the pack members, tu
 
 ## Layout
 
-- `Core/`: pure C#, netstandard2.0, no game or Unity types. Member list, tested versions, turn-on rules, status, notice texts and policy.
+- `Core/` and `Core/Gameplay/`: pure C#, netstandard2.0, no game or Unity types. Member list, tested versions, turn-on rules, status, notice texts and policy.
 - `tests/`: xUnit tests for Core.
+- `src/Gameplay/`: integrated gameplay and target patches; original namespaces/save keys preserved.
 - `src/`: thin game adapters: the mod entry, the Workshop step, the scan, the Mods page and the notices.
 - `config/Locales/en.json`: the fixed option and notice keys. The status lines are written at runtime.
 - `tools/`: `build.sh` (test, compile, package), `package.py`, `check-api.sh` with `ApiCheck/`, and `VersionProbe/`.
@@ -15,10 +16,12 @@ The Workshop item for the HART modded series pack. It finds the pack members, tu
 
 - Build with `tools/build.sh`, then run `tools/check-api.sh`. Test with `dotnet test tests/HARTModPack.Core.Tests.csproj`. Both must pass before a commit that changes code.
 - Never commit game DLLs, other authors' mod DLLs, decompiled game code or save files. The build references the game DLLs by path only.
-- No Harmony. Use the game's public classes. Every new game call gets a row in the README's API table with its update risk.
+- Pack management uses the game's public classes. Gameplay imported from HardModePatch 0.5.0 uses checksum-pinned Harmony under the hartmodpack.gameplay owner prefix. Every new game call gets a row in the README's API table with its update risk. Preserve the legacy-DLL stand-down guard in both load orders.
 - Find members by assembly simple name, never by Workshop ID. Confirm a new member's name with `tools/VersionProbe` on an installed copy.
 - Never switch a mod off, never write to `ModsLocal` or a Workshop folder, and never turn on Persistent City or an optional member.
 - Core decides, the game only shows. Pure logic and every player-facing sentence go in `Core/` with a test.
 - For each pack release, update `Pack.Version`, the assembly attributes in `src/HARTModPackMod.cs`, `Core/TestedVersions.cs` and its pinning test, `CHANGELOG.md` and `workshop/WORKSHOP.md` together. `package.py` refuses mismatched versions.
 - Mark evidence in the README as checked (seen in game), pending or unverified. Code reading and offline checks are not checks. The Steam paths can't be tested on the Mac rig.
 - Plain words, sentence-case headings, active voice, no em dashes, in docs and in shipped text.
+
+Gameplay merge: keep every 0.5.0 rule default, preset value and reviewed hash. Run `tools/check-all.sh` and `tools/check-merge.py` before releasing; see `docs/merge-1.1.0.md`. Every target patch lists its touched methods in ResolveHooks. Review changed target bodies before adding hashes. City Performance owns discovery/performance hooks; Mod Pack owns gameplay and compatibility. Never bundle target DLLs or game DLLs.

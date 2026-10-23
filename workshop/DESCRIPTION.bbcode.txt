@@ -1,26 +1,60 @@
 [h2]⚠ Still being playtested[/h2]
 [b]HART. Mod Pack is still being playtested.[/b] Balance and the mods in the pack may change in upcoming updates, and some settings may be retuned. Feedback is very welcome, so please post bugs and balance impressions in the comments.
 
-All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. The small mod inside turns the pack on for you and tells you if something is missing.
+All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. Version 1.1.0 includes the series settings, house rules and compatibility fixes previously shipped as HART. Mod Pack Patch, plus the member checker.
 
 [h2]How to install[/h2]
 [list]
 [*][b]Subscribe[/b] to HART. Mod Pack and accept Steam's offer to subscribe to the required items. If Steam doesn't ask, subscribe to each required mod in the list below.
 [*][b]Start the game.[/b] If HART. Mod Pack is off in Main menu > Mods, turn it on and restart. It then turns on every pack mod the game left off and asks you to restart once more.
-[*][b]Apply the series settings:[/b] Settings > Mods > HART. Mod Pack Patch > [b]Apply HART series settings[/b], then restart. Start a New game > Custom.
+[*][b]Apply the series settings:[/b] Settings > Mods > HART. Mod Pack > [b]Apply HART series settings[/b], then restart. Start a New game > Custom.
 [/list]
 
+[h2]Upgrading from Mod Pack Patch[/h2]
+[b]Unsubscribe from HART. Mod Pack Patch.[/b] Its features are now included here. If you installed it locally, remove the HardModePatch folder from ModsLocal too, then restart. If HardModePatch.dll is still loaded, this pack pauses its gameplay features and shows one notice; the old patch continues to own them. This also covers the old DLL loading later in the session. The member checker stays available. After removal, apply the series settings from this pack at the main menu and restart. Individual choices use this pack's own settings; old patch preferences are left intact, so reapply any personal adjustments here.
+
 [h2]Series house rules[/h2]
-The series button in HART. Mod Pack Patch enables Economy Expansion-inspired running costs on RLO: equipment and opening hours affect utilities, and offices need internet and pay $150 per computer each game month at starting prices. It explicitly turns the old flat 2x/3x rent increase off. Existing leases keep their stored rent. Economy Expansion itself is not included or required.
+The series button in HART. Mod Pack enables Economy Expansion-inspired running costs on RLO: equipment and opening hours affect utilities, and offices need internet and pay $150 per computer each game month at starting prices. It explicitly turns the old flat 2x/3x rent increase off. Existing leases keep their stored rent. Economy Expansion itself is not included or required.
+
+[h2]Series settings[/h2]
+Under Settings > Mods > HART. Mod Pack:
+[list]
+[*][b]Apply HART series settings[/b]: works at the main menu. One button sets the series values in this mod, HART. Thriving Rivals (Normal), Dynamic Rivals (7 wholesale and 8 import rivals, Vanilla occupancy, Balanced events) and Real Life Overhaul (its own camera and Flare off, fewer interruptions and notices, its core systems on). Every change goes to Player.log, anything it can't find is skipped and listed, and it asks you to restart. It only runs when you press it and leaves every other option alone.
+[*][b]Prefill the custom game with the series settings[/b] (on): New game > Custom opens with the series values. 60 days a year, $0 starting money, rival attacks 150%, age 18, tax 51%, salaries, public prices and bank interest 130%, customer promotion 50%, urgent fees 200%, export 10%, resale value 50%, every Disable and Unlock box off. Change anything before you start, or switch it off.
+[/list]
+
+[h2]Our own rules[/h2]
+The optional house rules start off, just as in Patch 0.5.0. The series button enables the following rules and explicitly turns the separate rent multiplier off:
+[list]
+[*][b]Indebted start[/b]: a new game starts with $551 cash and a $75,454 student loan at a city bank. Your difficulty settings stay as you chose them.
+[*][b]Economy Expansion running costs[/b]: on RLO, equipment and opening hours shape utility bills. Every office needs internet and pays $150 per computer each game month, adjusted by RLO's price level. RLO handles bills, late fees and cuts. The series button disables the former flat 2x/3x rent increase; existing signed leases keep their stored rent. Economy Expansion itself is not required.
+[*][b]Happiness[/b]: home tops out around 60; cinema, golf, the beach and other outside activities carry you for days, so a mix of them beats a routine.
+[*][b]Real Life Overhaul[/b]: jobs pay in full when you run businesses, power and water follow your appliances and opening hours, offices need an internet connection and pay for their computers, and the sewing, kiln and polishing machines need a trade diploma from RLO's school.
+[/list]
+
+[h2]Fixes for other mods[/h2]
+On by default, each only when that mod is installed:
+[list]
+[*][b]RLO utility closure reasons[/b]: BizMan explains pending internet installation, outages and utility supply problems when reviewed RLO 0.49.0 owns the closure. Display only; manual closures and unknown reasons keep the game's message.
+[*][b]Bakery[/b]: prices at the game's own bakery margins.
+[*][b]POLYMODS HYPERREAL[/b]: resets exposure history after you close the city map, aimed at the dark evening screen some players see then.
+[*][b]Internet Cafe[/b]: at most two customers per PC per hour while you're away.
+[*][b]Meaningful Ambience[/b]: decor adds a share of the customers the game sends, not of the building's capacity.
+[*][b]Vending Machines[/b]: a rival's furniture stays locked while you place a machine in their building.
+[*][b]Empire Bank[/b]: withdrawals are taxed, no emergency central bank borrowing, honest credit scores, capped product terms, and no statistics or supporters requests to the author's servers (its own opt-in heartbeat stays).
+[*][b]Hardcore Ambitions[/b]: keeps your difficulty settings and drops the investment funds.
+[/list]
+
+[h2]Mod updates[/h2]
+Other mods update on their own schedule. If one changes the code a fix relies on, that fix switches itself off and the mod runs as its author published it. Real Life Overhaul's features run only on RLO versions this mod has been checked against (0.49.0 at release). When RLO updates first, they pause with one notice and a line in Player.log, and your save's diploma progress is kept until this mod catches up.
 
 [h2]The mods in the pack[/h2]
 Every mod here is someone's own work, and the pack wouldn't exist without them. Please rate and thank them on their own pages. The ones marked (mine) are my mods.
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816536560]Real Life Overhaul[/url] by Adult Cudi
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3801170388]Dynamic Rivals[/url] by Andre1408
-[*]HART. Thriving Rivals (mine): keeps rivals in business and competing on hard settings
-[*]HART. Mod Pack Patch (mine): the pack's companion mod, with the series settings and the pack's balance changes
-[*]City Performance (mine): experimental, all behavior features on by default and logging off. If problems occur, enable logging and disable features one by one to find the best setup
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=THRIVING_RIVALS_ID]HART. Thriving Rivals[/url] (mine): keeps rivals in business and competing on hard settings
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=CITY_PERFORMANCE_ID]City Performance[/url] (mine): experimental, all behavior features on by default and logging off. If problems occur, enable logging and disable features one by one to find the best setup
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3822355169]HART. Street Food[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3819853552]HART. Self Driving[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3821783833]HART. RDSTR[/url] (mine)
@@ -53,8 +87,9 @@ Recording tools I use for the videos. The pack works without them and doesn't tu
 [*]It leaves the optional mods and your local mods alone. If you have a mod in ModsLocal, its Workshop copy stays off so it doesn't load twice.
 [*]It recognises each mod by its DLL name. Another mod that uses the same DLL name counts as that pack mod.
 [*]Bakery and POLYMODS HYPERREAL ship their art for Windows only. On a Mac the Bakery's business assets and Hyperreal's effects are missing.
+[*]The merged 1.1.0 build has offline checks; new in-game and Workshop acceptance is pending. Historical checks of the separate mods do not establish acceptance of this merged build.
 [*]The pack was put together on game build 3682. When a mod in it updates, the check may say the pack wasn't tested with the new version. That's a heads-up, not an error.
-[*]HART. Mod Pack adds nothing to your save.
+[*]The indebted start and factory diploma protection retain the old patch's save markers. Back up a save you care about before loading new mods.
 [/list]
 
 [h2]Bug reports[/h2]
