@@ -83,3 +83,5 @@ MIT for this mod's code, see `LICENSE.txt`. The pack members belong to their aut
 ## Series economy, 1.0.0
 
 Apply HART series settings in HART. Mod Pack Patch to enable the Economy Expansion-inspired equipment utilities and office IT rules on RLO. The button explicitly switches off the former flat 2x/3x rent increase. Existing leases retain their stored rent; new leases use the game's market-rent path. The helper does not write these settings itself, and Economy Expansion is not a required item.
+
+**Release session 2, 23 October:** the updated pack passed the native Mac series-settings/new-game/midnight/save-reload flow with Campaign Objectives 1.2.1. All 74 settings persisted, including rent 1 to 0; all 13 fresh City Performance defaults matched. Twelve native RLO billing fixtures passed. The complete rig backup was restored (3,144 files, preferences and install manifest verified). Windows/Workshop, real business settlement and visual checks remain pending. See [release session 2](docs/release-session2-2026-10-23.md).
