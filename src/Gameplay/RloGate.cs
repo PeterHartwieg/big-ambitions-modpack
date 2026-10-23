@@ -65,12 +65,12 @@ namespace HardModePatch
                 if (accepted)
                 {
                     Message = null;
-                    Log.Info(described + ": a reviewed version; factory diplomas, running costs, owner job pay and the hotel rule can run.");
+                    Log.Info(described + ": a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.");
                 }
                 else
                 {
                     Message = described + " is a version HART. Mod Pack hasn't reviewed. Factory diplomas, running costs, owner job pay"
-                        + " and the hotel 'no home' rule are off until HART. Mod Pack is updated; RLO runs as its author published it."
+                        + ", utility closure reasons, night chirping mute and the hotel 'no home' rule are off until HART. Mod Pack is updated; RLO runs as its author published it."
                         + " A save's factory diploma records are kept for that update.";
                     Log.Warn(Message);
                 }
@@ -152,7 +152,7 @@ namespace HardModePatch
         static bool RloRulesOn()
         {
             return Rules.FactoryDiplomas.Enabled || Rules.EquipmentUtilities.Enabled || Rules.OfficeIt.Enabled
-                || Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled;
+                || Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled || Rules.MuteRloNightChirping.Enabled;
         }
 
         static void Notice()

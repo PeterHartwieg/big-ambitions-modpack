@@ -14,6 +14,7 @@ Undecided rows of the RLO triage keep RLO's default, and so does every option no
 
 | Mod | Option ID | Writes | Default | Why |
 | --- | --- | ---: | --- | --- |
+| HART. Mod Pack | `mute_rlo_night_chirping` | 1 | 1 | Silence only RLO’s night crickets; leave RLO sound settings unchanged |
 | HART. Mod Pack | `scenario_indebted_start` | 1 | 0 | series start: $551.37 cash and the $75,454.35 loan |
 | HART. Mod Pack | `rent_rebalance` | 0 | 0 | running costs replace the flat rent multiplier |
 | HART. Mod Pack | `happiness_rebalance` | 1 | 0 | series rule |
@@ -89,7 +90,7 @@ Undecided rows of the RLO triage keep RLO's default, and so does every option no
 | Real Life Overhaul | `economy_products` | 1 | 1 | audit profile |
 | Real Life Overhaul | `economy_consequences` | 1 | 1 | audit profile |
 
-"Default" is the mod's own default (RLO 0.49.0 source, Dynamic Rivals' DLL of 19 October, Rival Balance 0.2.0). Every RLO row that writes 1 is already RLO's default; the button writes it so a viewer who switched one off gets the series value back. Every RLO, Dynamic Rivals and Rival Balance option ID above is a string in that mod's DLL (`SettingsCheck`).
+"Default" is the mod's own default (RLO 0.50.0 source, Dynamic Rivals' DLL of 19 October, Rival Balance 0.2.0). Every RLO row that writes 1 is already RLO's default; the button writes it so a viewer who switched one off gets the series value back. Every RLO, Dynamic Rivals and Rival Balance option ID above is a string in that mod's DLL (`SettingsCheck`).
 
 Sources: the series-2 release plan (RLO camera, Flare, Rival Balance, Dynamic Rivals), the RLO options triage as applied on homepc on 20 October and Peter's decisions that day, and the RLO-led profile rows of the 14 October modpack audit that the series still uses.
 
@@ -97,7 +98,7 @@ Left out on purpose:
 
 - The audit's "0 in baseline, staged later" rows (`economy_estate`, `economy_bank`, `economy_online`, `economy_brands`, `economy_dealer`, the markets and ventures rows, the tech sector, `careers_own`, `careers_family`, `car_ownership`, `car_tuning`, `garage`, `economy_shark`, `markets_margin`). The later triage says late-game systems stay on and dormant, and Episode 1 ran with them at RLO's defaults. Peter to confirm.
 - `visuals_enabled` and `character_high_detail`: the triage leaves presentation to the series look, so they are undecided.
-- `dev_diagnostics`: not an option in RLO 0.49.0.
+- `dev_diagnostics`: not an option in RLO 0.50.0.
 - `permadeath`: off by default, and RLO turns it off at the main menu itself. Writing it while a save is loaded would change that save.
 - City Performance options: City Performance owns them.
 

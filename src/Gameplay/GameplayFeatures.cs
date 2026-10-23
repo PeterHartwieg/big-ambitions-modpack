@@ -35,6 +35,7 @@ namespace HardModePatch
             OwnerJobPay.Start();
             RunningCostsPatch.Start();
             UtilityClosureReasonPatch.Start();
+            NightChirpingPatch.Start();
             patcher = new Patcher(new Harmony(HarmonyId), new ITargetPatch[]
             {
                 new HardcoreAmbitionsPatch(), new MeaningfulAmbiencePatch(), new BakeryPatch(),
@@ -59,6 +60,7 @@ namespace HardModePatch
             Cleanup(OwnerJobPay.Stop);
             Cleanup(RunningCostsPatch.Stop);
             Cleanup(UtilityClosureReasonPatch.Stop);
+            Cleanup(NightChirpingPatch.Stop);
         }
 
         static void Cleanup(Action action)

@@ -40,7 +40,7 @@ CSC="$SDK_DIR/Roslyn/bincore/csc.dll"
 rm -rf "$OUT"
 mkdir -p "$OUT/Locales" "$OUT/Dependencies"
 REFS=()
-for dll in mscorlib System System.Core netstandard BigAmbitions BigAmbitions.Items DayNightCycle BigAmbitions.ModAPI BigAmbitions.ModsInternal HGExtensions HGPlugins UnityEngine.CoreModule; do
+for dll in mscorlib System System.Core netstandard BigAmbitions BigAmbitions.Items DayNightCycle BigAmbitions.ModAPI BigAmbitions.ModsInternal HGExtensions HGPlugins UnityEngine.CoreModule UnityEngine.AudioModule; do
   REFS+=("-reference:$GAME_DLLS/$dll.dll")
 done
 REFS+=("-reference:$DEPS/0Harmony.dll")

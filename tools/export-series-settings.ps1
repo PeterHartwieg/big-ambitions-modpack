@@ -26,6 +26,7 @@ $Series = @(
     @{ Owner = 'HARTModPack'; Id = 'factory_diplomas'; Value = 1 }
     @{ Owner = 'HARTModPack'; Id = 'equipment_utilities'; Value = 1 }
     @{ Owner = 'HARTModPack'; Id = 'office_it'; Value = 1 }
+    @{ Owner = 'HARTModPack'; Id = 'mute_rlo_night_chirping'; Value = 1 }
     @{ Owner = 'HARTRivalBalance'; Id = 'rival_preset'; Value = 1 }
     @{ Owner = 'DynamicRivals'; Id = 'wholesale_rival_count'; Value = 0 }
     @{ Owner = 'DynamicRivals'; Id = 'import_rival_count'; Value = 1 }

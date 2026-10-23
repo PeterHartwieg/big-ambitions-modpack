@@ -8,9 +8,11 @@ Prepared for Peter to publish. No upload is performed by the build tools.
 
 **Target build:** `3682`
 
+Supports reviewed RLO 0.50.0. Includes the default-on Mute RLO night chirping option.
+
 **Mod folder:** `HARTModPack` from `build/HARTModPack-1.1.0.zip`. One root DLL, pinned Harmony under Dependencies, one preview.png. Remove a temporary ModsLocal upload copy before subscribing to the Workshop copy.
 
-**Description:** paste [DESCRIPTION.bbcode.txt](DESCRIPTION.bbcode.txt). Replace `THRIVING_RIVALS_ID` and `CITY_PERFORMANCE_ID` with the published items' IDs. These two mods remain separate required items.
+**Description:** paste [DESCRIPTION.bbcode.txt](DESCRIPTION.bbcode.txt). The published Thriving Rivals (3825350971) and City Performance (3825351532) IDs are filled in. These two mods remain separate required items.
 
 **Change note:** paste [CHANGENOTE-1.1.0.bbcode.txt](CHANGENOTE-1.1.0.bbcode.txt).
 
@@ -24,8 +26,8 @@ Set these on the Workshop page (Edit page > Add/Remove Required Items). Not the 
 
 - [ ] Real Life Overhaul, 3816536560
 - [ ] Dynamic Rivals, 3801170388
-- [ ] HART. Thriving Rivals (formerly HART Rival Balance), new item ID after its upload
-- [ ] City Performance, new item ID after its upload
+- [ ] HART. Thriving Rivals (formerly HART Rival Balance), 3825350971
+- [ ] City Performance, 3825351532
 - [ ] HART. Street Food (Food Trucks), 3822355169
 - [ ] HART. Self Driving (Driven Rides), 3819853552
 - [ ] HART. RDSTR (Roadster), 3821783833

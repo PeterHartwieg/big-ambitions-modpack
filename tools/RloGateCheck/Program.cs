@@ -41,7 +41,7 @@ Check(!(bool)gate.GetMethod("Accepts").Invoke(null, new object[] { rlo }), "an R
 Check((bool)gate.GetProperty("Refused").GetValue(null), "the gate reports the refusal");
 string message = (string)gate.GetProperty("Message").GetValue(null);
 var version = rlo.GetName().Version!.ToString(3);
-Check(message.Contains("Real Life Overhaul " + version) && message.Contains("hasn't reviewed") && message.Contains("Factory diplomas, running costs, owner job pay"), "one message names the version and every feature switched off");
+Check(message.Contains("Real Life Overhaul " + version) && message.Contains("hasn't reviewed") && message.Contains("Factory diplomas, running costs, owner job pay") && message.Contains("night chirping mute"), "one message names the version and every feature switched off");
 Check(!(bool)gate.GetMethod("Accepts").Invoke(null, new object[] { rlo }) && ReferenceEquals(message, gate.GetProperty("Message").GetValue(null)), "decided once per assembly");
 
 // Running costs and owner job pay: same shapes as a reviewed build, still not patched.
@@ -59,6 +59,12 @@ var pay = P("OwnerJobPay");
 pay.GetMethod("TryPatch", Any).Invoke(null, new object[] { rlo });
 var ownerFactor = rlo.GetType("RealLifeOverhaul.CareerCatalogue", true).GetMethod("OwnerFactor", new[] { typeof(int) })!;
 Check(!(bool)pay.GetProperty("Available").GetValue(null) && !Patched(ownerFactor), "owner job pay leaves RLO's cut unpatched");
+
+var night = P("NightChirpingPatch");
+var nightHooks = (IList<MethodBase>)night.GetMethod("ResolveHooks")!.Invoke(null, new object[] { rlo })!;
+Check(nightHooks.All(h => h != null), "unreviewed RLO still has the exact cricket target");
+night.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
+Check(!(bool)night.GetProperty("Available")!.GetValue(null)! && !Patched(nightHooks[0]), "unknown hash leaves RLO crickets unpatched");
 
 // Factory diplomas through the patcher: refused before any hook, catalogue untouched.
 var careers = rlo.GetType("RealLifeOverhaul.Careers.StudyCatalogue", true).GetField("All")!;
@@ -91,6 +97,8 @@ bool Loaded() => (bool)gate.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] {
 Check(!Loaded() && data.Count == 1 && NoticeSink.Keys.Count == 0, "character creation (no city yet): nothing read, no notice");
 regs.Add(RuntimeHelpers.GetUninitializedObject(regs.GetType().GetGenericArguments()[0]));
 gameType.GetField("Day")!.SetValue(save, 31);
+var muteRule = P("Core.Rules").GetField("MuteRloNightChirping")!.GetValue(null)!;
+muteRule.GetType().GetMethod("Set")!.Invoke(muteRule, new object[] { false });
 // A save without diploma records, from a player who uses none of the RLO rules: the log line only.
 var plain = new Dictionary<string, string> { { "reallife:careers", "v=1~h:7|1|30~c:5|0|2|1~r:" } };
 gameType.GetField("modData")!.SetValue(save, plain);

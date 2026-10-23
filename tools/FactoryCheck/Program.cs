@@ -100,6 +100,19 @@ try
         return e;
     }
     var first = Enrol(18); var second = Enrol(19); var third = Enrol(34);
+    foreach (var enrolment in new[] { first, second, third })
+        Check((bool)Rlo("ClassPlayRules", "AtSchool", enrolment, false) && (bool)Rlo("ClassPlayRules", "AtSchool", enrolment, true),
+            "native class and exam still route to school for diploma " + Get(enrolment, "Course"));
+    var atDesk = T("ClassPlayRules").GetMethod("AtDesk", Any);
+    if (atDesk != null) // Added in 0.50.0; the earlier reviewed release keeps its original school path.
+    {
+        object Desk(string cls, string exam, string busy) => atDesk.Invoke(null, new object[] { cls, exam, false, busy, false });
+        var cls = Desk(null, "reallife_study_why_no_exam", null);
+        var deskExam = Desk("reallife_study_why_no_class", null, null);
+        Check((bool)Get(cls, "Can") && Get(cls, "Kind").ToString() == "Class", "0.50.0 school decision permits an available class");
+        Check((bool)Get(deskExam, "Can") && Get(deskExam, "Kind").ToString() == "Exam", "0.50.0 school decision permits an available exam");
+        Check(!(bool)Get(Desk(null, null, "reallife_study_why_busy"), "Can"), "0.50.0 school decision preserves busy-seat refusal");
+    }
     for (int day = 1; day <= 21; day++)
     {
         var c = Rlo("StudyCatalogue", "Find", 18);

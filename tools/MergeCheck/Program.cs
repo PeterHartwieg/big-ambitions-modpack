@@ -82,9 +82,9 @@ else
     var controls = ((System.Collections.IEnumerable)page.GetType().GetProperty("Options")!.GetValue(page)!).Cast<object>().ToArray();
     var ruleIds = ((System.Collections.IEnumerable)T("HardModePatch.Core.Rules").GetField("All")!.GetValue(null)!).Cast<object>().Select(r => (string)r.GetType().GetField("Id")!.GetValue(r)!).ToArray();
     var ids = controls.Select(o => (string?)o.GetType().GetProperty("Id")!.GetValue(o)).ToArray();
-    Check(ruleIds.Length == 22 && ruleIds.All(id => ids.Count(i => i == id) == 1), "all 22 rule toggles occur once on the merged page");
+    Check(ruleIds.Length == 23 && ruleIds.All(id => ids.Count(i => i == id) == 1), "all 23 rule toggles occur once on the merged page");
     var buttonPreviews = ((IEnumerable<string>)T("HardModePatch.SeriesSettingsButton").GetMethod("Preview")!.Invoke(null, null)!).ToArray();
-    Check(buttonPreviews.Count(p => p.Contains(" -> m:merge-check-pack:")) == 7, "preset resolves all seven own values to the Mod Pack page");
+    Check(buttonPreviews.Count(p => p.Contains(" -> m:merge-check-pack:")) == 8, "preset resolves all eight own values to the Mod Pack page");
     if (args[3] == "pack-first")
     {
         StartLegacy();

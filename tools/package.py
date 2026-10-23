@@ -24,6 +24,7 @@ files = {
     'modpack.json': root / 'modpack.json',
     'docs/merge-1.1.0.md': root / 'docs/merge-1.1.0.md',
     'docs/rlo-compatibility.md': root / 'docs/rlo-compatibility.md',
+    'docs/reviews/rlo-0.50.0-targets.md': root / 'docs/reviews/rlo-0.50.0-targets.md',
     'docs/series-settings.md': root / 'docs/series-settings.md',
     'docs/performance-ownership.md': root / 'docs/performance-ownership.md',
     'docs/hyperreal-map-return.md': root / 'docs/hyperreal-map-return.md',

@@ -75,8 +75,8 @@ namespace HardModePatch
             if (Available || a.GetName().Name != Targets.RealLifeOverhaul.AssemblyName || !RloGate.Accepts(a)) return;
             try
             {
-                if (!TargetGate.Reviewed(Patcher.HashOf(a), new[] { "4f82b4f88f919178" }))
-                { Log.Info("Utility closure reasons: this presentation adapter is reviewed for RLO 0.49.0 only."); return; }
+                if (!TargetGate.Reviewed(Patcher.HashOf(a), new[] { "4f82b4f88f919178", "f339319c9ec1ad65" }))
+                { Log.Info("Utility closure reasons: this presentation adapter is reviewed for RLO 0.49.0 and 0.50.0."); return; }
                 var hooks = ResolveHooks(a);
                 if (hooks.Any(m => m == null)) { Log.Warn("Utility closure reasons unavailable: RLO or game members changed."); return; }
                 harmony.Patch(hooks[0], postfix: new HarmonyMethod(typeof(UtilityClosureReasonPatch), "Postfix"));

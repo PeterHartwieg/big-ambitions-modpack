@@ -76,5 +76,8 @@
   "hardmode_factory_requires_hmp_garment_making": "The depot only sells an industrial sewing machine to someone with a garment-making diploma.",
   "hardmode_factory_requires_hmp_electronics_technician": "The depot only sells a kiln machine to someone with an electronics technician diploma.",
   "hardmode_factory_requires_hmp_jewelry_goldsmithing": "The depot only sells a polishing machine to someone with a jewelry and goldsmithing diploma.",
-  "hartmodpack_legacy_patch": "HardModePatch.dll is loaded. The pack's gameplay features are paused. Unsubscribe from HART. Mod Pack Patch, remove its folder from ModsLocal if present, then restart and apply the series settings here."
+  "hartmodpack_legacy_patch": "HardModePatch.dll is loaded. The pack's gameplay features are paused. Unsubscribe from HART. Mod Pack Patch, remove its folder from ModsLocal if present, then restart and apply the series settings here.",
+  "hardmode_mute_rlo_night_chirping": "Mute RLO night chirping",
+  "hardmode_nightsound_header": "RLO city sounds",
+  "hardmode_nightsound_unavailable": "Night chirping mute unavailable: RLO is missing, unreviewed or incompatible."
 }

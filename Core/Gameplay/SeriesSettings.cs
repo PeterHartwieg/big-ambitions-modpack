@@ -66,6 +66,7 @@ namespace HardModePatch.Core
             Hmp("factory_diplomas", "series rule"),
             Hmp("equipment_utilities", "Economy Expansion running costs on RLO"),
             Hmp("office_it", "Economy Expansion running costs on RLO"),
+            Hmp("mute_rlo_night_chirping", "mute only RLO city crickets"),
 
             new SeriesOption(RivalBalance, RbTitle, "rival_preset", OptionKind.Dropdown, 1, "preset Normal (0 Easy, 1 Normal, 2 Hard)"),
 

@@ -3,6 +3,8 @@
 
 All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. Version 1.1.0 includes the series settings, house rules and compatibility fixes previously shipped as HART. Mod Pack Patch, plus the member checker.
 
+Supports reviewed RLO 0.50.0.
+
 [h2]How to install[/h2]
 [list]
 [*][b]Subscribe[/b] to HART. Mod Pack and accept Steam's offer to subscribe to the required items. If Steam doesn't ask, subscribe to each required mod in the list below.
@@ -20,6 +22,7 @@ The series button in HART. Mod Pack enables Economy Expansion-inspired running c
 Under Settings > Mods > HART. Mod Pack:
 [list]
 [*][b]Apply HART series settings[/b]: works at the main menu. One button sets the series values in this mod, HART. Thriving Rivals (Normal), Dynamic Rivals (7 wholesale and 8 import rivals, Vanilla occupancy, Balanced events) and Real Life Overhaul (its own camera and Flare off, fewer interruptions and notices, its core systems on). Every change goes to Player.log, anything it can't find is skipped and listed, and it asks you to restart. It only runs when you press it and leaves every other option alone.
+[*][b]Mute RLO night chirping[/b] (on): silences only RLO’s night crickets. Apply HART series settings also turns it on. Switch it off to hear them again without restarting. RLO’s saved sound settings, birds, traffic, crowds, engines and the game’s audio stay as you set them.
 [*][b]Prefill the custom game with the series settings[/b] (on): New game > Custom opens with the series values. 60 days a year, $0 starting money, rival attacks 150%, age 18, tax 51%, salaries, public prices and bank interest 130%, customer promotion 50%, urgent fees 200%, export 10%, resale value 50%, every Disable and Unlock box off. Change anything before you start, or switch it off.
 [/list]
 
@@ -35,7 +38,7 @@ The optional house rules start off, just as in Patch 0.5.0. The series button en
 [h2]Fixes for other mods[/h2]
 On by default, each only when that mod is installed:
 [list]
-[*][b]RLO utility closure reasons[/b]: BizMan explains pending internet installation, outages and utility supply problems when reviewed RLO 0.49.0 owns the closure. Display only; manual closures and unknown reasons keep the game's message.
+[*][b]RLO utility closure reasons[/b]: BizMan explains pending internet installation, outages and utility supply problems when reviewed RLO 0.50.0 owns the closure. Display only; manual closures and unknown reasons keep the game's message.
 [*][b]Bakery[/b]: prices at the game's own bakery margins.
 [*][b]POLYMODS HYPERREAL[/b]: resets exposure history after you close the city map, aimed at the dark evening screen some players see then.
 [*][b]Internet Cafe[/b]: at most two customers per PC per hour while you're away.
@@ -46,15 +49,15 @@ On by default, each only when that mod is installed:
 [/list]
 
 [h2]Mod updates[/h2]
-Other mods update on their own schedule. If one changes the code a fix relies on, that fix switches itself off and the mod runs as its author published it. Real Life Overhaul's features run only on RLO versions this mod has been checked against (0.49.0 at release). When RLO updates first, they pause with one notice and a line in Player.log, and your save's diploma progress is kept until this mod catches up.
+Other mods update on their own schedule. If one changes the code a fix relies on, that fix switches itself off and the mod runs as its author published it. Real Life Overhaul's features run only on RLO versions this mod has been checked against (0.50.0 at release). When RLO updates first, they pause with one notice and a line in Player.log, and your save's diploma progress is kept until this mod catches up.
 
 [h2]The mods in the pack[/h2]
 Every mod here is someone's own work, and the pack wouldn't exist without them. Please rate and thank them on their own pages. The ones marked (mine) are my mods.
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816536560]Real Life Overhaul[/url] by Adult Cudi
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3801170388]Dynamic Rivals[/url] by Andre1408
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=THRIVING_RIVALS_ID]HART. Thriving Rivals[/url] (mine): keeps rivals in business and competing on hard settings
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=CITY_PERFORMANCE_ID]City Performance[/url] (mine): experimental, all behavior features on by default and logging off. If problems occur, enable logging and disable features one by one to find the best setup
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825350971]HART. Thriving Rivals[/url] (mine): keeps rivals in business and competing on hard settings
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825351532]City Performance[/url] (mine): experimental, all behavior features on by default and logging off. If problems occur, enable logging and disable features one by one to find the best setup
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3822355169]HART. Street Food[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3819853552]HART. Self Driving[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3821783833]HART. RDSTR[/url] (mine)

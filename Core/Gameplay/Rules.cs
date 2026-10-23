@@ -53,6 +53,7 @@ namespace HardModePatch.Core
         public static readonly Rule OfficeIt = new Rule("office_it", null, false);
         // Presentation only, on by default. It never changes the closure decision.
         public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);
+        public static readonly Rule MuteRloNightChirping = new Rule("mute_rlo_night_chirping", null, true);
 
         // Null target: the custom game screen opens with the HART series values (Core/SeriesSettings.NewGame). On by
         // default: it only fills in the screen, and the player can change every value before starting.
@@ -92,7 +93,7 @@ namespace HardModePatch.Core
             IndebtedScenario,
             RentRebalance,
             HappinessRebalance,
-            OwnerJobFullPay, EquipmentUtilities, OfficeIt, UtilityClosureReasons, FactoryDiplomas,
+            OwnerJobFullPay, EquipmentUtilities, OfficeIt, UtilityClosureReasons, MuteRloNightChirping, FactoryDiplomas,
             HardcoreKeepDifficulty, HardcoreNoFunds, HardcoreVehiclePricesPerSave,
             AmbienceScalesWithDemand,
             BakeryVanillaMargins,

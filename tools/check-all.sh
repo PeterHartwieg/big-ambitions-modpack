@@ -13,7 +13,7 @@ export BA_GAME_DLLS="$G"
 "$REPO/tools/build.sh"
 "$REPO/tools/check-api.sh"
 "$REPO/tools/check-hooks.sh" "$TARGETS"
-for check in ScenarioCheck FactoryCheck CostCheck; do dotnet run --project "$REPO/tools/$check" -- "$G" "$D" "$R"; done
+for check in ScenarioCheck FactoryCheck CostCheck NightSoundCheck; do dotnet run --project "$REPO/tools/$check" -- "$G" "$D" "$R"; done
 dotnet run --project "$REPO/tools/CompatibilityCheck" -- "$G" "$D" "$TARGETS"
 dotnet run --project "$REPO/tools/RloGateCheck" -- "$G" "$D" "$UNREVIEWED"
 dotnet run --project "$REPO/tools/SettingsCheck" -- "$G" "$D" "$R" "$DR" "$RB" "$REPO/tools/export-series-settings.ps1"

@@ -70,13 +70,13 @@ public class VersionTests
     [Fact]
     public void Tested_table_is_pinned_for_this_release()
     {
-        Assert.Equal(new[] { "0.45.0", "0.49.0" }, TestedVersions.For("RealLifeOverhaul"));
+        Assert.Equal(new[] { "0.45.0", "0.49.0", "0.50.0" }, TestedVersions.For("RealLifeOverhaul"));
         Assert.Empty(TestedVersions.For("HardModePatch"));
         Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("CityPerformance"));
         Assert.Equal(new[] { "0.2.0" }, TestedVersions.For("HARTRivalBalance"));
         Assert.Equal(new[] { "1.2.0", "1.2.1" }, TestedVersions.For("CampaignObjectives"));
         Assert.Equal(VersionVerdict.Tested, TestedVersions.Check("RealLifeOverhaul", "0.49.0"));
-        Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("RealLifeOverhaul", "0.50.0"));
+        Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("RealLifeOverhaul", "0.51.0"));
         // A member with no table entry that starts exposing a version is reported, so the table gets updated.
         Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("Bakery", "1.3.0"));
     }
@@ -141,7 +141,7 @@ public class StatusTests
     public void Reports_each_state()
     {
         var snap = new PackSnapshot { Steam = SteamState.Listed };
-        snap.Loaded.Add(Copy("RealLifeOverhaul", ModSource.Workshop, "0.50.0+abc"));
+        snap.Loaded.Add(Copy("RealLifeOverhaul", ModSource.Workshop, "0.51.0+abc"));
         snap.Loaded.Add(Copy("CityPerformance", ModSource.Workshop, "0.5.0"));
         snap.Loaded.Add(Copy("CityPerformance", ModSource.Local, "0.5.0"));
         snap.Loaded.Add(Copy("Bakery", ModSource.Local));
@@ -154,7 +154,7 @@ public class StatusTests
 
         Assert.Equal(16, all.Count);
         Assert.Equal(VersionVerdict.Untested, Of(all, "RealLifeOverhaul").Verdict);
-        Assert.Equal("0.50.0", Of(all, "RealLifeOverhaul").Version);
+        Assert.Equal("0.51.0", Of(all, "RealLifeOverhaul").Version);
         Assert.True(Of(all, "CityPerformance").LoadedTwice);
         Assert.Equal(VersionVerdict.Tested, Of(all, "CityPerformance").Verdict);
         Assert.Equal(VersionVerdict.NotExposed, Of(all, "Bakery").Verdict);
