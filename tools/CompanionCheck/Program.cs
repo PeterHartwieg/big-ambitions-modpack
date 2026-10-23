@@ -142,6 +142,23 @@ if(!string.IsNullOrEmpty(rloPath))
     Call(costs,"Stop");
     }
 }
+// Pure station pairing shares production root traversal without warming live item caches.
+int seatFlag=Convert.ToInt32(Enum.Parse(itemsDll.GetType("BigAmbitions.Items.ItemType",true),"Seat"));
+Item("fixture:cafe-seat",seatFlag);Item("fixture:cafe-desk",0);
+var cafe=Empty(regType);
+var furniture=(IDictionary)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string),instType));
+object Placed(string id,string name,string parent)
+{
+    var value=Empty(instType);Set(value,"id",id);Set(value,"itemName",name);Set(value,"parentId",parent);furniture[id]=value;return value;
+}
+var desk=Placed("desk","fixture:cafe-desk",null);var pc=Placed("pc","ba:itemname_computer","desk");var seat=Placed("seat","fixture:cafe-seat","desk");
+Set(cafe,"itemInstances",furniture);
+int Stations()=>(int)Call(P("HardModePatch.InternetCafePatch"),"ObserveStations",cafe,true);
+Check(Stations()==1 && Stations()==1 && Get(pc,"_itemCached")==null && Get(seat,"_itemCached")==null,
+    "pure cafe pairing finds one shared-root station without item cache writes");
+Set(seat,"parentId",null);Check(Stations()==0,"unpaired cafe chair is not a station");
+Set(seat,"parentId","missing");Check(Stations()==0,"missing cafe parent is not a station");
+Set(seat,"parentId","desk");Set(desk,"parentId","pc");Check(Stations()==0,"cyclic cafe roots terminate without inventing stations");
 // Production arithmetic vectors, never duplicated arithmetic in the generator.
 var core=P("HardModePatch.Core.RunningCosts"); var applianceType=core.GetNestedType("Appliance"); var vectors=new List<object>();
 foreach (bool power in new[]{true,false}) foreach(int hours in new[]{0,2,12,24}) foreach(long use in new[]{0L,1001L,12000L})
