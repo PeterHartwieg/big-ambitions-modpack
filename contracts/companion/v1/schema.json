@@ -161,6 +161,24 @@
                   }
                 }
               }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "ready"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "data": {
+                    "not": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
             }
           ]
         },
@@ -258,6 +276,24 @@
                 "properties": {
                   "data": {
                     "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "ready"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "data": {
+                    "not": {
+                      "type": "null"
+                    }
                   }
                 }
               }
@@ -469,6 +505,24 @@
                 "properties": {
                   "data": {
                     "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "ready"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "data": {
+                    "not": {
+                      "type": "null"
+                    }
                   }
                 }
               }
@@ -693,6 +747,24 @@
                               }
                             }
                           }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "status": {
+                                "const": "ready"
+                              }
+                            }
+                          },
+                          "then": {
+                            "properties": {
+                              "data": {
+                                "not": {
+                                  "type": "null"
+                                }
+                              }
+                            }
+                          }
                         }
                       ]
                     }
@@ -735,6 +807,24 @@
                 "properties": {
                   "data": {
                     "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "ready"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "data": {
+                    "not": {
+                      "type": "null"
+                    }
                   }
                 }
               }
@@ -885,6 +975,24 @@
                               }
                             }
                           }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "status": {
+                                "const": "ready"
+                              }
+                            }
+                          },
+                          "then": {
+                            "properties": {
+                              "data": {
+                                "not": {
+                                  "type": "null"
+                                }
+                              }
+                            }
+                          }
                         }
                       ]
                     },
@@ -948,6 +1056,24 @@
                               }
                             }
                           }
+                        },
+                        {
+                          "if": {
+                            "properties": {
+                              "status": {
+                                "const": "ready"
+                              }
+                            }
+                          },
+                          "then": {
+                            "properties": {
+                              "data": {
+                                "not": {
+                                  "type": "null"
+                                }
+                              }
+                            }
+                          }
                         }
                       ]
                     },
@@ -994,6 +1120,24 @@
                 "properties": {
                   "data": {
                     "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "ready"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "data": {
+                    "not": {
+                      "type": "null"
+                    }
                   }
                 }
               }
