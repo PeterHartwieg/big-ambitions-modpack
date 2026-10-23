@@ -11,6 +11,6 @@ namespace HARTModPack.Core
         public const string Notice = "hartmodpack_notice";
         public const string Unavailable = "hartmodpack_unavailable";
 
-        public static readonly string[] All = { Title, LegacyPatch, Checking, CheckAgain, MembersHeader, Notice, Unavailable };
+        public static readonly string[] All = { Title, LegacyPatch, Checking, CheckAgain, MembersHeader, Notice, Unavailable, ButtonCaptions.ApplyKey };
     }
 }
