@@ -21,7 +21,7 @@ Version 1.0.0, built for game build 3682. No Harmony, nothing written into saves
 
 **Checks the pack once per launch.** One notice lists required members that are missing, switched off, waiting for a restart, refused by the game or failed during their start, members whose version this pack wasn't tested with, and members loaded from both the Workshop and `ModsLocal`. The game forgets start failures when the next scene's mods load, so a startup-scope member that isn't among the game's started mods counts as failed. The notice waits until the game can show notices and is worded from a fresh scan at that moment. Click it to hide it until the list changes or the pack updates; the choice is kept in PlayerPrefs. The check notice skips a launch that turned members on (a restart is pending anyway) and a launch where Steam didn't answer, because switched-off members would then read as missing. Once per pack version, and once HART. Mod Pack Patch is on, the pack reminds you that the series settings come from Settings > Mods > HART. Mod Pack Patch > Apply HART series settings.
 
-The tested versions live in `Core/TestedVersions.cs`: Real Life Overhaul 0.45.0 and 0.49.0, HART. Thriving Rivals 0.2.0, HART. Mod Pack Patch 0.5.0, City Performance 0.5.0, Campaign Objectives 1.2.0, HART Free Camera 1.1.0 and 1.1.1. These are the builds this release goes out with; the evidence section says which have run together in the game. The check reads each member's informational version, else its assembly version. Most other members report 0.0.0.0, which says nothing, so they are never flagged.
+The tested versions live in `Core/TestedVersions.cs`: Real Life Overhaul 0.45.0 and 0.49.0, HART. Thriving Rivals 0.2.0, HART. Mod Pack Patch 0.5.0, City Performance 0.5.0, Campaign Objectives 1.2.0 and 1.2.1, HART Free Camera 1.1.0 and 1.1.1. These are the builds this release goes out with; the evidence section says which have run together in the game. The check reads each member's informational version, else its assembly version. Most other members report 0.0.0.0, which says nothing, so they are never flagged.
 
 **Mods page.** Settings > Mods > HART. Mod Pack shows a summary, a "Check again" button and one line per member with its state, version and source. The lines change at runtime while the game's option labels are localisation keys, so the mod writes them as a small locale table to `HARTModPack/StatusLocale/` in the game's data folder and registers it with the game. The page is rebuilt only when a line changes, because a rebuild while the page is open re-runs every mod's option controls, as opening the page does. So "Check again" shows no change when nothing changed. Every line also goes to `Player.log`. A startup mod that a later rescan discovers (the game rescans when its window regains focus after a file change) shows as waiting for a restart, not as on.
 
@@ -60,7 +60,7 @@ The behaviour these calls rely on, from reading the decompile of build 3682 (22 
 
 Checked means seen in the game. Code reading and offline checks are not checks.
 
-**Checked:** nothing yet.
+**Checked, 23 October 2026:** the isolated Mac rig loaded Campaign Objectives 1.2.1 with the renamed HART. Thriving Rivals 0.2.0 and HART. Mod Pack Patch 0.5.0. All 74 series settings persisted after restart, the custom game prefill matched the new world, the indebted start ran once, and the world passed midnight and saved/reloaded with matching money, debt and settings. See [the integration record](docs/integration-2026-10-23-campaign-1.2.1.md) for the exact scope and rig limitations. This was a headless test with the established rig bridge and existing City Performance 0.5.0 candidate, not a final Windows/Workshop or complete latest-member acceptance.
 
 **Offline, 22 October 2026:** the Core tests pass. `HARTModPack.dll` compiles against the build 3682 Windows DLLs (`BigAmbitions.dll` SHA-256 `9427561b…e911`), and every game reference, plus the reflected Steam members, resolves against those and against the Mac Steam install. Assembly names confirmed from the agent rig's `ModsLocal` and the Mac Workshop content folder.
 
@@ -74,7 +74,7 @@ Checked means seen in the game. Code reading and offline checks are not checks.
 - Everything that needs Steam: the reflected subscribed listing, `ModManifest.Add` taking effect after a restart, and how often the pack itself starts switched off. If Steam downloaded HART. Mod Pack while the game was closed, the game leaves it off too, and it can't turn itself on; the player turns it on once in Main menu > Mods.
 - Whether the main menu has a notification list, or the notices wait for a city. The main menu's load screen and options call `Notifications.Show`, which suggests it has one.
 - The double-load and failure-clearing readings above, and that the Mods panel's and Mod Creator's objects carry the `ModsPanel` and `UploadModPanel` components and are inactive while closed.
-- The tested-version table against the final HART. Mod Pack Patch 0.5.0, City Performance 0.5.0 and HART. Thriving Rivals 0.2.0 builds.
+- The full final member set on Windows, including City Performance after its pending main-branch release preparation.
 
 ## Licence
 

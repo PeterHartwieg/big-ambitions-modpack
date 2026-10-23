@@ -26,12 +26,15 @@ files = {
 }
 # The Mod Creator uses the first image in the mod folder's root as the Workshop thumbnail.
 preview = root / 'workshop' / 'preview.jpg'
-if preview.is_file(): files['preview.jpg'] = preview
+if not preview.is_file(): sys.exit('Missing workshop/preview.jpg')
+files['preview.jpg'] = preview
 for name, source in files.items():
     dest = out / name
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, dest)
 names = sorted(['HARTModPack.dll', *files])
+images = sorted(p.name for p in out.iterdir() if p.suffix.lower() in ('.png', '.jpg', '.jpeg'))
+if images != ['preview.jpg']: sys.exit(f'The package root must hold only preview.jpg, found: {images}')
 if len(list(out.glob('*.dll'))) != 1: sys.exit('The package root must hold exactly one DLL')
 
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()

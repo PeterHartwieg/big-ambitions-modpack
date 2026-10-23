@@ -2,7 +2,7 @@
 
 Paste-ready fields for the game's Mod Creator (Main menu > Mods > Mod Creator). This folder is not part of the package, except `preview.jpg` once it exists. Nothing here has been uploaded.
 
-Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mod Pack Patch, City Performance, Campaign Objectives 1.2.0, then HART. Mod Pack. The three new items need their Workshop links in the description and their IDs in the Required items before this page is complete.
+Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mod Pack Patch, City Performance, Campaign Objectives 1.2.1, then HART. Mod Pack. The three new items need their Workshop links in the description and their IDs in the Required items before this page is complete.
 
 ## Fields
 

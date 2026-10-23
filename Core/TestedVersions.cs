@@ -19,7 +19,7 @@ namespace HARTModPack.Core
             { "HARTRivalBalance", new[] { "0.2.0" } },
             { "HardModePatch", new[] { "0.5.0" } },
             { "CityPerformance", new[] { "0.5.0" } },
-            { "CampaignObjectives", new[] { "1.2.0" } },
+            { "CampaignObjectives", new[] { "1.2.0", "1.2.1" } },
             // Optional: 1.1.0 is the Workshop build, 1.1.1 the local build, both seen 22 October 2026.
             { "HARTFreeCamera", new[] { "1.1.0", "1.1.1" } },
         };

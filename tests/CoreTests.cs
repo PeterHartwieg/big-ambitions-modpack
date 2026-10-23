@@ -74,7 +74,7 @@ public class VersionTests
         Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("HardModePatch"));
         Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("CityPerformance"));
         Assert.Equal(new[] { "0.2.0" }, TestedVersions.For("HARTRivalBalance"));
-        Assert.Equal(new[] { "1.2.0" }, TestedVersions.For("CampaignObjectives"));
+        Assert.Equal(new[] { "1.2.0", "1.2.1" }, TestedVersions.For("CampaignObjectives"));
         Assert.Equal(VersionVerdict.Tested, TestedVersions.Check("RealLifeOverhaul", "0.49.0"));
         Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("RealLifeOverhaul", "0.50.0"));
         // A member with no table entry that starts exposing a version is reported, so the table gets updated.
