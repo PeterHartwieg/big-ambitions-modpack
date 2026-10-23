@@ -116,13 +116,51 @@ var captions = patch.GetType("HARTModPack.OptionButtonCaptions", true)!;
 var captionHook = (MethodBase)captions.GetMethod("ResolveHook", Any)!.Invoke(null, null)!;
 Check(captionHook.DeclaringType!.FullName == "BigAmbitions.ModsInternal.ModOptionsButtonControl"
     && captionHook.GetParameters().Single().ParameterType.FullName == "BigAmbitions.Mods.ModOption", "native option button initializer resolves");
-captions.GetMethod("Start", Any)!.Invoke(null, null);
-Check(Harmony.GetPatchInfo(captionHook)!.Postfixes.Single().owner == "hartmodpack.ui.buttoncaptions", "button caption postfix installs under its presentation owner");
-var buttonType = modApi.GetType("BigAmbitions.Mods.ButtonOption", true)!;
-var foreignButton = Activator.CreateInstance(buttonType, new object[] { "hardmode_series_apply", (Action)(() => { }) })!;
-captions.GetMethod("AfterInitialize", Any)!.Invoke(null, new object?[] { null, foreignButton });
-Check(true, "another assembly's identical option label returns before accessing the UI");
-captions.GetMethod("Stop", Any)!.Invoke(null, null);
-Check(Harmony.GetPatchInfo(captionHook)?.Owners.Contains("hartmodpack.ui.buttoncaptions") != true, "caption hook is removed on unload");
+const string captionOwner = "hartmodpack.ui.buttoncaptions";
+var foreignCaptionOwner = new Harmony("settingscheck.caption.foreign");
+var warned = captions.GetField("warned", Any)!;
+object CaptionCall(string name, params object[] values) => captions.GetMethod(name, Any)!.Invoke(null, values)!;
+try
+{
+    // Suppress Unity's native logger only, retaining the real postfix and warning deduplication.
+    foreignCaptionOwner.Patch(patch.GetType("HARTModPack.Log", true)!.GetMethod("Warn", Any)!,
+        prefix: new HarmonyMethod(typeof(CaptionProbes), nameof(CaptionProbes.CaptureWarning)));
+    foreignCaptionOwner.Patch(captionHook, postfix: new HarmonyMethod(typeof(CaptionProbes), nameof(CaptionProbes.Noop)));
+    CaptionCall("Start");
+    Check(Harmony.GetPatchInfo(captionHook)!.Postfixes.Count(p => p.owner == captionOwner) == 1,
+        "one button caption postfix installs under its presentation owner alongside another owner");
+    var buttonType = modApi.GetType("BigAmbitions.Mods.ButtonOption", true)!;
+    var label = (string)patch.GetType("HARTModPack.Core.ButtonCaptions", true)!.GetField("ApplyLabelKey")!.GetRawConstantValue()!;
+    var foreignButton = Activator.CreateInstance(buttonType, new object[] { label, (Action)(() => { }) })!;
+    CaptionCall("AfterInitialize", null, foreignButton);
+    Check(!(bool)warned.GetValue(null)!, "another assembly's identical option label returns before accessing the UI");
+    var callback = (Action)P("SeriesSettingsButton").GetMethod("Apply", Any)!.CreateDelegate(typeof(Action));
+    var unrelated = Activator.CreateInstance(buttonType, new object[] { "unrelated", callback })!;
+    CaptionCall("AfterInitialize", null, unrelated);
+    CaptionCall("AfterInitialize", null, null);
+    Check(!(bool)warned.GetValue(null)!, "unrelated own labels and non-button options return before accessing the UI");
+    var ownButton = Activator.CreateInstance(buttonType, new object[] { label, callback })!;
+    CaptionCall("AfterInitialize", null, ownButton);
+    Check((bool)warned.GetValue(null)!, "own callback and real label reach the caption path and warn for a null control");
+    int warnings = CaptionProbes.Warnings.Count;
+    CaptionCall("AfterInitialize", null, ownButton);
+    CaptionCall("Warn", "a different caption failure");
+    CaptionCall("Warn", "a different caption failure");
+    Check(warnings == 1 && CaptionProbes.Warnings.Count == 2, "repeated failures log once each while a distinct failure is still logged");
+    CaptionCall("Stop");
+    Check(!(bool)warned.GetValue(null)!, "unload resets the warning latch");
+    Check(Harmony.GetPatchInfo(captionHook)?.Owners.Contains(captionOwner) != true
+        && Harmony.GetPatchInfo(captionHook)?.Owners.Contains(foreignCaptionOwner.Id) == true,
+        "caption unload removes only its own owner");
+}
+finally { CaptionCall("Stop"); foreignCaptionOwner.UnpatchAll(foreignCaptionOwner.Id); }
 Console.WriteLine($"ALL {checks} SETTINGS CHECKS PASSED (offline; RLO's live options page, the in-game button, PlayerPrefs and the custom game screen remain unverified)");
 return 0;
+
+
+static class CaptionProbes
+{
+    internal static readonly List<string> Warnings = new List<string>();
+    public static bool CaptureWarning(string message) { Warnings.Add(message); return false; }
+    public static void Noop() { }
+}

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BigAmbitions.Mods;
 using BigAmbitions.ModsInternal;
 using HARTModPack.Core;
@@ -8,12 +10,31 @@ using Localizor.LanguageChangeEvent;
 
 namespace HARTModPack
 {
-    // Build 3682 initializes the row label but leaves the button's prefab caption unchanged.
-    // Restrict this presentation fix to this assembly's two buttons, including the member checker during stand-down.
+    // Build 3682 initializes the row label and callback but leaves the button's prefab caption unchanged.
     static class OptionButtonCaptions
     {
         static readonly Harmony harmony = new Harmony("hartmodpack.ui.buttoncaptions");
+        static readonly ConditionalWeakTable<ModOptionsButtonControl, CaptionState> mutated = new ConditionalWeakTable<ModOptionsButtonControl, CaptionState>();
+        static readonly HashSet<string> warnedMessages = new HashSet<string>(StringComparer.Ordinal);
         static bool warned;
+
+        sealed class CaptionState
+        {
+            internal TextLocalizationComponent Localized;
+            internal LanguageChangeEventDataHolder Data;
+            internal string Text;
+            internal bool Enabled;
+
+            internal void Restore()
+            {
+                if (Localized == null) return;
+                // Leave an added game component disabled: Destroy is deferred and a same-frame rebind may need it.
+                Localized.enabled = false;
+                Localized.SetData(Data);
+                Localized.TextContainer.text = Text;
+                Localized.enabled = Enabled;
+            }
+        }
 
         internal static MethodBase ResolveHook()
         {
@@ -22,35 +43,63 @@ namespace HARTModPack
 
         public static void Start()
         {
-            try { harmony.Patch(ResolveHook(), postfix: new HarmonyMethod(typeof(OptionButtonCaptions), "AfterInitialize")); }
-            catch (Exception ex) { Warn(ex.Message); }
+            try { harmony.Patch(ResolveHook(), postfix: new HarmonyMethod(typeof(OptionButtonCaptions), nameof(AfterInitialize))); }
+            catch (Exception ex) { Warn(ex.GetType().Name + ": " + ex.Message); }
         }
 
-        public static void Stop() { harmony.UnpatchAll(harmony.Id); warned = false; }
+        public static void Stop() { harmony.UnpatchAll(harmony.Id); warnedMessages.Clear(); warned = false; }
 
         static void AfterInitialize(ModOptionsButtonControl __instance, ModOption option)
         {
             var button = option as ButtonOption;
-            if (button == null || button.OnClick == null || button.OnClick.Method.DeclaringType == null
-                || button.OnClick.Method.DeclaringType.Assembly != typeof(HARTModPackMod).Assembly) return;
-            string key = ButtonCaptions.KeyFor(button.Label);
-            if (key == null) return;
+            string key = button != null && button.OnClick != null
+                && button.OnClick.Method.DeclaringType?.Assembly == typeof(HARTModPackMod).Assembly
+                ? (ButtonCaptions.KeyFor(button.Label)) : null;
             try
             {
+                if (key == null)
+                {
+                    // A pooled control can be rebound to a foreign, unrelated or non-button option.
+                    // Do not access Unity at all unless this exact instance was changed by us.
+                    if (!ReferenceEquals(__instance, null) && mutated.TryGetValue(__instance, out var previous))
+                    {
+                        previous.Restore();
+                        mutated.Remove(__instance);
+                    }
+                    return;
+                }
                 var caption = __instance.transform.Find("ButtonContainer/Button/Text (TMP)");
                 if (caption == null) { Warn("the native button caption was not found"); return; }
-                var localized = caption.GetComponent<TextLocalizationComponent>()
-                    ?? caption.gameObject.AddComponent<TextLocalizationComponent>();
-                // Reset any prefab formatting and refresh even when a reused control already has this key.
-                // The localization component also reapplies the caption after a language change or re-enable.
+                var localized = caption.GetComponent<TextLocalizationComponent>();
+                bool added = localized == null;
+                if (added) localized = caption.gameObject.AddComponent<TextLocalizationComponent>();
+                if (!mutated.TryGetValue(__instance, out var original))
+                {
+                    original = new CaptionState
+                    {
+                        Localized = localized,
+                        Data = added ? new LanguageChangeEventDataHolder() : new LanguageChangeEventDataHolder
+                        {
+                            Key = localized.Key, Arguments = localized.Arguments, Prefix = localized.Prefix,
+                            Suffix = localized.Suffix, Format = localized.Format
+                        },
+                        Text = localized.TextContainer.text,
+                        Enabled = !added && localized.enabled
+                    };
+                    mutated.Add(__instance, original);
+                }
+                localized.enabled = true;
+                // Reset leftover formatting on clones or a prefab component, and force a text refresh.
+                // Localization also reapplies the caption after a language change or re-enable.
                 localized.SetData(new LanguageChangeEventDataHolder { Key = key });
             }
-            catch (Exception ex) { Warn(ex.Message); }
+            catch (Exception ex) { Warn(ex.GetType().Name + ": " + ex.Message); }
         }
 
         static void Warn(string message)
         {
-            if (warned) return;
+            if (warned && warnedMessages.Contains(message)) return;
+            warnedMessages.Add(message);
             warned = true;
             Log.Warn("Button captions unavailable: " + message);
         }

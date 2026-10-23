@@ -47,7 +47,7 @@ The member checker uses public classes in the game's own assemblies; `tools/chec
 | `ModManifest.GetIds()` | Telling an empty Steam answer (timeout) from no subscriptions. | Medium, `ModsInternal`. |
 | `Object.FindAnyObjectByType<ModsPanel>()`, `<UploadModPanel>()` | Waiting while the Mods panel or the Mod Creator is open. | Low to medium: if the panel's object stays active when closed, turning on waits for good, after one line in `Player.log`. |
 | `OptionsService.Register`, `.RemoveModOptions`, `ModOptions` | The Mods page. | Low, the documented mod API. |
-| `ModOptionsButtonControl.Initialize(ModOption)`, native caption child, `TextLocalizationComponent.SetData` | Localize this pack's two button captions, which build 3682 leaves as prefab placeholders. Refresh reused controls and clear inherited formatting while retaining localization on language changes. | Medium. Scoped by callback assembly and label; missing caption logs once. Native screenshot acceptance required. |
+| `ModOptionsButtonControl.Initialize(ModOption)`, native caption child, `TextLocalizationComponent.SetData`, localization properties, `Behaviour.enabled`, `TMP_Text.text` | Localize this pack's two button captions, which build 3682 leaves as prefab placeholders. Clear leftover formatting on clones or a prefab component, retain localization on language changes, and restore the prior caption when our control is rebound to another option. | Medium. Scoped by callback assembly and label; each distinct caption failure logs once. Native screenshot acceptance required. |
 | `LocalizorManager.RegisterExternalLocalization`, `.UnregisterExternalLocalization`, `.LoadedLocale` | The changing status lines. | Low to medium. If it breaks, the page shows keys instead of text and `Player.log` still has the lines. |
 | `Notifications.Show`, `Notifications.onShow` | The notices. A notice waits until the game has a notification list. | Low. |
 | `PlayerPrefs`, `Application.persistentDataPath` | Remembering hidden notices and turned-on items; the locale folder. | Low. |
@@ -76,7 +76,7 @@ The behaviour these calls rely on, from reading the decompile of build 3682 (22 
 
 ## Evidence
 
-**Merged 1.1.0:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs.
+**Merged 1.1.0:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs. Caption acceptance also needs page rebuilds, language changes and RLO key-binding rows: cloned rows inherit localization components but do not inherit the original control's weak-table tracking.
 
 
 Checked means seen in the game. Code reading and offline checks are not checks.

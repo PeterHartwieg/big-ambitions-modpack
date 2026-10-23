@@ -49,7 +49,7 @@ namespace HardModePatch
         public static void AppendTo(ModOptions options)
         {
             options.AddSplitter().AddHeader("hardmode_series_header");
-            options.AddButton("hardmode_series_apply", SeriesSettingsButton.Apply);
+            options.AddButton(HARTModPack.Core.ButtonCaptions.ApplyLabelKey, SeriesSettingsButton.Apply);
             AddRule(options, Rules.SeriesPrefill);
             if (!CustomGamePrefill.Available) options.AddHeader("hardmode_series_prefill_unavailable");
             options.AddSplitter().AddHeader("hardmode_scenario_header");
