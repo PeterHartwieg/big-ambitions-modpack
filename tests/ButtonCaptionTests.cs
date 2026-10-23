@@ -9,7 +9,7 @@ public class ButtonCaptionTests
     [InlineData("another_mod_button", null)]
     [InlineData("Apply HART series settings", null)]
     [InlineData(null, null)]
-    public void Only_the_two_pack_labels_select_a_caption(string label, string key)
+    public void Only_the_two_pack_labels_select_a_caption(string? label, string? key)
     {
         Assert.Equal(key, ButtonCaptions.KeyFor(label));
     }
