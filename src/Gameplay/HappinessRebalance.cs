@@ -103,7 +103,9 @@ namespace HardModePatch
                 var all = Registered().ToList();
                 Restore(all);
                 if (Rules.HappinessRebalance.Enabled) Apply(all);
-                HappinessHelper.UpdateHappiness();
+                // The series button runs at the main menu, where there is no live player's mood to refresh.
+                // Current can also retain the last save after returning to the menu.
+                if (SaveGameManager.Current != null && !MainMenuController.IsInitialized) HappinessHelper.UpdateHappiness();
             }
             catch (Exception ex) { Log.Error("Happiness rebalance switch: " + ex.Message); }
         }

@@ -257,6 +257,25 @@ if (rloPath != null)
         Check((int)Get(noHome, "amount") == -50, "'no home' is back to -50 without a booking");
     }
     SetHapRule(false);
+    var currentField = gameAssembly.GetType("SaveGameManager", true).GetField("_current", BindingFlags.Static | BindingFlags.NonPublic);
+    var previousSave = currentField.GetValue(null);
+    var refresh = (MethodBase)hapHooks[2];
+    var refreshGuard = new Harmony("scenariocheck.menu-happiness");
+    refreshGuard.Patch(refresh, prefix: new HarmonyMethod(typeof(MenuHappinessProbe).GetMethod("Prefix")));
+    try
+    {
+        currentField.SetValue(null, null);
+        MenuHappinessProbe.Calls = 0;
+        hap.GetMethod("Reapply", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
+        Check(MenuHappinessProbe.Calls == 0, "applying the rule without a loaded save never calls the player's happiness update");
+    }
+    finally { currentField.SetValue(null, previousSave); refreshGuard.UnpatchAll(refreshGuard.Id); }
 }
 Console.WriteLine($"ALL {checks} SCENARIO CHECKS PASSED (offline; engine lifecycle, bank assets and real settlement remain unverified)");
 return 0;
+
+public static class MenuHappinessProbe
+{
+    public static int Calls;
+    public static bool Prefix() { Calls++; return false; }
+}

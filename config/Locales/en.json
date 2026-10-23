@@ -15,6 +15,7 @@
   "hardmode_title": "HART. Mod Pack",
   "hardmode_series_header": "HART series settings",
   "hardmode_series_apply": "Apply HART series settings",
+  "hartmodpack_button_apply": "Apply",
   "hardmode_series_prefill_custom_game": "Prefill the custom game with the series settings",
   "hardmode_series_prefill_unavailable": "Custom game prefill unavailable: the game's custom game screen changed; see Player.log",
   "hardmode_series_applied": "HART series settings applied. Restart the game to use them; reopen the Mods page to see them.",

@@ -61,6 +61,7 @@ namespace HARTModPack
         {
             try
             {
+                OptionButtonCaptions.Start();
                 StatusPage.Register(modId);
                 HardModePatch.GameplayFeatures.Begin(modId);
                 PackRunner.Begin();
@@ -82,6 +83,7 @@ namespace HARTModPack
             try { HardModePatch.GameplayFeatures.End(); } catch (Exception ex) { Log.Error("Stopping gameplay: " + ex); }
             try { PackRunner.End(); } catch (Exception ex) { Log.Error("Stopping: " + ex); }
             try { StatusPage.Unregister(); } catch (Exception ex) { Log.Error("Removing the Mods page: " + ex); }
+            try { OptionButtonCaptions.Stop(); } catch (Exception ex) { Log.Error("Removing button captions: " + ex); }
         }
     }
 

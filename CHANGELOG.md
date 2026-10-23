@@ -2,6 +2,8 @@
 
 ## 1.1.0 (23 October 2026)
 
+- Fix the series and member-check buttons showing the game's placeholder caption.
+- Applying the series settings at the main menu no longer attempts to refresh an absent player's happiness.
 - Supports reviewed RLO 0.50.0, retaining 0.49.0. All existing RLO contracts match; extend the main and BizMan presentation allowlists.
 - Add Mute RLO night chirping, on by default and in the series preset. Mute only the generated cricket AudioSource; restore its prior mute state when disabled or unloaded without changing RLO settings.
 - Fill in the published Thriving Rivals and City Performance Workshop IDs.

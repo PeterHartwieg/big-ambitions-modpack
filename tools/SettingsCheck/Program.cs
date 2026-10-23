@@ -111,5 +111,18 @@ var script = File.ReadAllText(Path.GetFullPath(args[5]));
 var listed = System.Text.RegularExpressions.Regex.Matches(script, "@\\{ Owner = '([^']+)'; Id = '([^']+)'; Value = (\\d+) \\}")
     .Select(m => (m.Groups[1].Value, m.Groups[2].Value, int.Parse(m.Groups[3].Value))).ToList();
 Check(listed.SequenceEqual(rows.Select(r => (r.Owner, r.Id, r.Value))), "export-series-settings.ps1 lists the same " + rows.Count + " options and values as Core/SeriesSettings");
+// The caption fix must target the actual game adapter and withdraw its own hook on unload.
+var captions = patch.GetType("HARTModPack.OptionButtonCaptions", true)!;
+var captionHook = (MethodBase)captions.GetMethod("ResolveHook", Any)!.Invoke(null, null)!;
+Check(captionHook.DeclaringType!.FullName == "BigAmbitions.ModsInternal.ModOptionsButtonControl"
+    && captionHook.GetParameters().Single().ParameterType.FullName == "BigAmbitions.Mods.ModOption", "native option button initializer resolves");
+captions.GetMethod("Start", Any)!.Invoke(null, null);
+Check(Harmony.GetPatchInfo(captionHook)!.Postfixes.Single().owner == "hartmodpack.ui.buttoncaptions", "button caption postfix installs under its presentation owner");
+var buttonType = modApi.GetType("BigAmbitions.Mods.ButtonOption", true)!;
+var foreignButton = Activator.CreateInstance(buttonType, new object[] { "hardmode_series_apply", (Action)(() => { }) })!;
+captions.GetMethod("AfterInitialize", Any)!.Invoke(null, new object?[] { null, foreignButton });
+Check(true, "another assembly's identical option label returns before accessing the UI");
+captions.GetMethod("Stop", Any)!.Invoke(null, null);
+Check(Harmony.GetPatchInfo(captionHook)?.Owners.Contains("hartmodpack.ui.buttoncaptions") != true, "caption hook is removed on unload");
 Console.WriteLine($"ALL {checks} SETTINGS CHECKS PASSED (offline; RLO's live options page, the in-game button, PlayerPrefs and the custom game screen remain unverified)");
 return 0;
