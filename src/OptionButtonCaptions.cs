@@ -41,7 +41,9 @@ namespace HARTModPack
                 if (caption == null) { Warn("the native button caption was not found"); return; }
                 var localized = caption.GetComponent<TextLocalizationComponent>()
                     ?? caption.gameObject.AddComponent<TextLocalizationComponent>();
-                localized.Key = key;
+                // Reset any prefab formatting and refresh even when a reused control already has this key.
+                // The localization component also reapplies the caption after a language change or re-enable.
+                localized.SetData(new LanguageChangeEventDataHolder { Key = key });
             }
             catch (Exception ex) { Warn(ex.Message); }
         }
