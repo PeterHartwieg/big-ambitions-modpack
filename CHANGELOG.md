@@ -2,6 +2,10 @@
 
 ## 1.0.0 (22 October 2026)
 
+- First release. Checks required pack members, turns on subscribed required mods the game left off, and reports missing, failed, duplicate or untested members.
+- Uses the approved HART. Thriving Rivals and HART. Mod Pack Patch names.
+- Apply HART series settings in Mod Pack Patch to enable Economy Expansion-inspired equipment utilities and office IT on RLO, replacing the flat 2x/3x rent increase. Existing signed leases retain their stored rent.
+
 First release, the Workshop item for the HART modded series pack.
 
 - Finds the 14 required and 3 optional pack mods by their DLL's assembly name, wherever they come from.

@@ -1,7 +1,7 @@
 # HART. Mod Pack 1.0.0
 
-First release. Checks the required pack members, turns on subscribed required mods that the game left off, and reports missing or untested versions. Restart when prompted, then apply HART series settings through HART. Mod Pack Patch.
-
-Uses the new HART. Thriving Rivals and HART. Mod Pack Patch names in member status and settings reminders.
-
-Recognizes Campaign Objectives 1.2.1 as tested after the Mac series-settings, new-game, midnight and save/reload check.
+- First release. Checks required pack members, turns on subscribed required mods the game left off, and reports missing, failed, duplicate or untested members.
+- Uses the approved HART. Thriving Rivals and HART. Mod Pack Patch names.
+- Apply HART series settings in Mod Pack Patch to enable Economy Expansion-inspired equipment utilities and office IT on RLO, replacing the flat 2x/3x rent increase. Existing signed leases retain their stored rent.
+- Recognizes Campaign Objectives 1.2.1 after the documented Mac integration pass. Windows/Workshop acceptance remains pending.
+- Restart when prompted, then apply HART series settings and start New game > Custom.

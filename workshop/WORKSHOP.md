@@ -1,8 +1,8 @@
 # HART. Mod Pack: Workshop upload
 
-Paste-ready fields for the game's Mod Creator (Main menu > Mods > Mod Creator). This folder is not part of the package, except `preview.jpg` once it exists. Nothing here has been uploaded.
+Paste-ready fields for the game's Mod Creator (Main menu > Mods > Mod Creator). This folder is not part of the package, except `preview.png`. Nothing here has been uploaded.
 
-Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mod Pack Patch, City Performance, Campaign Objectives 1.2.1, then HART. Mod Pack. The three new items need their Workshop links in the description and their IDs in the Required items before this page is complete.
+Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mod Pack Patch, City Performance, Campaign Objectives 1.2.1, then HART. Mod Pack. The three new items still need their actual IDs in Required items after Peter publishes them. The paste-ready description names them without placeholder links; add their real links after publication.
 
 ## Fields
 
@@ -14,9 +14,9 @@ Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mo
 
 **Version:** `1.0.0`. Package: `build/HARTModPack/`; archive: `build/HARTModPack-1.0.0.zip` with `build/HARTModPack-1.0.0.zip.sha256`; file hashes: `build/HARTModPack.sha256`.
 
-**Thumbnail:** open. `hart-group/tools/build_brand.py` has no mode for a mod pack thumbnail; its only mod thumbnail mode is `--campaign-thumbnail`, for Campaign Objectives. The Mod Creator takes the first image in the mod folder's root, so put a `preview.jpg` under 1 MB in `workshop/` and rerun `tools/build.sh`; it copies the file into the package and the hashes change.
+**Thumbnail:** `workshop/preview.png`, the only image in the package root. Approved artwork; the build script copies it automatically. Gallery cards stay outside the runtime package.
 
-**Bug reports:** open. There is no pack channel on the Discord yet; the description has a placeholder, `DISCORD-LINK`.
+**Bug reports:** use the Workshop comments or discussion for the relevant item; no Discord invitation is configured here.
 
 **Donations:** the PayPal hosted button `Q8KVURCRBFLQN`, which covers all of Peter's Big Ambitions projects.
 
@@ -24,7 +24,7 @@ Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mo
 
 ## Before pasting
 
-- Replace `LINK-RIVAL-BALANCE`, `LINK-MODE-PATCH` and `LINK-CITY-PERFORMANCE` with the new items' Workshop links, and `DISCORD-LINK` with a channel invite.
+- Add real Workshop links for Thriving Rivals, Mod Pack Patch and City Performance once their items exist. The description is usable without those links; Required items must still be configured manually.
 - POLYMODS HYPERREAL's author is `123456` in `hart-group/mods/modpack/modpack.json`. Check the name on its Workshop page.
 - Food Trucks has no Workshop ID in `modpack.json`; 3822355169 is from the release plan and the Mac Workshop folder, where it holds `FoodTrucks.dll`.
 - `modpack.json` calls the Hyperreal bundles optional in its `platform` and `compatibilityCheck` notes, while the release plan makes POLYMODS HYPERREAL required. The pack treats it as required; move it to the optional list in `Core/Pack.cs` and here if that's wrong.
@@ -63,14 +63,17 @@ All the mods from my HART modded Big Ambitions series in one subscription. HART.
 [*][b]Apply the series settings:[/b] Settings > Mods > HART. Mod Pack Patch > [b]Apply HART series settings[/b], then restart. Start a New game > Custom.
 [/list]
 
+[h2]Series house rules[/h2]
+The series button in HART. Mod Pack Patch enables Economy Expansion-inspired running costs on RLO: equipment and opening hours affect utilities, and offices need internet and pay $150 per computer each game month at starting prices. It explicitly turns the old flat 2x/3x rent increase off. Existing leases keep their stored rent. Economy Expansion itself is not included or required.
+
 [h2]The mods in the pack[/h2]
 Every mod here is someone's own work, and the pack wouldn't exist without them. Please rate and thank them on their own pages. The ones marked (mine) are my mods.
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816536560]Real Life Overhaul[/url] by Adult Cudi
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3801170388]Dynamic Rivals[/url] by Andre1408
-[*][url=LINK-RIVAL-BALANCE]HART. Thriving Rivals[/url] (mine): keeps rivals in business and competing on hard settings
-[*][url=LINK-MODE-PATCH]HART. Mod Pack Patch[/url] (mine): the pack's companion mod, with the series settings and the pack's balance changes
-[*][url=LINK-CITY-PERFORMANCE]City Performance[/url] (mine)
+[*]HART. Thriving Rivals (mine): keeps rivals in business and competing on hard settings
+[*]HART. Mod Pack Patch (mine): the pack's companion mod, with the series settings and the pack's balance changes
+[*]City Performance (mine): experimental, all behavior features on by default and logging off. If problems occur, enable logging and disable features one by one to find the best setup
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3822355169]HART. Street Food[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3819853552]HART. Self Driving[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3821783833]HART. RDSTR[/url] (mine)
@@ -108,18 +111,22 @@ Recording tools I use for the videos. The pack works without them and doesn't tu
 [/list]
 
 [h2]Bug reports[/h2]
-Post problems with the pack in [url=DISCORD-LINK]my Discord[/url], one post per problem. Include the game build and what happened. The lines in Player.log that start with [HART. Mod Pack] list every mod's state and help most. The file is in %USERPROFILE%\AppData\LocalLow\Hovgaard Games\Big Ambitions on Windows and in ~/Library/Logs/Hovgaard Games/Big Ambitions on a Mac. Bugs in a single mod go to that mod's page.
+Post problems with the pack in this item's Workshop comments or discussions, one post per problem. Include the game build and what happened. The lines in Player.log that start with [HART. Mod Pack] list every mod's state and help most. The file is in %USERPROFILE%\AppData\LocalLow\Hovgaard Games\Big Ambitions on Windows and in ~/Library/Logs/Hovgaard Games/Big Ambitions on a Mac. Bugs in a single mod go to that mod's page.
 
 [h2]Support[/h2]
-The pack is free and stays free. If you'd like to say thanks, you can [url=https://www.paypal.com/donate/?hosted_button_id=Q8KVURCRBFLQN]support my Big Ambitions projects via PayPal[/url].
+The mod is free and stays free. If you'd like to say thanks, you can [url=https://www.paypal.com/donate/?hosted_button_id=Q8KVURCRBFLQN]support my Big Ambitions projects via PayPal[/url].
 ```
 
 **Change log** (first upload):
 
 ```
-1.0.0: first release
+[b]HART. Mod Pack 1.0.0[/b]
 
-- Turns on the pack's mods that Steam downloaded but the game left off, then asks for a restart.
-- Checks the pack once per launch and shows one notice if something is missing, off, failed, loaded twice or untested.
-- Settings > Mods > HART. Mod Pack lists every mod with a Check again button.
+[list]
+[*]First release. Checks required pack members, turns on subscribed required mods the game left off, and reports missing, failed, duplicate or untested members.
+[*]Uses the approved HART. Thriving Rivals and HART. Mod Pack Patch names.
+[*]Apply HART series settings in Mod Pack Patch to enable Economy Expansion-inspired equipment utilities and office IT on RLO, replacing the flat 2x/3x rent increase. Existing signed leases retain their stored rent.
+[*]Recognizes Campaign Objectives 1.2.1 after the documented Mac integration pass. Windows/Workshop acceptance remains pending.
+[*]Restart when prompted, then apply HART series settings and start New game > Custom.
+[/list]
 ```

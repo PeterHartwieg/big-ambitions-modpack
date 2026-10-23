@@ -79,3 +79,7 @@ Checked means seen in the game. Code reading and offline checks are not checks.
 ## Licence
 
 MIT for this mod's code, see `LICENSE.txt`. The pack members belong to their authors and keep their own terms; this repository contains none of their files and no game files.
+
+## Series economy, 1.0.0
+
+Apply HART series settings in HART. Mod Pack Patch to enable the Economy Expansion-inspired equipment utilities and office IT rules on RLO. The button explicitly switches off the former flat 2x/3x rent increase. Existing leases retain their stored rent; new leases use the game's market-rent path. The helper does not write these settings itself, and Economy Expansion is not a required item.
