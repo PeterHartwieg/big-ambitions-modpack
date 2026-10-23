@@ -25,7 +25,7 @@ namespace HardModePatch.Core
 
     public static class Targets
     {
-        public static readonly TargetInfo RealLifeOverhaul = new TargetInfo("rlo", "Real Life Overhaul", 3816536560, "RealLifeOverhaul", "2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65");
+        public static readonly TargetInfo RealLifeOverhaul = new TargetInfo("rlo", "Real Life Overhaul", 3816536560, "RealLifeOverhaul", "2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "43c4eeed466c7149");
         public static readonly TargetInfo HardcoreAmbitions = new TargetInfo("hardcore", "Hardcore Ambitions", 3809287926, "HardcoreAmbitions", "62ba60cb66dc226c");
         public static readonly TargetInfo MeaningfulAmbience = new TargetInfo("ambience", "Meaningful Ambience", 3810641423, "MeaningfulAmbience", "5564717279c75596");
         public static readonly TargetInfo Bakery = new TargetInfo("bakery", "Bakery", 3810927743, "Bakery", "6d68edab0f5600f5");

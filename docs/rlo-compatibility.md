@@ -16,6 +16,16 @@ Supports reviewed RLO 0.50.0. Everything HART. Mod Pack does to or with RLO runs
 
 The prefixes are in `Core/Gameplay/Targets.cs`. A new build needs a review and a new prefix there. BizMan presentation and the new sound adapter accept 0.49.0 and 0.50.0 only; the earlier 0.45.0 gameplay support is retained.
 
+## Review of the companion candidate (23 October 2026)
+
+The local RLO 0.50.0 companion candidate at source commit `631479763e9c9b22956e395d4adb1e75f0bbd213` has DLL SHA-256 `43c4eeed466c714920bc3657c9aeca7bceb4b7244ce6974f07f21fe49469fbce`. This is a separate exact binary approval, not approval of arbitrary builds sharing version 0.50.0. The official release and earlier reviewed versions remain accepted.
+
+The [complete inventory](reviews/rlo-companion-targets.md) compares all 697 previously audited signatures, field shapes, constants and normalized method bodies: **697 unchanged, zero changed or removed, three added**. The additions are `UtilitiesGame.CompanionOutside`, `CompanionTaxLabel` and `CompanionCompanyTaxLabel`; source review confirms they project transaction observations or localized deduction labels without changing utility state. Existing tuition, school routes, catalogue slots, codec limits, utility accrual, outage-start-day exemption, pay, hotel and sound bodies remain unchanged. Existing utility source changed only to a partial type; new owner projections are separate files. The save-hook addition brackets publication with its saving flag and preserves existing handler catches and final cleanup.
+
+The main, utility-closure and night-sound hash lists accept only this reviewed candidate. Intermediate candidate hashes and the same-shape unreviewed fixture remain refused. Producer tests cover read-only projections; the pack's offline compatibility harness separately exercises actual Harmony hooks, courses and held records, billing and IT, save publication and legacy/duplicate takeover. These are offline checks against native binaries; live gameplay, hearing the sound, and a real save/load cycle remain pending.
+
+Candidate validation passed: 222 Core tests; 274/274 API references on both Windows and Mac; 31 accepted and 25 refused companion checks; all eight target hook sets; scenario 38; factory/school 88; costs/BizMan 44; night sound 16; compatibility 30; unknown gate 21; settings 27; legacy-first 12, legacy-late 18 and pack-only/duplicate takeover 14; 47 imported source pins and package integrity. The resulting HART DLL SHA-256 is `847637d73e1e4eb0d04910d990848abfeaa0179e4752a4766b7b7ae79dd26600`. No release version was changed.
+
 ## Review of 0.50.0 (23 October 2026)
 
 Official [v0.50.0 release](https://github.com/AdultCudi/real-life-overhaul/releases/tag/v0.50.0), ZIP SHA-256 `8a2bf1737e664622d5f0459b302a701ca62a510505a0d4a58f1f6b2a54675a57`; DLL SHA-256 above, file version 0.50.0.0 and informational version `0.50.0+850e278`. The locally supplied ZIP and DLL hashes match. Source tags resolve to `63a614a94ff107409a0c780fe95eec581ba02d71` and `850e2781b644cee7edea2bd97b11357c8d36bbd4`. The reviewed source is upstream's tagged source, and the tests load the supplied release DLL, not a rebuild.

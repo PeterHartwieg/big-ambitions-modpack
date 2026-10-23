@@ -51,6 +51,16 @@ public class NightChirpingTests
     }
 
     [Fact]
+    public void Reviewed_companion_candidate_is_exact_and_does_not_approve_previous_candidates()
+    {
+        const string hash = "43c4eeed466c714920bc3657c9aeca7bceb4b7244ce6974f07f21fe49469fbce";
+        Assert.True(TargetGate.Reviewed(TargetGate.HashPrefix(hash), Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("43c4eeed466c7148", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("790e707f3a6fcf69", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("ecbdfc92195401e1", Targets.RealLifeOverhaul.VerifiedHashes));
+    }
+
+    [Fact]
     public void Reviewed_050_guard_and_member_status_accept_the_official_binary()
     {
         const string hash = "F339319C9EC1AD65D4B3FA028D673F48E83FD075DFF18606F91A662FBAE54F5D";
