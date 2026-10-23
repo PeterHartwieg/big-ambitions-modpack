@@ -12,6 +12,8 @@ G="${BA_GAME_DLLS:-$REPO/../big-ambitions-hard-mode-patch/build/game-dlls}"; D="
 export BA_GAME_DLLS="$G"
 "$REPO/tools/build.sh"
 "$REPO/tools/check-api.sh"
+BA_COMPANION_RLO="$R" dotnet run --project "$REPO/tools/CompanionCheck" -- "$G" "$D"
+BA_COMPANION_RLO="$UNREVIEWED" BA_COMPANION_EXPECT_REFUSED=1 dotnet run --project "$REPO/tools/CompanionCheck" -- "$G" "$D"
 "$REPO/tools/check-hooks.sh" "$TARGETS"
 for check in ScenarioCheck FactoryCheck CostCheck NightSoundCheck; do dotnet run --project "$REPO/tools/$check" -- "$G" "$D" "$R"; done
 dotnet run --project "$REPO/tools/CompatibilityCheck" -- "$G" "$D" "$TARGETS"
@@ -22,4 +24,4 @@ LEGACY="${BA_LEGACY_PATCH:-$REPO/../big-ambitions-hard-mode-patch/build/HardMode
 for order in legacy-first pack-first pack-only; do
   dotnet run --project "$REPO/tools/MergeCheck" -- "$G" "$D" "$LEGACY" "$order"
 done
-python3 "$REPO/tools/check-merge.py"
+python3 "$REPO/tools/check-merge.py" "${BA_LEGACY_REPO:-$REPO/../big-ambitions-hard-mode-patch}"

@@ -96,6 +96,10 @@ else
         Check(!controls.Any(o => o.GetType().Name == "ToggleOption"), "blocked page has no active gameplay controls");
     }
 }
+var selected = T("HardModePatch.Core.Rules").GetField("EquipmentUtilities")!.GetValue(null)!;
+var observed = (System.Collections.IDictionary)T("HardModePatch.CompanionGame").GetMethod("State", Any)!.Invoke(null, new[] { selected })!;
+Check(Flag("Blocked") ? Equals(observed["effective"], false) && Equals(observed["state"], "blocked") : !Equals(observed["state"], "blocked"),
+    "companion effective state follows actual legacy ownership");
 Call(features, "End");
 Check(OwnedHooks() == 0, "unload removes every pack hook");
 Check(lifecycle.GetFields(Any).Where(f => typeof(Delegate).IsAssignableFrom(f.FieldType)).All(f =>

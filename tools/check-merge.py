@@ -15,7 +15,7 @@ commit = '36e8eec'
 adapters = {'src/Options.cs', 'src/SeriesSettingsButton.cs', 'src/HappinessRebalance.cs'}
 # Explicit 1.1.0 follow-up deltas; preserve the rest of each imported implementation byte for byte.
 reviewed_updates = {
-    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65"')],
+    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e"')],
     'Core/Rules.cs': [
         ('public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);',
          'public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);\n        public static readonly Rule MuteRloNightChirping = new Rule("mute_rlo_night_chirping", null, true);'),
@@ -27,9 +27,11 @@ reviewed_updates = {
         ('+ " and the hotel', '+ ", utility closure reasons, night chirping mute and the hotel'),
         ('|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled;', '|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled || Rules.MuteRloNightChirping.Enabled;')],
     'src/UtilityClosureReasonPatch.cs': [
-        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65" }'),
+        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e" }'),
         ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0 and 0.50.0')],
 }
+# Exact companion follow-up sources, reviewed as ordinary diffs. All other imported sources and defaults stay pinned.
+companion_imports = json.loads((root / 'tools/companion-import-digests.json').read_text())
 checked = 0
 for folder in ('Core', 'src', 'tests'):
     paths = subprocess.check_output(['git', '-C', str(legacy), 'ls-tree', '-r', '--name-only', commit, folder], text=True).splitlines()
@@ -45,10 +47,13 @@ for folder in ('Core', 'src', 'tests'):
             expected = expected.replace(before, after)
         target = root / folder / 'Gameplay' / Path(path).name
         assert target.is_file(), f'Missing imported file {path}'
-        if path not in adapters:
+        if path in companion_imports:
+            assert hashlib.sha256(target.read_bytes()).hexdigest() == companion_imports[path], f'Unrecorded companion delta in {path}'
+            checked += 1
+        elif path not in adapters:
             assert target.read_text() == expected, f'Unexpected gameplay change in {path}'
             checked += 1
-print(f'PASS {checked} imports match 0.5.0 with explicit RLO 0.50.0/option deltas; 3 lifecycle/UI adapters reviewed separately')
+print(f'PASS {checked} imports match 0.5.0 with explicit RLO 0.50.0/option and pinned companion deltas; 3 lifecycle/UI adapters reviewed separately')
 
 manifest = json.loads((root / 'modpack.json').read_text())
 series_path = root.parents[1] / 'youtube/hart-group/mods/modpack/modpack.json'

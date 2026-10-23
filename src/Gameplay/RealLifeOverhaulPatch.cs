@@ -181,6 +181,25 @@ namespace HardModePatch
             return true;
         }
 
+        // Same effective conjunction as Ready, without warnings, failure latches or lazy initialization.
+        internal static string ObserveGate()
+        {
+            if (!Rules.FactoryDiplomas.Enabled) return "off";
+            if (!active) return "inactive-patch";
+            if (failed) return "bridge-failed";
+            try
+            {
+                if (injected == null || !CatalogueIntact()) return "catalogue-unavailable";
+                if (!(bool)careersOn.GetValue(null)) return "careers-disabled";
+                if (!(bool)studyOn.GetValue(null)) return "study-disabled";
+                object director = instance.Invoke(null, null);
+                if (director == null) return "director-unavailable";
+                if ((bool)broken.GetValue(director)) return "director-failed";
+                return study.Invoke(director, null) == null ? "study-unavailable" : "active";
+            }
+            catch (Exception) { return "observation-failed"; }
+        }
+
         static bool Ready(out object record)
         {
             record = null;

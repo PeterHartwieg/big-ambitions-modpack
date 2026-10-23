@@ -152,6 +152,30 @@ namespace HardModePatch.Core
             return inLine > 0 ? inLine : HeldIn(line).Count;
         }
 
+        // A typed read of our own preserved record, not RLO's private save format.
+        public static object Inspect(string text)
+        {
+            var rows = new List<object>();
+            if (text == null) return HARTModPack.Core.CompanionSnapshot.Module("ready", rows);
+            var line = Parse(text);
+            if (line == null || line.Version != "1" || text.Split('~').Skip(1).Any(p => p.Length < 2 || p[1] != ':' || Array.IndexOf(Parts, p[0]) < 0))
+                return HARTModPack.Core.CompanionSnapshot.Module("unavailable", null, "held-format-unknown");
+            foreach (var part in line.Parts)
+            {
+                if (Array.IndexOf(Parts, part.Key) < 0) return HARTModPack.Core.CompanionSnapshot.Module("unavailable", null, "held-format-unknown");
+                foreach (var stored in part.Value)
+                {
+                    var h = FromHold(part.Key, stored);
+                    if (h == null || FactoryDiplomas.ForId(h.Id) == null || h.Day < 0 || h.Fields.Length <= StageField
+                        || h.Int(StageField, -1) < 0 || h.Int(StageField, -1) > 6)
+                        return HARTModPack.Core.CompanionSnapshot.Module("unavailable", null, "held-format-unknown");
+                    rows.Add(HARTModPack.Core.CompanionSnapshot.Row("courseId", h.Id, "kind", part.Key == 'c' ? "enrollment" : "result",
+                        "stage", h.Int(StageField, -1), "heldSinceDay", h.Day));
+                }
+            }
+            return HARTModPack.Core.CompanionSnapshot.Module("ready", rows);
+        }
+
         public static bool HasOurs(string careers) { return Ours(Parse(careers), 0).Count > 0; }
 
         // While RLO can't read our courses: the hold to store. Our records in RLO's line, plus every held record the

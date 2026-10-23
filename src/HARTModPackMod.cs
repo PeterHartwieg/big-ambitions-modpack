@@ -65,6 +65,7 @@ namespace HARTModPack
                 StatusPage.Register(modId);
                 HardModePatch.GameplayFeatures.Begin(modId);
                 PackRunner.Begin();
+                CompanionSave.Start();
                 active = copy;
                 Log.Info("Version " + Pack.Version + " active. Checking the pack once the other mods have loaded.");
             }
@@ -78,6 +79,7 @@ namespace HARTModPack
         static void Deactivate()
         {
             active = null;
+            try { CompanionSave.Stop(); } catch (Exception ex) { Log.Error("Stopping companion: " + ex); }
             try { HardModePatch.GameplayFeatures.End(); } catch (Exception ex) { Log.Error("Stopping gameplay: " + ex); }
             try { PackRunner.End(); } catch (Exception ex) { Log.Error("Stopping: " + ex); }
             try { StatusPage.Unregister(); } catch (Exception ex) { Log.Error("Removing the Mods page: " + ex); }

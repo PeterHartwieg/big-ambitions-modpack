@@ -100,6 +100,22 @@ object shop = Registration("5th Avenue", 61, "ba:businesstype_fastfoodrestaurant
     ("ba:itemname_ceilinglampwarehouseforsale", 0x2000));
 object office = Registration("Madison Avenue", 12, "ba:businesstype_lawfirm",
     ("ba:itemname_computer", 0x800010), ("ba:itemname_laptop", 0x800010), ("ba:itemname_desktopcomputer", 0x800010));
+// Capture's cold projection must match original ItemCached gameplay billing, while only billing warms it.
+var catalogue=(IDictionary)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string),itemType));
+var officeItems=(IDictionary)Get(office,"itemInstances");
+foreach(object value in officeItems.Values) catalogue[Get(value,"itemName")]=Get(value,"_itemCached");
+items.GetType("BigAmbitions.Items.ItemsGetter",true).GetField("ItemsDictionary",Any).SetValue(null,catalogue);
+string Project(bool observe)
+{
+    var load=costs.GetMethod("ProjectLoad",Any).Invoke(null,new[]{office,(object)observe});
+    var total=Get(load,"Total");
+    return string.Join(",",Get(total,"OpenWatts"),Get(total,"AlwaysWatts"),Get(total,"LitresPerHour"),Get(load,"Seats"));
+}
+Check(Project(true)==Project(false),"warmed pure load equals original gameplay ItemCached load");
+foreach(object value in officeItems.Values) Set(value,"_itemCached",null);
+var cold=Project(true);
+Check(officeItems.Values.Cast<object>().All(value=>Get(value,"_itemCached")==null),"cold capture projection does not warm gameplay items");
+Check(cold==Project(false) && officeItems.Values.Cast<object>().All(value=>Get(value,"_itemCached")!=null),"cold pure load equals gameplay load while billing retains native cache warming");
 string Key(object reg) => (string)costs.GetMethod("Key").Invoke(null, new[] { Get(reg, "StreetName"), Get(reg, "StreetNumber") });
 
 object Account(object reg, int service, int kind)

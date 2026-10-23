@@ -44,7 +44,7 @@ foreach (var type in new[] {
     "Closure", "ClosureSource", "Leisure.LeisureSound" }) Snapshot(type);
 Snapshot("Tech.TalentCatalogue", "Diploma", "Visual", "Troubleshooting");
 Snapshot("Careers.CareersDirector", "Offered", "get_Instance", "get_Study", "_broken", "AtTheSchool", "CanAttend", "CanSit", "DeskOfferOf", "DeskOfferNow", "ToSchoolDesk");
-Snapshot("Utilities.UtilitiesDirector", "NeedsNet", "get_Instance", "_save", "_loaded", "_failed", "_toldClosed", "TellClosed", "Day");
+Snapshot("Utilities.UtilitiesDirector", "NeedsNet", "get_Instance", "_save", "_loaded", "_failed", "_gaveUp", "_toldClosed", "TellClosed", "Day");
 Snapshot("Prices", "get_Level");
 Snapshot("BusinessState", "Closures", "PlaceKey");
 Snapshot("BusinessDirector", "CloseFor");

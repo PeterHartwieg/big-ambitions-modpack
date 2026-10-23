@@ -56,18 +56,30 @@ namespace HardModePatch
             {
                 var building = registration(__instance);
                 if (building == null || building.itemInstances == null) return;
+                __result = CafeMath.Cap(__result, ObserveStations(building, false));
+            }
+            catch (Exception ex) { Log.Error("Internet Cafe: capacity left as the game computed it: " + ex); }
+        }
+
+        internal static int ObserveStations(BuildingRegistration building, bool readOnly = true)
+        {
+            if (building == null || building.itemInstances == null) return 0;
                 var furniture = building.itemInstances;
                 var pcRoots = new List<string>();
                 var seatRoots = new List<string>();
                 foreach (var item in furniture.Values)
                 {
-                    if (item == null || string.IsNullOrEmpty(item.itemName) || ItemHelper.HasAnyMissingRequirements(item)) continue;
-                    if (Array.IndexOf(ComputerNames, item.itemName) >= 0) pcRoots.Add(RootId(item, furniture));
-                    else if (item.ItemCached != null && (item.ItemCached.type & ItemType.Seat) != 0) seatRoots.Add(RootId(item, furniture));
+                    if (item == null || string.IsNullOrEmpty(item.itemName)) continue;
+                    if (!readOnly && ItemHelper.HasAnyMissingRequirements(item)) continue;
+                    var data = readOnly ? CompanionItems.Data(item) : item.ItemCached;
+                    bool pc = Array.IndexOf(ComputerNames, item.itemName) >= 0;
+                    bool seat = data != null && (data.type & ItemType.Seat) != 0;
+                    if (!pc && !seat) continue;
+                    if (readOnly && !CompanionItems.Eligible(item, building)) continue;
+                    if (pc) pcRoots.Add(RootId(item, furniture));
+                    else if (seat) seatRoots.Add(RootId(item, furniture));
                 }
-                __result = CafeMath.Cap(__result, CafeMath.UsableStations(pcRoots, seatRoots));
-            }
-            catch (Exception ex) { Log.Error("Internet Cafe: capacity left as the game computed it: " + ex); }
+                return CafeMath.UsableStations(pcRoots, seatRoots);
         }
 
         // The top of the item's parent chain, as the cafe finds it (CafeServiceQuality.RootId).

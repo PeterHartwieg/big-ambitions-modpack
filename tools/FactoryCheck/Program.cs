@@ -49,6 +49,15 @@ void WriteStatic(FieldInfo field, object value)
     il.Emit(OpCodes.Ldarg_0); il.Emit(OpCodes.Castclass, field.FieldType); il.Emit(OpCodes.Stsfld, field); il.Emit(OpCodes.Ret);
     ((Action<object>)setter.CreateDelegate(typeof(Action<object>)))(value);
 }
+void Observe(string expected)
+{
+    var failed = bridge.GetField("failed", Any).GetValue(null);
+    var warnings = ((IEnumerable)bridge.GetField("warnings", Any).GetValue(null)).Cast<object>().ToArray();
+    Check((string)Call("ObserveGate") == expected && (string)Call("ObserveGate") == expected
+        && Equals(failed, bridge.GetField("failed", Any).GetValue(null))
+        && warnings.SequenceEqual(((IEnumerable)bridge.GetField("warnings", Any).GetValue(null)).Cast<object>()),
+        "pure companion gate: " + expected);
+}
 var rule = patch.GetType("HardModePatch.Core.Rules").GetField("FactoryDiplomas").GetValue(null);
 void Option(bool on) => rule.GetType().GetMethod("Set").Invoke(rule, new object[] { on });
 var target = Activator.CreateInstance(bridge);
@@ -164,6 +173,7 @@ try
     Set(director, "_study", restored); Set(director, "_studyOn", true);
     var singleton = T("CareersDirector").GetField("<Instance>k__BackingField", Any);
     singleton.SetValue(null, director);
+    Observe("active");
     object Denied(params string[] items) => Call("Denied", (object)items);
     Check(Denied("ba:itemname_industrialsewingmachine") == null, "held matching diploma allows sewing purchase");
     Check(Denied("ba:itemname_kilnmachine") != null && Denied("ba:itemname_polishingmachine") != null, "other diplomas still needed despite sewing pass");
@@ -210,20 +220,24 @@ try
     Set(sale, "enabled", false);
     Check((bool)Call("GrabPrefix", purchaser), "owned machine outside a sale is not gated");
     Set(director, "_broken", true);
+    Observe("director-failed");
     Check(Denied("ba:itemname_kilnmachine") == null, "faulted careers director fails open");
     Set(director, "_broken", false);
     var settings = rlo.GetType("RealLifeOverhaul.Settings");
     foreach (string flag in new[] { "Careers", "CareersStudy" })
     {
         settings.GetField(flag).SetValue(null, false);
+        Observe(flag == "Careers" ? "careers-disabled" : "study-disabled");
         Check(Denied("ba:itemname_kilnmachine") == null, flag + " off fails open immediately");
         settings.GetField(flag).SetValue(null, true);
     }
     Set(director, "_studyOn", false);
+    Observe("study-unavailable");
     Check(Denied("ba:itemname_kilnmachine") == null, "stopped study fails open immediately");
     Set(director, "_studyOn", true);
     Option(false); Check(Denied("ba:itemname_kilnmachine") == null, "HMP option off fails open immediately"); Option(true);
     WriteStatic(catalogue, original);
+    Observe("catalogue-unavailable");
     Check(Denied("ba:itemname_kilnmachine") == null, "lost catalogue injection fails open");
     var withoutHmp = Read(text);
     Check(((IList)Get(withoutHmp, "Courses")).Count == 0 && ((IList)Get(withoutHmp, "Results")).Count == 1, "unmodified RLO safely ignores removed diploma ids");

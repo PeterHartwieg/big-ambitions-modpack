@@ -14,6 +14,9 @@ namespace HardModePatch
         static string modId;
         public static bool Active { get { return guard.Active; } }
         public static bool Blocked { get { return guard.Blocked; } }
+        internal static HardModePatch.Core.TargetState TargetState(HardModePatch.Core.TargetInfo target)
+        { return patcher == null ? HardModePatch.Core.TargetState.Missing : patcher.StateOf(target); }
+
 
         public static void Begin(string id)
         {

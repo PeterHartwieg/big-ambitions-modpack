@@ -51,6 +51,20 @@ public class NightChirpingTests
     }
 
     [Fact]
+    public void Reviewed_companion_candidate_is_exact_and_does_not_approve_previous_candidates()
+    {
+        const string hash = "1f7647f2e188a43e43bc3411d2945a04eb68b70f5796e913dd9ae6807b0eba5c";
+        Assert.True(TargetGate.Reviewed(TargetGate.HashPrefix(hash), Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("1f7647f2e188a43f", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("e992a80637fd664e", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("ff30cc6a2801f2b3", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("14aa86b20dd354bc", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("43c4eeed466c7149", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("790e707f3a6fcf69", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("ecbdfc92195401e1", Targets.RealLifeOverhaul.VerifiedHashes));
+    }
+
+    [Fact]
     public void Reviewed_050_guard_and_member_status_accept_the_official_binary()
     {
         const string hash = "F339319C9EC1AD65D4B3FA028D673F48E83FD075DFF18606F91A662FBAE54F5D";
