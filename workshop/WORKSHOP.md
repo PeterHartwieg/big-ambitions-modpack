@@ -2,7 +2,7 @@
 
 Paste-ready fields for the game's Mod Creator (Main menu > Mods > Mod Creator). This folder is not part of the package, except `preview.jpg` once it exists. Nothing here has been uploaded.
 
-Upload this item last. The release plan's order: HART Rival Balance, HART. Mode Patch, City Performance, Campaign Objectives 1.2.0, then HART. Mod Pack. The three new items need their Workshop links in the description and their IDs in the Required items before this page is complete.
+Upload this item last. The release plan's order: HART. Thriving Rivals, HART. Mod Pack Patch, City Performance, Campaign Objectives 1.2.0, then HART. Mod Pack. The three new items need their Workshop links in the description and their IDs in the Required items before this page is complete.
 
 ## Fields
 
@@ -36,8 +36,8 @@ Set these on the Workshop page (Edit page > Add/Remove Required Items). Not the 
 
 - [ ] Real Life Overhaul, 3816536560
 - [ ] Dynamic Rivals, 3801170388
-- [ ] HART Rival Balance, new item ID after its upload
-- [ ] HART. Mode Patch, new item ID after its upload
+- [ ] HART. Thriving Rivals (formerly HART Rival Balance), new item ID after its upload
+- [ ] HART. Mod Pack Patch (formerly HART. Mode Patch), new item ID after its upload
 - [ ] City Performance, new item ID after its upload
 - [ ] HART. Street Food (Food Trucks), 3822355169
 - [ ] HART. Self Driving (Driven Rides), 3819853552
@@ -60,7 +60,7 @@ All the mods from my HART modded Big Ambitions series in one subscription. HART.
 [list]
 [*][b]Subscribe[/b] to HART. Mod Pack and accept Steam's offer to subscribe to the required items. If Steam doesn't ask, subscribe to each required mod in the list below.
 [*][b]Start the game.[/b] If HART. Mod Pack is off in Main menu > Mods, turn it on and restart. It then turns on every pack mod the game left off and asks you to restart once more.
-[*][b]Apply the series settings:[/b] Settings > Mods > HART. Mode Patch > [b]Apply HART series settings[/b], then restart. Start a New game > Custom.
+[*][b]Apply the series settings:[/b] Settings > Mods > HART. Mod Pack Patch > [b]Apply HART series settings[/b], then restart. Start a New game > Custom.
 [/list]
 
 [h2]The mods in the pack[/h2]
@@ -68,8 +68,8 @@ Every mod here is someone's own work, and the pack wouldn't exist without them. 
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3816536560]Real Life Overhaul[/url] by Adult Cudi
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3801170388]Dynamic Rivals[/url] by Andre1408
-[*][url=LINK-RIVAL-BALANCE]HART Rival Balance[/url] (mine)
-[*][url=LINK-MODE-PATCH]HART. Mode Patch[/url] (mine): the series settings and the pack's balance changes
+[*][url=LINK-RIVAL-BALANCE]HART. Thriving Rivals[/url] (mine): keeps rivals in business and competing on hard settings
+[*][url=LINK-MODE-PATCH]HART. Mod Pack Patch[/url] (mine): the pack's companion mod, with the series settings and the pack's balance changes
 [*][url=LINK-CITY-PERFORMANCE]City Performance[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3822355169]HART. Street Food[/url] (mine)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3819853552]HART. Self Driving[/url] (mine)
