@@ -27,7 +27,7 @@ Names below start with `RealLifeOverhaul.` unless a game type is explicitly name
 | Feature | Exact target or contract | 0.49.0 to 0.50.0 |
 | --- | --- | --- |
 | Equipment power/water | `Utilities.UtilitiesRules.AddDay(Account a, long use, int level, int day): void`, static | Signature, parameter names and body unchanged. Prefix still changes only the business use argument. |
-| Office IT, $150/computer/month at price level 100 | `Utilities.InternetRules.AddDay(Account a, int monthDays, bool outage): void`, static | Signature and body unchanged; daily accrual and outage exclusion preserved. |
+| Office IT, $150/computer/month at starting prices (RLO level 1000) | `Utilities.InternetRules.AddDay(Account a, int monthDays, bool outage): void`, static | Signature and body unchanged; daily accrual and outage exclusion preserved. |
 | Offices need internet | `Utilities.UtilitiesDirector.NeedsNet(PlaceInfo): bool`, static; `InternetCatalogue.Needs: static string[]` | Unchanged; exactly one load of Needs remains, so the existing transpiler is valid. |
 | Utility account reflection | `Account.Place: string`, `Service: Service`, `Kind: PlaceKind`, `State: SupplyState`, `Accrued: int`, all instance fields | Names, types and fields unchanged. Enum values still Power=0, Water=1, Internet=2, Home=0, Active=1. |
 | Utility prices, addresses and settlement | `Prices.get_Level(): int`, static; `UtilitiesGame.Place(BuildingRegistration): string`; `UtilitiesDirector.Day(int): void` | Unchanged. Address encoding and one daily call per service/connection remain intact; equipment/opening-hours and IT formulas in the pack are unchanged. |
