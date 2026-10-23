@@ -21,6 +21,13 @@ namespace HardModePatch
 
         public static string Message { get; private set; }
 
+        // Observes the decision already made by gameplay. Never hashes or decides during capture.
+        internal static string ReviewState(bool assemblyPresent)
+        {
+            lock (gate) return seen == null ? (assemblyPresent ? "undecided" : "absent") : accepted ? "accepted" : "refused";
+        }
+
+
         // An RLO assembly was seen and it isn't a reviewed build.
         public static bool Refused { get { lock (gate) return seen != null && !accepted; } }
 

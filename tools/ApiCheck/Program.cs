@@ -82,5 +82,15 @@ try
     Console.WriteLine($"ok   reflection: {helper.FullName}.GetUserSubscribedItems -> {item.Assembly.GetName().Name}: {item.FullName}.Id.Value, .Directory");
 }
 catch (Exception ex) { failures++; Console.WriteLine($"FAIL reflection: {ex.GetType().Name} {ex.Message}"); }
+checkedCount++;
+try
+{
+    var itemAssembly = context.LoadFromAssemblyPath(Path.Combine(game, "BigAmbitions.Items.dll"));
+    var instance = itemAssembly.GetType("BigAmbitions.Items.ItemInstance", true)!;
+    var field = instance.GetField("_itemCached", BindingFlags.NonPublic | BindingFlags.Instance);
+    if (field == null || field.FieldType.FullName != "BigAmbitions.Items.Item") throw new MissingFieldException("ItemInstance._itemCached");
+    Console.WriteLine("ok   reflection: nonmutating ItemInstance._itemCached read");
+}
+catch (Exception ex) { failures++; Console.WriteLine($"FAIL reflection: {ex.GetType().Name} {ex.Message}"); }
 Console.WriteLine($"{checkedCount - failures}/{checkedCount} game references resolve against {game}");
 return failures == 0 ? 0 : 1;

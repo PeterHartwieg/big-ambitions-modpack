@@ -39,7 +39,7 @@ namespace HardModePatch
 
         public static bool Available { get; private set; }
 
-        struct Load
+        internal struct Load
         {
             public RunningCosts.Appliance Total;
             public int Seats;
@@ -194,12 +194,19 @@ namespace HardModePatch
         {
             Load load;
             if (loads.TryGetValue(reg, out load)) return load;
+            load = ProjectLoad(reg);
+            loads[reg] = load;
+            return load;
+        }
+
+        internal static Load ProjectLoad(BuildingRegistration reg)
+        {
             int open = 0, always = 0, litres = 0, seats = 0;
             if (reg.itemInstances != null)
                 foreach (var item in reg.itemInstances.Values)
                 {
                     if (item == null) continue;
-                    var data = item.ItemCached;
+                    var data = CompanionItems.Data(item);
                     int flags = data == null ? 0 : (int)data.type;
                     var a = RunningCosts.Of(item.itemName, flags);
                     open += a.OpenWatts;
@@ -207,9 +214,21 @@ namespace HardModePatch
                     litres += a.LitresPerHour;
                     if (RunningCosts.IsSeat(flags)) seats++;
                 }
-            load = new Load { Total = new RunningCosts.Appliance(open, always, litres), Seats = seats };
-            loads[reg] = load;
-            return load;
+            return new Load { Total = new RunningCosts.Appliance(open, always, litres), Seats = seats };
+        }
+
+        // A virtual read of Find/LoadOf. It never changes their once-per-save/day cache timing.
+        internal static Load PeekLoad(GameInstance game, BuildingRegistration reg, out bool applies, out string basis)
+        {
+            basis = "current-items";
+            bool current = ReferenceEquals(game, stampSave) && game.Day == stampDay;
+            BuildingRegistration effective = reg;
+            applies = reg != null && reg.HasValidAddress && (reg.RentedByPlayer || reg.BuildingOwnedByPlayer);
+            if (current) applies = places.TryGetValue(Key(reg.StreetName, reg.StreetNumber), out effective);
+            if (!applies) return default(Load);
+            Load cached;
+            if (current && loads.TryGetValue(effective, out cached)) { basis = "billing-cache"; return cached; }
+            return ProjectLoad(effective);
         }
 
         static int HoursOn(BuildingRegistration reg, int day)
