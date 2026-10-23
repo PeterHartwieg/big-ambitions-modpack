@@ -15,7 +15,7 @@ commit = '36e8eec'
 adapters = {'src/Options.cs', 'src/SeriesSettingsButton.cs', 'src/HappinessRebalance.cs'}
 # Explicit 1.1.0 follow-up deltas; preserve the rest of each imported implementation byte for byte.
 reviewed_updates = {
-    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "43c4eeed466c7149"')],
+    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "14aa86b20dd354bc"')],
     'Core/Rules.cs': [
         ('public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);',
          'public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);\n        public static readonly Rule MuteRloNightChirping = new Rule("mute_rlo_night_chirping", null, true);'),
@@ -27,7 +27,7 @@ reviewed_updates = {
         ('+ " and the hotel', '+ ", utility closure reasons, night chirping mute and the hotel'),
         ('|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled;', '|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled || Rules.MuteRloNightChirping.Enabled;')],
     'src/UtilityClosureReasonPatch.cs': [
-        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "43c4eeed466c7149" }'),
+        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "14aa86b20dd354bc" }'),
         ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0 and 0.50.0')],
 }
 # Exact companion follow-up sources, reviewed as ordinary diffs. All other imported sources and defaults stay pinned.

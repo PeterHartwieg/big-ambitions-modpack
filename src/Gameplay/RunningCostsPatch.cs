@@ -194,19 +194,19 @@ namespace HardModePatch
         {
             Load load;
             if (loads.TryGetValue(reg, out load)) return load;
-            load = ProjectLoad(reg);
+            load = ProjectLoad(reg, false);
             loads[reg] = load;
             return load;
         }
 
-        internal static Load ProjectLoad(BuildingRegistration reg)
+        internal static Load ProjectLoad(BuildingRegistration reg, bool observe)
         {
             int open = 0, always = 0, litres = 0, seats = 0;
             if (reg.itemInstances != null)
                 foreach (var item in reg.itemInstances.Values)
                 {
                     if (item == null) continue;
-                    var data = CompanionItems.Data(item);
+                    var data = observe ? CompanionItems.Data(item) : item.ItemCached;
                     int flags = data == null ? 0 : (int)data.type;
                     var a = RunningCosts.Of(item.itemName, flags);
                     open += a.OpenWatts;
@@ -228,7 +228,7 @@ namespace HardModePatch
             if (!applies) return default(Load);
             Load cached;
             if (current && loads.TryGetValue(effective, out cached)) { basis = "billing-cache"; return cached; }
-            return ProjectLoad(effective);
+            return ProjectLoad(effective, true);
         }
 
         static int HoursOn(BuildingRegistration reg, int day)

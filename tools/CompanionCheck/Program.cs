@@ -57,7 +57,7 @@ string State()
 {
     var loads = (IDictionary)costs.GetField("loads", Any).GetValue(null); var places = (IDictionary)costs.GetField("places", Any).GetValue(null);
     return JsonSerializer.Serialize(new { data, day=Get(save,"Day"), itemCache=Get(instance,"_itemCached") == null,
-        addressCache=Get(instance,"_addressCached") == null, stamp=costs.GetField("stampDay",Any).GetValue(null), loads=loads.Count, places=places.Count,
+        addressCache=Get(instance,"_addressCached") == null, buildingCache=Get(reg,"_buildingCached") == null, stamp=costs.GetField("stampDay",Any).GetValue(null), loads=loads.Count, places=places.Count,
         failed=P("HardModePatch.RealLifeOverhaulPatch").GetField("failed",Any).GetValue(null),
         warnings=((IEnumerable)P("HardModePatch.RealLifeOverhaulPatch").GetField("warnings",Any).GetValue(null)).Cast<object>().ToArray() });
 }
@@ -75,6 +75,13 @@ var ready = Capture();
 var site = Module(ready,"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
 Check(site.GetProperty("openWatts").GetInt32() == 150 && site.GetProperty("itSeatDayCents").ValueKind == JsonValueKind.Null, "cold item projection and unknown internet are explicit");
 before = State(); Check(Capture() == ready && before == State(), "active capture leaves all observed state untouched");
+// Match RLO's native home classification without changing registration ownership.
+var buildings=(IDictionary)gameDll.GetType("Helpers.BuildingHelper",true).GetField("AllBuildingDictionary",Any).GetValue(null);
+var home=Empty(gameDll.GetType("Buildings.Building",true));Set(home,"BuildingType","ba:buildingtype_residential");
+var homeAddress=Activator.CreateInstance(regType.GetProperty("Address").PropertyType,"Synthetic Avenue",1);buildings[homeAddress]=home;
+before=State();var homeSite=Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
+Check(!homeSite.GetProperty("equipmentApplies").GetBoolean() && before==State(),"residential property never reports equipment billing applicability");
+buildings.Remove(homeAddress);
 // Fill billing cache through the production billing owner, then change furniture. Capture sees next-bill input without altering it.
 Call(costs,"Refresh"); Call(costs,"LoadOf",reg); Set(instance,"itemName","ba:itemname_industrialfridge");
 before=State(); var cached=Capture(); site=Module(cached,"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
@@ -137,6 +144,11 @@ if(!string.IsNullOrEmpty(rloPath))
     var accountBefore=JsonSerializer.Serialize(new{accrued=Get(account,"Accrued"),from=Get(account,"OutageFrom"),until=Get(account,"OutageUntil")});
     for(int i=0;i<3;i++)Capture();
     Check(accountBefore==JsonSerializer.Serialize(new{accrued=Get(account,"Accrued"),from=Get(account,"OutageFrom"),until=Get(account,"OutageUntil")}),"seat observation never accrues or changes the RLO account");
+    Set(utility,"_gaveUp",true);
+    before=State();
+    var gaveUp=Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
+    Check(gaveUp.GetProperty("itStatus").GetString()=="unavailable" && gaveUp.GetProperty("itSeatDayCents").ValueKind==JsonValueKind.Null && before==State(),"utilities gave up leaves seat accrual unknown without changing state");
+    Set(utility,"_gaveUp",false);
     Set(utility,"_save",Empty(save.GetType()));
     Check(Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0].GetProperty("itStatus").GetString()=="unavailable","foreign director save is unknown");
     Call(costs,"Stop");
