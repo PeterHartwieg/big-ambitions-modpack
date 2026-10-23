@@ -53,9 +53,11 @@ public class NightChirpingTests
     [Fact]
     public void Reviewed_companion_candidate_is_exact_and_does_not_approve_previous_candidates()
     {
-        const string hash = "14aa86b20dd354bc0784e0d482a3a2c8ed28dd8235b5224685ac8c0175d8f422";
+        const string hash = "e992a80637fd664ee63db651f7248ef7065d3041f15c77ab0b11e913f801d802";
         Assert.True(TargetGate.Reviewed(TargetGate.HashPrefix(hash), Targets.RealLifeOverhaul.VerifiedHashes));
-        Assert.False(TargetGate.Reviewed("14aa86b20dd354bd", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("e992a80637fd664f", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("ff30cc6a2801f2b3", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("14aa86b20dd354bc", Targets.RealLifeOverhaul.VerifiedHashes));
         Assert.False(TargetGate.Reviewed("43c4eeed466c7149", Targets.RealLifeOverhaul.VerifiedHashes));
         Assert.False(TargetGate.Reviewed("790e707f3a6fcf69", Targets.RealLifeOverhaul.VerifiedHashes));
         Assert.False(TargetGate.Reviewed("ecbdfc92195401e1", Targets.RealLifeOverhaul.VerifiedHashes));

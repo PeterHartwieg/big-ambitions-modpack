@@ -112,7 +112,11 @@ namespace HardModePatch
                             ? RunningCosts.SeatDayCents(load.Seats, net.Level, net.MonthDays) : 0;
                     }
                 }
-                sites.Add(Row("address", Address(reg), "equipmentApplies", equipment && applies && BuildingHelper.GetBuilding(new Address(reg.StreetName, reg.StreetNumber))?.BuildingType != "ba:buildingtype_residential", "inputBasis", basis,
+                // Missing native building evidence cannot distinguish home from business.
+                var buildingType = BuildingHelper.GetBuilding(new Address(reg.StreetName, reg.StreetNumber))?.BuildingType;
+                bool? equipmentApplies = !equipment || !applies ? false : string.IsNullOrEmpty(buildingType)
+                    ? (bool?)null : buildingType != "ba:buildingtype_residential";
+                sites.Add(Row("address", Address(reg), "equipmentApplies", equipmentApplies, "inputBasis", basis,
                     "openWatts", load.Total.OpenWatts, "alwaysWatts", load.Total.AlwaysWatts, "litresPerOpenHour", load.Total.LitresPerHour,
                     "officeSeats", load.Seats, "itSeatDayCents", seatCost, "itStatus", itStatus, "itDay", game.Day,
                     "itBasis", "included-in-rlo-internet-accrual"));
@@ -140,7 +144,7 @@ namespace HardModePatch
                 if (!(bool)rlo.GetType("RealLifeOverhaul.Settings", true).GetField("Utilities", Any).GetValue(null)) return new Net();
                 var type = rlo.GetType("RealLifeOverhaul.Utilities.UtilitiesDirector", true);
                 var owner = Property(type, "Instance");
-                if (owner == null || (bool)Property(type, "Failed") || (bool)Field(owner, "_gaveUp") || !ReferenceEquals(Field(owner, "_save"), game)) return null;
+                if (owner == null || (bool)Property(type, "Failed") || !ReferenceEquals(Field(owner, "_save"), game)) return null;
                 var state = Property(type, "State", owner);
                 if (state == null) return null;
                 var result = new Net { Level = (int)Property(rlo.GetType("RealLifeOverhaul.Prices", true), "Level"),

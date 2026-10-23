@@ -46,6 +46,9 @@ var reg = Empty(regType); Set(reg, "StreetName", "Synthetic Avenue"); Set(reg, "
 var placed = (IDictionary)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), instType));
 var instance = Empty(instType); Set(instance, "itemName", "ba:itemname_computer"); Set(instance, "id", "pc"); placed["pc"] = instance;
 Set(reg, "itemInstances", placed);
+var buildings=(IDictionary)gameDll.GetType("Helpers.BuildingHelper",true).GetField("AllBuildingDictionary",Any).GetValue(null);
+var building=Empty(gameDll.GetType("Buildings.Building",true));Set(building,"BuildingType","ba:buildingtype_retail");
+var buildingAddress=Activator.CreateInstance(regType.GetProperty("Address").PropertyType,"Synthetic Avenue",1);buildings[buildingAddress]=building;
 var costs = P("HardModePatch.RunningCostsPatch"); var features = P("HardModePatch.GameplayFeatures");
 var guard = features.GetField("guard", Any).GetValue(null);
 void Active(bool value) => Set(guard, "ownsFeatures", value);
@@ -75,13 +78,14 @@ var ready = Capture();
 var site = Module(ready,"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
 Check(site.GetProperty("openWatts").GetInt32() == 150 && site.GetProperty("itSeatDayCents").ValueKind == JsonValueKind.Null, "cold item projection and unknown internet are explicit");
 before = State(); Check(Capture() == ready && before == State(), "active capture leaves all observed state untouched");
-// Match RLO's native home classification without changing registration ownership.
-var buildings=(IDictionary)gameDll.GetType("Helpers.BuildingHelper",true).GetField("AllBuildingDictionary",Any).GetValue(null);
-var home=Empty(gameDll.GetType("Buildings.Building",true));Set(home,"BuildingType","ba:buildingtype_residential");
-var homeAddress=Activator.CreateInstance(regType.GetProperty("Address").PropertyType,"Synthetic Avenue",1);buildings[homeAddress]=home;
+// Match native home classification without warming registration or building address caches.
+Set(building,"BuildingType","ba:buildingtype_residential");
 before=State();var homeSite=Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
 Check(!homeSite.GetProperty("equipmentApplies").GetBoolean() && before==State(),"residential property never reports equipment billing applicability");
-buildings.Remove(homeAddress);
+buildings.Remove(buildingAddress);
+before=State();var missingBuilding=Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
+Check(missingBuilding.GetProperty("equipmentApplies").ValueKind==JsonValueKind.Null && before==State(),"missing native building leaves equipment applicability unknown");
+Set(building,"BuildingType","ba:buildingtype_retail");buildings[buildingAddress]=building;
 // Fill billing cache through the production billing owner, then change furniture. Capture sees next-bill input without altering it.
 Call(costs,"Refresh"); Call(costs,"LoadOf",reg); Set(instance,"itemName","ba:itemname_industrialfridge");
 before=State(); var cached=Capture(); site=Module(cached,"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
@@ -135,6 +139,7 @@ if(!string.IsNullOrEmpty(rloPath))
     var account=Activator.CreateInstance(R("Utilities.Account"));Set(account,"Place","Synthetic%20Avenue~1");Set(account,"Service",2);Set(account,"State",1);
     ((IList)Get(state,"Accounts")).Add(account);
     Fixture("ready",Capture());
+    buildings.Remove(buildingAddress);Fixture("missing-building",Capture());buildings[buildingAddress]=building;
     int Seat()=>Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0].GetProperty("itSeatDayCents").GetInt32();
     Check(Seat()==3000,"active Internet adds the captured one-seat daily share");
     Set(account,"State",0);Check(Seat()==0,"inactive Internet does not accrue seat costs");Set(account,"State",1);
@@ -147,7 +152,10 @@ if(!string.IsNullOrEmpty(rloPath))
     Set(utility,"_gaveUp",true);
     before=State();
     var gaveUp=Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0];
-    Check(gaveUp.GetProperty("itStatus").GetString()=="unavailable" && gaveUp.GetProperty("itSeatDayCents").ValueKind==JsonValueKind.Null && before==State(),"utilities gave up leaves seat accrual unknown without changing state");
+    Check(gaveUp.GetProperty("itStatus").GetString()=="ready" && gaveUp.GetProperty("itSeatDayCents").GetInt32()==3000 && before==State(),"phone install failure does not hide continuing seat billing");
+    Set(utility,"_failed",true);
+    Check(Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0].GetProperty("itStatus").GetString()=="unavailable","failed utilities billing remains unknown");
+    Set(utility,"_failed",false);
     Set(utility,"_gaveUp",false);
     Set(utility,"_save",Empty(save.GetType()));
     Check(Module(Capture(),"runningCosts").GetProperty("data").GetProperty("currentSites")[0].GetProperty("itStatus").GetString()=="unavailable","foreign director save is unknown");
