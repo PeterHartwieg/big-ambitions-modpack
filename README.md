@@ -76,7 +76,12 @@ The behaviour these calls rely on, from reading the decompile of build 3682 (22 
 
 ## Evidence
 
-**Merged 1.1.0:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs. Caption acceptance also needs page rebuilds, language changes and RLO key-binding rows: cloned rows inherit localization components but do not inherit the original control's weak-table tracking.
+**1.1.1:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs.
+
+- Pending in game: after a restart, the Mods page buttons read "Apply" and "Check again" instead of "YOUR TEXT HERE".
+- Pending in game: Apply HART series settings at the main menu, once cold and once after quitting a loaded save, leaves no "Happiness rebalance switch" error in `Player.log`.
+
+Caption acceptance also needs page rebuilds, language changes and RLO key-binding rows: cloned rows inherit localization components but do not inherit the original control's weak-table tracking.
 
 
 Checked means seen in the game. Code reading and offline checks are not checks.
@@ -109,8 +114,8 @@ Apply HART series settings in HART. Mod Pack to enable the Economy Expansion-ins
 
 ## Optional companion report
 
-The public read-only `HARTModPack.Companion.CaptureV1(GameInstance)` and normal-save report support offline and live companion readers. See [the version 1 contract](contracts/companion/v1/README.md). The report describes current ownership, rent rules, equipment/office running costs, factory purchase requirements and supported retail-demand inputs. RLO owns current education quotes and account/tariff facts. Native registered prices remain native observations.
+The public read-only `HARTModPack.Companion.CaptureV1(GameInstance)` and normal-save report support offline and live companion readers. See [the version 1 contract](https://github.com/PeterHartwieg/big-ambitions-modpack/blob/main/contracts/companion/v1/README.md). The report describes current ownership, rent rules, equipment/office running costs, factory purchase requirements and supported retail-demand inputs. RLO owns current education quotes and account/tariff facts. Native registered prices remain native observations.
 
 The normal-save publisher runs outside gameplay, so a legacy conflict publishes the blocked state. Only its own `hartmodpack:companion` save line changes. Ordinary reports are captured facts with clock validation, not proof that the provider remains installed. Pure capture never calls gameplay refresh/settlement helpers.
 
-Evidence: synthetic offline checks only. Native gameplay/ordinary-save UI acceptance and Workshop/upstream publication remain pending. Version 1.1.1 includes this optional report; gameplay is unchanged.
+Evidence: synthetic offline checks only. Native gameplay/ordinary-save UI acceptance and Workshop/upstream publication remain pending. Version 1.1.1 includes this optional report. The report changes no gameplay. 1.1.1 also accepts the reviewed RLO 0.50.0 companion build (`1f7647f2e188a43e`), so the integrated RLO rules now run on that build as well as on the official releases; see [RLO compatibility](docs/rlo-compatibility.md).

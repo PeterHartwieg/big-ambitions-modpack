@@ -102,18 +102,40 @@ namespace HardModePatch
         {
             if (!RloGate.Accepts(target)) throw new InvalidOperationException("Factory diplomas: RLO's catalogue/save layout has not been reviewed; machine sales stay unrestricted.");
             if (hooks.Any(h => h == null)) throw new MissingMemberException("Factory diploma hooks changed.");
-            if (instance.Invoke(null, null) != null || campusCache.GetValue(null) != null)
+            // A copy taking over in the same session finds the courses it registered earlier and reuses them.
+            bool retained = injected != null;
+            if (retained && !RetainedIntact())
+                throw new InvalidOperationException("RLO's catalogue changed after the factory diplomas were registered; restart to restore the machine gate.");
+            if (!retained && (instance.Invoke(null, null) != null || campusCache.GetValue(null) != null))
                 throw new InvalidOperationException("Factory diplomas must be installed before RLO starts careers or indexes the campus; restart with HMP loaded at initialization.");
             foreach (var check in Contracts(target, hooks))
                 if (IlText.Fingerprint(check.Method) != check.Contract.Expected)
                     throw new InvalidOperationException("Factory diploma purchase path changed: " + check.Contract.Name);
             failed = false;
-            Inject(target);
+            if (!retained) Inject(target);
             harmony.Patch(hooks[0], prefix: new HarmonyMethod(typeof(RealLifeOverhaulPatch), "GrabPrefix"));
             harmony.Patch(hooks[1], prefix: new HarmonyMethod(typeof(RealLifeOverhaulPatch), "PurchasePrefix"));
             harmony.Patch(hooks[2], postfix: new HarmonyMethod(typeof(RealLifeOverhaulPatch), "OfferedPostfix"));
             active = true;
-            Log.Info("Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.");
+            Log.Info(retained
+                ? "Factory diplomas: reusing the three school diplomas registered earlier this session (ids 18, 19, 34); machine gate is opt-in."
+                : "Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.");
+        }
+
+        // The live catalogue is still the exact array this pack wrote, and its last three entries are this pack's courses.
+        static bool RetainedIntact()
+        {
+            if (!CatalogueIntact() || injected.Length < FactoryDiplomas.All.Length) return false;
+            int first = injected.Length - FactoryDiplomas.All.Length;
+            for (int i = 0; i < FactoryDiplomas.All.Length; i++)
+            {
+                var c = FactoryDiplomas.All[i];
+                object owned = injected.GetValue(first + i);
+                if (owned == null || (int)courseId.GetValue(owned) != c.Id
+                    || !string.Equals((string)courseKey.GetValue(owned), c.Key, StringComparison.Ordinal)
+                    || !ReferenceEquals(find.Invoke(null, new object[] { c.Id }), owned)) return false;
+            }
+            return true;
         }
 
         static int Constant(Assembly target, string type, string name)

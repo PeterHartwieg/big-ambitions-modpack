@@ -48,7 +48,8 @@ for folder in ('Core', 'src', 'tests'):
         target = root / folder / 'Gameplay' / Path(path).name
         assert target.is_file(), f'Missing imported file {path}'
         if path in companion_imports:
-            assert hashlib.sha256(target.read_bytes()).hexdigest() == companion_imports[path], f'Unrecorded companion delta in {path}'
+            # Hash with LF line endings so a CRLF checkout matches the recorded digest.
+            assert hashlib.sha256(target.read_bytes().replace(b'\r\n', b'\n')).hexdigest() == companion_imports[path], f'Unrecorded companion delta in {path}'
             checked += 1
         elif path not in adapters:
             assert target.read_text() == expected, f'Unexpected gameplay change in {path}'

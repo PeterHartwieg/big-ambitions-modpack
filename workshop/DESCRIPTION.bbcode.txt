@@ -92,7 +92,7 @@ Recording tools I use for the videos. The pack works without them and doesn't tu
 [*]Bakery and POLYMODS HYPERREAL ship their art for Windows only. On a Mac the Bakery's business assets and Hyperreal's effects are missing.
 [*]The merged 1.1.1 build has offline checks; new in-game and Workshop acceptance is pending. Historical checks of the separate mods do not establish acceptance of this merged build.
 [*]The pack was put together on game build 3682. When a mod in it updates, the check may say the pack wasn't tested with the new version. That's a heads-up, not an error.
-[*]The indebted start and factory diploma protection retain the old patch's save markers. Back up a save you care about before loading new mods.
+[*]The indebted start and factory diploma protection retain the old patch's save markers. 1.1.1 also stores a planning summary in each save under hartmodpack:companion. Back up a save you care about before loading new mods.
 [/list]
 
 [h2]Bug reports[/h2]

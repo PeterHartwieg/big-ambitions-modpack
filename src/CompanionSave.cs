@@ -34,13 +34,18 @@ namespace HARTModPack
             if (current == null || !current.GetInvocationList().Contains(callback)) GlobalEvents.onSaveGame += callback;
             observed = GlobalEvents.onSaveGame;
         }
+        // Runs inside the game's save, which has no catch around this event: never let it throw, and never log.
         static void Save()
         {
-            var game = SaveGameManager.Current;
-            if (game == null) return;
-            string report = Companion.CaptureV1(game);
-            if (report != null && game.modData == null) game.modData = new Dictionary<string, string>();
-            CompanionSnapshot.Publish(game.modData, report);
+            try
+            {
+                var game = SaveGameManager.Current;
+                if (game == null) return;
+                string report = Companion.CaptureV1(game);
+                if (report != null && game.modData == null) game.modData = new Dictionary<string, string>();
+                CompanionSnapshot.Publish(game.modData, report);
+            }
+            catch (Exception) { }
         }
     }
 }

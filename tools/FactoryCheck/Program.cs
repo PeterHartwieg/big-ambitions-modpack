@@ -369,6 +369,73 @@ try
     }
     catch (TargetInvocationException ex) when (ex.InnerException is InvalidOperationException)
     { Check(ReferenceEquals(catalogue.GetValue(null), extended), "id collision rejects injection without partial write"); }
+
+    // Duplicate-install takeover: the working copy retires and the waiting copy applies again in the same session,
+    // both before RLO starts careers or indexes the campus and after it has.
+    var showError = notices.GetMethod("ShowError", new[] { typeof(string), typeof(string), typeof(bool) });
+    var campusCourses = rlo.GetType("RealLifeOverhaul.Careers.CampusRules", true).GetField("_courses", Any);
+    var applied = bridge.GetField("active", Any);
+    object Retire()
+    {
+        bridge.GetMethod("Revert").Invoke(target, null);
+        harmony.UnpatchAll(harmony.Id);
+        harmony.Patch(showError, prefix: new HarmonyMethod(typeof(NoticeSink).GetMethod("Capture")));
+        var next = Activator.CreateInstance(bridge);
+        return next;
+    }
+    IList<MethodBase> ApplyNext(object next)
+    {
+        var nextHooks = (IList<MethodBase>)bridge.GetMethod("ResolveHooks").Invoke(next, new object[] { rlo });
+        bridge.GetMethod("Apply").Invoke(next, new object[] { harmony, rlo, nextHooks });
+        return nextHooks;
+    }
+    Set(sale, "enabled", true);
+    foreach (bool started in new[] { false, true })
+    {
+        string when = started ? "takeover after careers and campus start" : "takeover before careers start";
+        var next = Retire();
+        Check(!(bool)applied.GetValue(null) && (bool)bridge.GetProperty("CoursesRegistered").GetValue(null)
+            && hooks.Take(3).All(h => Harmony.GetPatchInfo(h) == null || !Harmony.GetPatchInfo(h).Owners.Contains(harmony.Id)),
+            when + ": retiring copy removes its hooks and keeps the courses for saves");
+        singleton.SetValue(null, started ? director : null);
+        WriteStatic(campusCourses, started ? new[] { 18, 19, 34 } : null);
+        var nextHooks = ApplyNext(next);
+        Check((bool)applied.GetValue(null) && ReferenceEquals(catalogue.GetValue(null), extended)
+            && ((Array)catalogue.GetValue(null)).Length == original.Length + 3, when + ": replacement reuses the retained catalogue without reinjecting");
+        Check(nextHooks.Take(3).All(h => Harmony.GetPatchInfo(h).Owners.Contains(harmony.Id)), when + ": replacement reinstalls pickup, checkout and offering hooks");
+        Check(defs.All(c => (bool)Rlo("CareersDirector", "Offered", c)), when + ": option on still offers all three diplomas");
+        if (!started)
+        {
+            Observe("director-unavailable");
+            singleton.SetValue(null, director);
+        }
+        Observe("active");
+        Check(Denied("ba:itemname_kilnmachine") != null && Denied("ba:itemname_industrialsewingmachine") == null, when + ": factory gate refuses an unqualified machine only");
+        before = NoticeSink.Keys.Count;
+        nextHooks[1].Invoke(window, null);
+        Check(NoticeSink.Keys.Count == before + 1 && !(bool)Get(window, "_orderPlaced"), when + ": actual patched checkout still stops a locked machine");
+        before = NoticeSink.Keys.Count;
+        nextHooks[0].Invoke(purchaser, null);
+        Check(NoticeSink.Keys.Count == before + 1, when + ": actual patched depot pickup still refuses a locked machine");
+        Option(false);
+        Check(defs.All(c => !(bool)Rlo("CareersDirector", "Offered", c)), when + ": option off hides new enrolments again");
+        Option(true);
+    }
+    bool Refused(object next)
+    {
+        try { ApplyNext(next); return false; }
+        catch (TargetInvocationException ex) when (ex.InnerException is InvalidOperationException) { return !(bool)applied.GetValue(null); }
+    }
+    WriteStatic(campusCourses, null);
+    singleton.SetValue(null, null);
+    var changed = Retire();
+    WriteStatic(catalogue, original);
+    Check(Refused(changed) && ReferenceEquals(catalogue.GetValue(null), original), "takeover refuses a catalogue changed since registration and writes nothing");
+    WriteStatic(catalogue, extended);
+    var injectedField = bridge.GetField("injected", Any);
+    injectedField.SetValue(null, null);
+    Check(Refused(Retire()) && ReferenceEquals(catalogue.GetValue(null), extended), "a copy that did not register the courses still refuses the occupied ids");
+    injectedField.SetValue(null, extended);
 }
 finally
 {

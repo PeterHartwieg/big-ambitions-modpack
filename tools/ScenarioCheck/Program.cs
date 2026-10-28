@@ -268,6 +268,28 @@ if (rloPath != null)
         MenuHappinessProbe.Calls = 0;
         hap.GetMethod("Reapply", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
         Check(MenuHappinessProbe.Calls == 0, "applying the rule without a loaded save never calls the player's happiness update");
+        // Back at the main menu after a game: the last save is still current and the game's own singleton
+        // lifecycle has the menu controller registered, as MainMenuController.Awake does.
+        Type menuType = gameAssembly.GetType("MainMenuController", true);
+        var lifecycleCall = PatchProcessor.GetOriginalInstructions(menuType.BaseType.GetMethod("OnDestroy", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly))
+            .Select(i => i.operand).OfType<MethodInfo>().Last(m => m.Name == "UnregisterSingleton");
+        Type lifecycle = lifecycleCall.DeclaringType;
+        var menu = RuntimeHelpers.GetUninitializedObject(menuType);
+        AssemblyLoadContext.Default.Assemblies.First(x => x.GetName().Name == "UnityEngine.CoreModule").GetType("UnityEngine.Object", true)
+            .GetField("m_CachedPtr", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(menu, new IntPtr(1));
+        var menuOpen = menuType.GetProperty("IsInitialized", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+        currentField.SetValue(null, Game());
+        lifecycle.GetMethod("RegisterSingleton").Invoke(null, new[] { menuType, menu });
+        try
+        {
+            Check((bool)menuOpen.GetValue(null), "the registered menu controller reads as the open main menu");
+            hap.GetMethod("Reapply", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
+            Check(MenuHappinessProbe.Calls == 0, "a save kept from the last game at the main menu never calls the player's happiness update");
+        }
+        finally { lifecycleCall.Invoke(null, new[] { menuType, menu }); }
+        Check(!(bool)menuOpen.GetValue(null), "the menu controller is unregistered again");
+        hap.GetMethod("Reapply", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
+        Check(MenuHappinessProbe.Calls == 1, "in a loaded city the rule change still refreshes the player's happiness once");
     }
     finally { currentField.SetValue(null, previousSave); refreshGuard.UnpatchAll(refreshGuard.Id); }
 }
