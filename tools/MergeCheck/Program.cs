@@ -27,7 +27,7 @@ const string features = "HardModePatch.GameplayFeatures";
 const string prefix = "hartmodpack.gameplay";
 int OwnedHooks() => Harmony.GetAllPatchedMethods().Count(m => Harmony.GetPatchInfo(m)!.Owners.Any(o => o.StartsWith(prefix, StringComparison.Ordinal)));
 
-Check(pack.GetName().Name == "HARTModPack" && pack.GetName().Version!.ToString() == "1.1.0.0", "merged assembly identity and version");
+Check(pack.GetName().Name == "HARTModPack" && pack.GetName().Version!.ToString() == "1.1.1.0", "merged assembly identity and version");
 Check(!pack.GetReferencedAssemblies().Any(a => a.Name == "HardModePatch"), "no runtime assembly dependency on HardModePatch");
 Check(pack.GetCustomAttributesData().Count(a => a.AttributeType.Name == "RegisterModClassAttribute") == 1, "one registered mod entry");
 // Stub only preference reads and engine logging for a .NET harness; the real lifecycle, hooks, options and cleanup run.

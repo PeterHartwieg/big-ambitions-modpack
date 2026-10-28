@@ -1,7 +1,7 @@
 [h2]⚠ Still being playtested[/h2]
 [b]HART. Mod Pack is still being playtested.[/b] Balance and the mods in the pack may change in upcoming updates, and some settings may be retuned. Feedback is very welcome, so please post bugs and balance impressions in the comments.
 
-All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. Version 1.1.0 includes the series settings, house rules and compatibility fixes previously shipped as HART. Mod Pack Patch, plus the member checker.
+All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. Version 1.1.1 includes the series settings, house rules and compatibility fixes previously shipped as HART. Mod Pack Patch, plus the member checker.
 
 Supports reviewed RLO 0.50.0.
 
@@ -90,7 +90,7 @@ Recording tools I use for the videos. The pack works without them and doesn't tu
 [*]It leaves the optional mods and your local mods alone. If you have a mod in ModsLocal, its Workshop copy stays off so it doesn't load twice.
 [*]It recognises each mod by its DLL name. Another mod that uses the same DLL name counts as that pack mod.
 [*]Bakery and POLYMODS HYPERREAL ship their art for Windows only. On a Mac the Bakery's business assets and Hyperreal's effects are missing.
-[*]The merged 1.1.0 build has offline checks; new in-game and Workshop acceptance is pending. Historical checks of the separate mods do not establish acceptance of this merged build.
+[*]The merged 1.1.1 build has offline checks; new in-game and Workshop acceptance is pending. Historical checks of the separate mods do not establish acceptance of this merged build.
 [*]The pack was put together on game build 3682. When a mod in it updates, the check may say the pack wasn't tested with the new version. That's a heads-up, not an error.
 [*]The indebted start and factory diploma protection retain the old patch's save markers. Back up a save you care about before loading new mods.
 [/list]

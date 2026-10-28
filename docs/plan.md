@@ -1,6 +1,6 @@
 # Plan
 
-> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.0 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
+> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.1 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
 
 A public Workshop mod with a standalone indebted start and optional runtime balance patches. Revised 15 October for Peter's RLO-led life-simulation pack: borrowing is allowed subject to realistic debt/leverage balance, and Hardcore Ambitions is dropped from that pack. The six older patches remain available for other configurations. The reviewed target versions are in `Core/Targets.cs`; the original reviews are in the HART repository. In-game validation is partial; each section records its limits.
 

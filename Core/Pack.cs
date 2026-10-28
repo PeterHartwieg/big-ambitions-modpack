@@ -22,7 +22,7 @@ namespace HARTModPack.Core
 
     public static class Pack
     {
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
         public const string SettingsModTitle = "HART. Mod Pack";
         public const string SettingsButton = "Apply HART series settings";
 

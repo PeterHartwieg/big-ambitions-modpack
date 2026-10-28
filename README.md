@@ -2,7 +2,7 @@
 
 The Workshop item for the mods of the HART modded series of Big Ambitions. Its Workshop page lists every pack member under Steam's Required items. It includes the series settings, gameplay rules and compatibility fixes from HardModePatch 0.5.0, finds the members, turns on the ones the game left off, and reports missing or untested members.
 
-Version 1.1.0, built for game build 3682. One HARTModPack.dll and one settings page. Gameplay uses checksum-pinned Harmony; scenario and diploma records keep their original save keys.
+Version 1.1.1, built for game build 3682. One HARTModPack.dll and one settings page. Gameplay uses checksum-pinned Harmony; scenario and diploma records keep their original save keys.
 
 Supports reviewed RLO 0.50.0. [The per-target review](docs/rlo-compatibility.md) records signatures, IL comparisons and offline checks. **Mute RLO night chirping** defaults on and the series preset enables it. It mutes only RLO’s generated cricket layer; switching it off restores normal sound without restarting or changing RLO’s settings.
 
@@ -70,7 +70,7 @@ The behaviour these calls rely on, from reading the decompile of build 3682 (22 
 ## Build and test
 
 - `dotnet test tests/HARTModPack.Core.Tests.csproj`: the pure rules in `Core/`.
-- `tools/build.sh`: runs the tests, compiles `HARTModPack.dll` with the .NET SDK's C# compiler against the game's assemblies, and packages `build/HARTModPack/`, `build/HARTModPack-1.1.0.zip` and their SHA-256 files. Game DLLs come from `BA_GAME_DLLS`, else `../big-ambitions-hard-mode-patch/build/game-dlls`.
+- `tools/build.sh`: runs the tests, compiles `HARTModPack.dll` with the .NET SDK's C# compiler against the game's assemblies, and packages `build/HARTModPack/`, `build/HARTModPack-1.1.1.zip` and their SHA-256 files. Game DLLs come from `BA_GAME_DLLS`, else `../big-ambitions-hard-mode-patch/build/game-dlls`.
 - `tools/check-api.sh [Managed folder]`: resolves every game reference in the built DLL, and the members it reads by reflection, against the build 3682 Windows DLLs and, when present, this Mac's Steam install.
 - `dotnet run --project tools/VersionProbe -- <ModsLocal or Workshop content folder>`: prints each mod's assembly name and versions, for updating the tested-version table.
 
@@ -101,7 +101,7 @@ Checked means seen in the game. Code reading and offline checks are not checks.
 
 MIT for this mod's code, see `LICENSE.txt`. The pack members belong to their authors and keep their own terms; this repository contains none of their files and no game files.
 
-## Series economy, 1.1.0
+## Series economy, 1.1.1
 
 Apply HART series settings in HART. Mod Pack to enable the Economy Expansion-inspired equipment utilities and office IT rules on RLO. The button explicitly switches off the former flat 2x/3x rent increase. Existing leases retain their stored rent; new leases use the game's market-rent path. The button writes these settings only when pressed at the main menu, and Economy Expansion is not a required item.
 
@@ -113,4 +113,4 @@ The public read-only `HARTModPack.Companion.CaptureV1(GameInstance)` and normal-
 
 The normal-save publisher runs outside gameplay, so a legacy conflict publishes the blocked state. Only its own `hartmodpack:companion` save line changes. Ordinary reports are captured facts with clock validation, not proof that the provider remains installed. Pure capture never calls gameplay refresh/settlement helpers.
 
-Evidence: synthetic offline checks only. Native gameplay/ordinary-save UI acceptance and Workshop/upstream publication remain pending. No release version is changed by this development work.
+Evidence: synthetic offline checks only. Native gameplay/ordinary-save UI acceptance and Workshop/upstream publication remain pending. Version 1.1.1 includes this optional report; gameplay is unchanged.

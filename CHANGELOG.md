@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 (28 October 2026)
+
+- The series and member-check buttons show their real names again instead of "YOUR TEXT HERE".
+- Applying the HART series settings from the main menu no longer logs an error.
+- Big Copilot Link can read the pack's HART settings for planning. Gameplay is unchanged.
+
 ## 1.1.0 (23 October 2026)
 
 - Fix the series and member-check buttons showing the game's placeholder caption.

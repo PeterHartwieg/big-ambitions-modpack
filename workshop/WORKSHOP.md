@@ -4,17 +4,17 @@ Prepared for Peter to publish. No upload is performed by the build tools.
 
 **Title:** `HART. Mod Pack`
 
-**Version:** `1.1.0`
+**Version:** `1.1.1`
 
 **Target build:** `3682`
 
 Supports reviewed RLO 0.50.0. Includes the default-on Mute RLO night chirping option.
 
-**Mod folder:** `HARTModPack` from `build/HARTModPack-1.1.0.zip`. One root DLL, pinned Harmony under Dependencies, one preview.png. Remove a temporary ModsLocal upload copy before subscribing to the Workshop copy.
+**Mod folder:** `HARTModPack` from `build/HARTModPack-1.1.1.zip`. One root DLL, pinned Harmony under Dependencies, one preview.png. Remove a temporary ModsLocal upload copy before subscribing to the Workshop copy.
 
 **Description:** paste [DESCRIPTION.bbcode.txt](DESCRIPTION.bbcode.txt). The published Thriving Rivals (3825350971) and City Performance (3825351532) IDs are filled in. These two mods remain separate required items.
 
-**Change note:** paste [CHANGENOTE-1.1.0.bbcode.txt](CHANGENOTE-1.1.0.bbcode.txt).
+**Change note:** paste [CHANGENOTE-1.1.1.bbcode.txt](CHANGENOTE-1.1.1.bbcode.txt).
 
 **Thumbnail:** existing `workshop/preview.png`. No new art was created for this merge.
 

@@ -1,6 +1,6 @@
 # Advanced factory diplomas
 
-> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.0 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
+> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.1 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
 
 `factory_diplomas` is off by default under Settings > Mods > HART. Mode Patch > Real Life Overhaul: advanced factories. Enable it for diploma requirements on new machine purchases. Machines already owned keep working. The Laser Cutting Machine and Consumer Goods Assembly Machine have no new requirement; the game's own manufacturing course is unchanged.
 

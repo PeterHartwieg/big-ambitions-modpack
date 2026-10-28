@@ -1,6 +1,6 @@
 # Hyperreal darkness after the map, 19 October 2026
 
-> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.0 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
+> Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.1 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
 
 Current ownership, 22 October: HMP 0.4.2 retains the map-return workaround and its exact binary guards, with five remaining method contracts. Lamp discovery now belongs to City Performance. The 0.4.1 cache and 49-check results below are historical diagnosis evidence. Current regression coverage is `tools/CompatibilityCheck`; see [the paired handoff](performance-ownership.md).
 

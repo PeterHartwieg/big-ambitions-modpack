@@ -18,7 +18,7 @@ public class CompanionTests
             ["throw"]=()=>throw new InvalidOperationException(),
             ["bad"]=()=>Module("ready",double.NaN),
             ["off"]=()=>Module("disabled") };
-        var value=Capture("1.1.0",Row("character","fixture","day",1,"hour",0,"minute",0),readers);
+        var value=Capture("1.1.1",Row("character","fixture","day",1,"hour",0,"minute",0),readers);
         var modules=JsonDocument.Parse(value).RootElement.GetProperty("modules");
         Assert.Equal(1,calls);
         Assert.Equal("ready",modules.GetProperty("ok").GetProperty("status").GetString());

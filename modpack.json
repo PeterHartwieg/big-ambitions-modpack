@@ -1,6 +1,6 @@
 {
   "name": "HART. Mod Pack",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "assembly": "HARTModPack",
   "gameBuild": 3682,
   "integratedFrom": {
@@ -141,5 +141,5 @@
   "excluded": [
     "PersistentCity"
   ],
-  "validation": "Offline checks only for the merged binary. Historical playtests do not establish merged 1.1.0 acceptance."
+  "validation": "Offline checks only for the merged binary. Historical playtests do not establish merged 1.1.1 acceptance."
 }

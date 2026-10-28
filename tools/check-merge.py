@@ -63,7 +63,7 @@ if series_path.exists():
     assert [m['dll'] for m in series['mods']] == [m['assembly'] + '.dll' for m in manifest['members']]
     assert [m['required'] for m in series['mods']] == [m['required'] for m in manifest['members']]
     assert not any(m.get('dll') in ('HardModePatch.dll', 'PersistentCity.dll') for m in series['mods'])
-assert manifest['version'] == '1.1.0'
+assert manifest['version'] == '1.1.1'
 assert len([m for m in manifest['members'] if m['required']]) == 13
 assert len([m for m in manifest['members'] if not m['required']]) == 3
 assert not any(m['assembly'] == 'HardModePatch' for m in manifest['members'])
@@ -93,8 +93,8 @@ for tag in ('h2', 'list', 'b', 'url'):
     assert len(re.findall(r'\[' + tag + r'(?:=[^\]]*)?\]', text)) == text.count(f'[/{tag}]'), tag
 print('PASS merged Workshop BBCode sections, 13-member list, published IDs, RLO 0.50.0, night mute and final PayPal link')
 
-archive = root / 'build/HARTModPack-1.1.0.zip'
-expected_hash = (root / 'build/HARTModPack-1.1.0.zip.sha256').read_text().split()[0]
+archive = root / 'build/HARTModPack-1.1.1.zip'
+expected_hash = (root / 'build/HARTModPack-1.1.1.zip.sha256').read_text().split()[0]
 assert hashlib.sha256(archive.read_bytes()).hexdigest() == expected_hash
 file_hashes = dict(line.split('  ', 1)[::-1] for line in (root / 'build/HARTModPack.sha256').read_text().splitlines())
 with zipfile.ZipFile(archive) as z:
