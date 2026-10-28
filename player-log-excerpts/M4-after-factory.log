@@ -1,0 +1,129 @@
+... trimmed unrelated lines ...
+267: [Mod:FoodTrucks] Test bridge: listening on http://127.0.0.1:18330/ (session 6c322aab).
+268: [HART. Mod Pack] Rules: series_prefill_custom_game=on, scenario_indebted_start=on, rent_rebalance=off, happiness_rebalance=on, owner_job_full_pay=on, equipment_utilities=on, office_it=on, utility_closure_reasons=on, mute_rlo_night_chirping=on, factory_diplomas=on, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+269: [HART. Mod Pack] Real Life Overhaul 0.50.0 (f339319c9ec1ad65): a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.
+270: [HART. Mod Pack] Owner job pay: RLO's OwnerFactor patched; rule on (jobs pay in full).
+271: [HART. Mod Pack] Running costs: RLO's utilities patched; equipment on, office IT on.
+272: [HART. Mod Pack] Utility closure reasons: BizMan reads RLO's current utility closure records.
+273: [HART. Mod Pack] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+274: [HART. Mod Pack] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+275: [HART. Mod Pack] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+276: [HART. Mod Pack] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+277: [HART. Mod Pack] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+278: [HART. Mod Pack] Bakery (6d68edab0f5600f5): verified version, patched.
+279: [HART. Mod Pack] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+280: [HART. Mod Pack] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+281: [HART. Mod Pack] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+282: [HART. Mod Pack] Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.
+283: [HART. Mod Pack] Real Life Overhaul (f339319c9ec1ad65): verified version, patched.
+284: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+285: [HART Rival Balance] Active, Harmony 2.4.2.0. Rival businesses are valued on the Normal preset; your own businesses keep the save's settings. Version 0.2.0, preset from the Mods option.
+286: [Mod:InternetCafe] Internet Cafe v0.3 registered (automatic PC admission, optional staffed drinks).
+287: [Mod:ModpackRig] HART rig probe ready (test helper, agent1 only).
+288: [Mod:PolyModsHyperreal] [Hyperreal] Config loaded from C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\PolyModsHyperreal\hyperreal_config.json
+289: [Mod:PolyModsHyperreal] [Hyperreal] PolyMods Hyperreal v1.1.2 loaded. ModRoot=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\ModsLocal\PolyModsHyperreal
+290: [Mod:RealLifeOverhaul] Dealership: the business type 'reallife_businesstype_cardealership' is registered for retail buildings, with its icon (the map's filter row has it).
+291: [Mod:RealLifeOverhaul] Game build check: Build 3682, the build Real Life Overhaul 0.50.0 is made for: PASS.
+292: [Mod:RealLifeOverhaul] Game contract: 182 pieces of the game checked, 0 part(s) off. This game is Build 3682; Real Life Overhaul 0.50.0 is made for Build 3682.
+... trimmed unrelated lines ...
+304: Loaded Big Ambitions (Build 3682)
+305: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+306: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+307: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+308: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+309: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+310: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+311: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+312: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+313: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+314: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+315: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+316: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+317: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+318: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+319: [HART. Mod Pack] Camera Tools: on, ModsLocal
+320: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+321: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+322: [Mod:CityPerformance] Pedestrian-refill smoothing requested=True; verified=False; faulted=False
+323: [Mod:CityPerformance] TREE requested=True; installed=False; faulted=False
+324: [Mod:CityPerformance] Hyperreal discovery: waiting for city-ready; requested=true
+325: [Mod:CityPerformance] CINEMA coverage requested=True
+326: [Mod:CityPerformance] Midnight cleanup deferral requested=True; installed=False; faulted=False
+327: [Mod:CityPerformance] Cleanup batching maximum_wait_seconds=300; pending_deadline_seconds=none
+328: [Mod:CityPerformance] AUTOSAVE inactive: option off, quitting, or unverified build.
+329: [Mod:CityPerformance] AUTOSAVE requested=True; validated=False; faulted=False
+... trimmed unrelated lines ...
+623: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+624: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+625: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+626: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+627: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+628: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+629: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+630: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+631: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+632: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+633: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+634: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+635: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+636: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+637: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+638: [HART. Mod Pack] Camera Tools: on, ModsLocal
+639: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+640: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+641: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+642: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+643: [Mod:FoodTrucks] Test bridge: new game 'FT Windows Release Modpack AFTER 20261028' (custom, Normal values, tutorial off), to the character creator.
+644: [HART. Mod Pack] Happiness rebalance: 38 of the game's modifiers set.
+645: All addressables loaded
+646: [DynamicRivals-REBUILD] Native option hydration | wholesaleLoaded=True | importLoaded=True | wholesale=7 | import=8
+647: Localization for key '7' not found
+648: Localization for key '8' not found
+649: Localization for key '25' not found
+650: Localization for key 'balanced' not found
+651: Localization for key 'strong' not found
+652: Localization for key 'standard' not found
+... trimmed unrelated lines ...
+661: [Mod:RealLifeOverhaul] Character lighting (character creation): shadows softened on 1 lights, 2 shadowless lights added, copied from 'Point Light (1)'.
+662: [HART. Mod Pack] Indebted start waiting for the city to load (game-loaded before the city exists).
+663: [Mod:RealLifeOverhaul] New looks: 502 on offer in the asset bundle (2217536 triangles in all, 2 shared textures in memory, 0.7 MB, 0 garment photograph(s)); each look's mesh and textures are read when it is worn.
+664: [Mod:RealLifeOverhaul] Hair: finish on, keyword set borrowed from the game's 'M_MaleHair01_01', strand maps from the bundle.
+665: [Mod:RealLifeOverhaul] Hair check ('HumanDefinitionHigh'): 'MaleHair05' (mesh 'MaleHair05', drawn yes): [0] 'M_MaleHair05_01' strands, queue 3001, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 1, strands 'T_MaleHair05_BC (RealLifeOverhaul denser)' 1024x512 11 mips, finished, core 30.2% edge 12.5% empty 57.3% at gain 4.00, solid at an eighth of the size 30.2% (plain mipmaps 16.3%, alpha x1.47), strand shade 0.81, back-light 322314 rim 0.030 (at most 0.0199), highlight 0.192/0.424 gloss 0.20-0.35 (at most 0.1157), front-lit 0.0771; [1] 'M_MaleHair05_03' strands, queue 3003, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 3, strands 'T_MaleHair05_BC (RealLifeOverhaul denser)' 1024x512 11 mips, finished, core 30.2% edge 12.5% empty 57.3% at gain 4.00, solid at an eighth of the size 30.2% (plain mipmaps 16.3%, alpha x1.47), strand shade 0.81, back-light 322314 rim 0.030 (at most 0.0199), highlight 0.192/0.424 gloss 0.20-0.35 (at most 0.1157), front-lit 0.0771; [2] 'M_MaleHair05_02' strands, queue 3002, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 2, strands 'T_MaleHair05_BC (RealLifeOverhaul denser)' 1024x512 11 mips, finished, core 30.2% edge 12.5% empty 57.3% at gain 4.00, solid at an eighth of the size 30.2% (plain mipmaps 16.3%, alpha x1.47), strand shade 0.81, back-light 322314 rim 0.030 (at most 0.0199), highlight 0.192/0.424 gloss 0.20-0.35 (at most 0.1157), front-lit 0.0771; [3] 'M_MaleHair05_Scalp' cap on the skull, queue 3000, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 0, strands 'T_MaleHair05Scalp_BC (RealLifeOverhaul denser)' 1024x1024 11 mips, finished, core 40.1% edge 7.5% empty 52.5% at gain 3.00, solid at an eighth of the size 40.0% (plain mipmaps 39.5%, alpha x1.08), strand shade 0.96, back-light 000000 rim 0.000 (at most 0.0000), highlight 0.127/0.140 gloss 0.20-0.30 (at most 0.0463), front-lit 0.0771; 'MaleBeard04' (mesh 'Beard04', drawn yes): [0] 'M_BeardShort' strands, queue 3000, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 0, strands 'T_BeardShort_BC (RealLifeOverhaul denser)' 1024x1024 11 mips, finished, core 21.6% edge 2.5% empty 75.9% at gain 3.00, solid at an eighth of the size 21.7% (plain mipmaps 4.2%, alpha x1.78), strand shade 0.95, back-light 322314 rim 0.000 (at most 0.0193), highlight 0.328/0.311 gloss 0.20-0.30 (at most 0.1157), front-lit 0.0771; [1] 'M_BeardLong' strands, queue 3001, colour AB7E55, blended 1/10, clip 0.04, depth prepass at 0.95, writes depth no, sort 1, strands 'T_BeardLong_BC (RealLifeOverhaul denser)' 1024x1024 11 mips, finished, core 31.6% edge 9.6% empty 58.8% at gain 3.00, solid at an eighth of the size 31.6% (plain mipmaps 15.3%, alpha x1.58), strand shade 0.88, back-light 322314 rim 0.000 (at most 0.0193), highlight 0.328/0.311 gloss 0.20-0.30 (at most 0.1157), front-lit 0.0771; underlay: none; 6 of 6 layer(s) finished; lit skin sends back 0.1592 per unit of light, dark hair may send back at most 0.0398 with a lamp behind it, black hair 0.0318 in a highlight: PASS.
+666: [Mod:RealLifeOverhaul] New looks: materials are copied from the game's Scalp 'M_MaleHair01_Scalp' (queue 3000), Bulk 'M_FemHair06Bun 1' (queue 3001, alpha test, depth prepass), Wisps 'M_MaleHair01_03' (queue 3003), Cloth 'M_Hat' (queue 2450, alpha test).
+667: [DynamicRivals-REBUILD] Native option hydration | wholesaleLoaded=True | importLoaded=True | wholesale=7 | import=8
+668: Unloading 7 Unused Serialized files (Serialized files now loaded: 103)
+669: [Mod:FoodTrucks] Test bridge: new game character 'FT Playtest' made; to the city as 'FT Windows Release Modpack AFTER 20261028'.
+670: Unloading 736 unused Assets to reduce memory usage. Loaded Objects now: 28765.
+... trimmed unrelated lines ...
+1556: [Mod:RealLifeOverhaul] People: character 8 of 12 made ready as Officer.
+1557: [HART. Mod Pack] Indebted start created once: cash 551.37, native debt 75454.35, interest 105/day, principal 314/day. Game/RLO own all later repayments and terms.
+1558: [Mod:FoodTrucks] World: 883 buildings, 891 entrances cached.
+1559: Set building ba:street_thirdavenue 15 of type ba:buildingtype_cinema to be on sale by city.
+1560: Set building ba:street_broadwaystreet 10 of type ba:buildingtype_theater to be on sale by city.
+1561: [Mod:CityPerformance] Hyperreal discovery: active; full inactive-inclusive discovery, unsorted; no scene cache
+1562: [Mod:CityPerformance] Bakery Help: inactive: unreviewed Bakery/game/Core/HGExtensions binary
+1563: [Mod:CityPerformance] City ready; diagnostics=True; trace=True; autoexport=True; zones requested=True; refill requested=True; trace directory=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\CityPerformanceTraces
+1564: [Mod:DrivenRides] Debug keys ready: Ctrl+Alt+Shift+G graph stats, Ctrl+Alt+Shift+X clear a stuck ride, Ctrl+Alt+Shift+K remove the ride car, Ctrl+Alt+Shift+V hospital now, Ctrl+Alt+Shift+U throw in the ride's frame update, Ctrl+Alt+Shift+J fake a save change, Ctrl+Alt+Shift+L park a dressed taxi beside you.
+1565: [Mod:DrivenRides] Lane graph: 18791 waypoints, 0 bad edges dropped, 0 with listIndex not their position, 1849 allowing no vehicle type, 0 where allowedAgents and allowedCars differ, 4377 with Gley lane changes, 1613 with inferred ones, 168 junction entries with added turns, 147 with U-turns, top speed 80 km/h, built in 73 ms.
+... trimmed unrelated lines ...
+1945: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1946: [ModpackRig] native checkout reached fixture order callback, items=1
+1947: [Mod:FoodTrucks] Test bridge: clicked "Place order [F]" (Canvases/PlayerHUD/PurchaseUI/Panel/Bottom/Buttons/OrderButton).
+1948: [Mod:CityPerformance] PERF frames n=1109 mean_ms=27.39 p50_le_ms=17 p95_le_ms=35 p99_le_ms=180 max_ms=984.49 over50=32 bin250plus=9 refill=False
+1949: [Mod:CityPerformance] PERF scope=CullingGroupController.Update calls=2218 total_ms=2.459 max_ms=0.014 exceptions=0
+1950: [Mod:CityPerformance] PERF scope=PedestrianSpawner.SetActivePedestrians calls=0 total_ms=0.000 max_ms=0.000 exceptions=0
+1951: [Mod:CityPerformance] PERF scope=TrafficManager.FixedUpdate calls=0 total_ms=0.000 max_ms=0.000 exceptions=0
+1952: [Mod:CityPerformance] PERF scope=SaveGameManager.SerializeSaveGame calls=0 total_ms=0.000 max_ms=0.000 exceptions=0
+1953: [Mod:CityPerformance] PERF scope=GameManager.RunMainGameTick calls=1109 total_ms=39.002 max_ms=6.040 exceptions=0
+1954: [Mod:CityPerformance] DETAIL hooks=0; retained=0; overwritten=0; daily_retained=0; daily_overwritten=0; session_worst_method=none; max_ms=0; full breakdown in exported methods CSV and capabilities.
+... trimmed unrelated lines ...
+1956: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1957: [ModpackRig] fixture checkout closed=True
+1958: [Mod:FoodTrucks] Test bridge: clicked "Cancel [Escape]" (Canvases/PlayerHUD/PurchaseUI/Panel/Bottom/Buttons/CancelButton).
+1959: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1960: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1961: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1962: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1963: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 40 walker(s), 13 standing or sitting; the nearest: not looked for: PASS.
+1964: [Mod:CityPerformance] PERF frames n=1531 mean_ms=19.60 p50_le_ms=17 p95_le_ms=30 p99_le_ms=41 max_ms=950.23 over50=8 bin250plus=2 refill=False
+1965: [Mod:CityPerformance] PERF scope=CullingGroupController.Update calls=3062 total_ms=6.849 max_ms=3.455 exceptions=0

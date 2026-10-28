@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-28T16:39:23.313175+00:00",
+  "results": [
+    {
+      "label": "before",
+      "exit": 3762504530,
+      "dll_sha256": "bf9d6bd57c524a5644ab8cd2b1fc6754fb325e8dad36a7657553abbef6b6443b",
+      "log_sha256": "055bbaae1981d7e3e01b0aea92768e29aeb54e2814b48334baa4a0d1a0adcafc"
+    },
+    {
+      "label": "after",
+      "exit": 0,
+      "dll_sha256": "eff5996eddceb5b2313b85b97995f4cbc5c787c183bb1e85094cd70b7626e37b",
+      "log_sha256": "fd2a5ec7a2144d5c57441e581da3e3249d4bdf5d00f69ebfec3e4073b86cf38d"
+    }
+  ]
+}

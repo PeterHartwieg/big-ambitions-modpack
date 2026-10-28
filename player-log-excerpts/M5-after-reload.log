@@ -1,0 +1,56 @@
+... trimmed unrelated lines ...
+267: [Mod:FoodTrucks] Test bridge: listening on http://127.0.0.1:18330/ (session 4039fdc0).
+268: [HART. Mod Pack] Rules: series_prefill_custom_game=on, scenario_indebted_start=on, rent_rebalance=off, happiness_rebalance=on, owner_job_full_pay=on, equipment_utilities=on, office_it=on, utility_closure_reasons=on, mute_rlo_night_chirping=on, factory_diplomas=on, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+269: [HART. Mod Pack] Real Life Overhaul 0.50.0 (f339319c9ec1ad65): a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.
+270: [HART. Mod Pack] Owner job pay: RLO's OwnerFactor patched; rule on (jobs pay in full).
+271: [HART. Mod Pack] Running costs: RLO's utilities patched; equipment on, office IT on.
+272: [HART. Mod Pack] Utility closure reasons: BizMan reads RLO's current utility closure records.
+273: [HART. Mod Pack] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+274: [HART. Mod Pack] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+275: [HART. Mod Pack] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+276: [HART. Mod Pack] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+277: [HART. Mod Pack] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+278: [HART. Mod Pack] Bakery (6d68edab0f5600f5): verified version, patched.
+279: [HART. Mod Pack] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+280: [HART. Mod Pack] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+281: [HART. Mod Pack] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+282: [HART. Mod Pack] Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.
+283: [HART. Mod Pack] Real Life Overhaul (f339319c9ec1ad65): verified version, patched.
+284: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+285: [HART Rival Balance] Active, Harmony 2.4.2.0. Rival businesses are valued on the Normal preset; your own businesses keep the save's settings. Version 0.2.0, preset from the Mods option.
+286: [Mod:InternetCafe] Internet Cafe v0.3 registered (automatic PC admission, optional staffed drinks).
+287: [Mod:ModpackRig] HART rig probe ready (test helper, agent1 only).
+288: [Mod:PolyModsHyperreal] [Hyperreal] Config loaded from C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\PolyModsHyperreal\hyperreal_config.json
+289: [Mod:PolyModsHyperreal] [Hyperreal] PolyMods Hyperreal v1.1.2 loaded. ModRoot=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\ModsLocal\PolyModsHyperreal
+290: [Mod:RealLifeOverhaul] Dealership: the business type 'reallife_businesstype_cardealership' is registered for retail buildings, with its icon (the map's filter row has it).
+291: [Mod:RealLifeOverhaul] Game build check: Build 3682, the build Real Life Overhaul 0.50.0 is made for: PASS.
+292: [Mod:RealLifeOverhaul] Game contract: 182 pieces of the game checked, 0 part(s) off. This game is Build 3682; Real Life Overhaul 0.50.0 is made for Build 3682.
+... trimmed unrelated lines ...
+304: Loaded Big Ambitions (Build 3682)
+305: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+306: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+307: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+308: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+309: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+310: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+311: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+312: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+313: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+314: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+315: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+316: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+317: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+318: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+319: [HART. Mod Pack] Camera Tools: on, ModsLocal
+320: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+321: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+322: [Mod:FoodTrucks] Test bridge: loading 'FT Windows Release Modpack AFTER 20261028' (FT Playtest, day 1).
+323: [HART. Mod Pack] Happiness rebalance: 38 of the game's modifiers set.
+324: All addressables loaded
+325: [Mod:FoodTrucks] Save data in the save file: save count 3, written by 0.10.2, 2125 characters.
+326: Failed to create agent because there is no valid NavMesh
+327: Unloading 8 Unused Serialized files (Serialized files now loaded: 102)
+328: Unloading 746 unused Assets to reduce memory usage. Loaded Objects now: 30803.
+329: Total: 16.968500 ms (FindLiveObjects: 0.918400 ms CreateObjectMapping: 4.798500 ms MarkObjects: 10.697900 ms  DeleteObjects: 0.553300 ms)
+330:
+331: [DynamicRivals-REBUILD] Native option hydration | wholesaleLoaded=True | importLoaded=True | wholesale=7 | import=8

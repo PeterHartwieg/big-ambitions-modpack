@@ -1,0 +1,13 @@
+{
+  "local": "2026-10-28T18:33:19.0121026+01:00",
+  "profileFiles": 4828,
+  "profileSha256Verified": true,
+  "modsLocalIncluded": true,
+  "preferencesSha256Verified": true,
+  "rootFilesVerified": true,
+  "installManifestSha256Verified": true,
+  "installReferencesVerified": 107,
+  "processes": [],
+  "backup": "C:\\Users\\Peter\\HART-Builds\\modpack-1.1.1-rig\\backup",
+  "testedProfile": "C:\\Users\\Peter\\HART-Builds\\modpack-1.1.1-rig\\tested-profile"
+}

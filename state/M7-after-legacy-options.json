@@ -1,0 +1,406 @@
+{
+  "source_sha256": "79133fff082674ba083215d6c143e463d8dc5052640f9c19f714e00ff2a2427a",
+  "trimmed": true,
+  "observation": {
+    "pages": [
+      {
+        "modId": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\HardModePatch",
+        "options": [
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ButtonOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "series_prefill_custom_game",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "scenario_indebted_start",
+            "DefaultValue": false,
+            "stored": 0
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "rent_rebalance",
+            "DefaultValue": false,
+            "stored": 1
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "happiness_rebalance",
+            "DefaultValue": false,
+            "stored": 1
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "owner_job_full_pay",
+            "DefaultValue": false,
+            "stored": 1
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "equipment_utilities",
+            "DefaultValue": false,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "office_it",
+            "DefaultValue": false,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "utility_closure_reasons",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "factory_diplomas",
+            "DefaultValue": false,
+            "stored": 1
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "hardcore_keep_difficulty",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "hardcore_no_funds",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "hardcore_vehicle_prices_per_save",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "ambience_scales_with_demand",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bakery_vanilla_margins",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "hyperreal_map_return_fix",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "cafe_pc_capacity",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "vending_protect_rival_furniture",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bank_tax_withdrawals",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bank_no_emergency_borrowing",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bank_honest_credit_scores",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bank_product_limits",
+            "DefaultValue": true,
+            "stored": null
+          },
+          {
+            "type": "ToggleOption",
+            "id": "bank_no_remote_requests",
+            "DefaultValue": true,
+            "stored": null
+          }
+        ]
+      },
+      {
+        "modId": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\HARTModPack",
+        "options": [
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "ButtonOption",
+            "id": null
+          },
+          {
+            "type": "SplitterOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          },
+          {
+            "type": "HeaderOption",
+            "id": null
+          }
+        ]
+      }
+    ],
+    "id": "M7-after-legacy-options",
+    "op": "options",
+    "main_menu": true,
+    "utc": "2026-10-28T17:30:46.4094814Z"
+  }
+}

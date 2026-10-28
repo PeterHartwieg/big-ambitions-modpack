@@ -1,0 +1,193 @@
+{
+  "source_sha256": "663ba5e8c8d46e35755211f533a48dec79816f6db6a18808e3530a14b8dece48",
+  "trimmed": true,
+  "observation": {
+    "ok": true,
+    "op": 54,
+    "result": {
+      "save": "FT Windows Release Modpack AFTER 20261028",
+      "scene": "city",
+      "clock": {
+        "day": 1,
+        "weekday": "Monday",
+        "time": "10:10",
+        "paused": true,
+        "speed": 1.0,
+        "run_until": null,
+        "arrived_at": null,
+        "keep_needs": false
+      },
+      "money": 551.37,
+      "player": {
+        "work": null,
+        "activity": "on_foot",
+        "clock_held_by": null,
+        "x": 1037.05,
+        "y": 0.01,
+        "z": -140.6,
+        "heading": 180.0,
+        "in_vehicle": null,
+        "at_hatch": null,
+        "carrying": "ba:itemname_closedcardboardbox",
+        "hands": {
+          "item": "Closed Cardboard Box",
+          "key": "ba:itemname_closedcardboardbox",
+          "contents": [
+            {
+              "item": "Kiln Machine",
+              "key": "ba:itemname_kilnmachine",
+              "amount": 1,
+              "paid": false,
+              "food": false
+            }
+          ]
+        },
+        "handtruck": null,
+        "inside": "ba:street_twentyfifthstreet#2",
+        "homes": [],
+        "riding": false,
+        "needs": {
+          "energy": 90.0,
+          "hunger": 88.3,
+          "happiness": 50.0,
+          "happiness_modifiers": [
+            {
+              "type": "ba:happinessmodifier_no_home",
+              "name": "No home",
+              "amount": -50,
+              "hours_left": -1,
+              "shows_time": false
+            },
+            {
+              "type": "ba:happinessmodifier_first_day_on_ny",
+              "name": "First day in New York",
+              "amount": 100,
+              "hours_left": 22,
+              "shows_time": true
+            }
+          ],
+          "max": 100.0,
+          "collapse_at": -20.0,
+          "energy_off": false,
+          "going_to_hospital": false,
+          "kept_up": false,
+          "warnings": []
+        }
+      },
+      "licence": {
+        "until_day": null,
+        "permits": 0,
+        "course_done": false,
+        "todos": []
+      },
+      "vehicles": [],
+      "commissary": {
+        "bays": [
+          {
+            "site": "industry-city",
+            "status": "resolved",
+            "point": {
+              "x": -1439.0,
+              "z": -1073.4,
+              "along_x": 0.0,
+              "along_z": -1.0
+            },
+            "entrance": {
+              "x": -1438.46,
+              "z": -1051.85
+            }
+          },
+          {
+            "site": "garment-district",
+            "status": "resolved",
+            "point": {
+              "x": 305.72,
+              "z": -311.6,
+              "along_x": 0.0,
+              "along_z": -1.0
+            },
+            "entrance": {
+              "x": 300.85,
+              "z": -313.05
+            }
+          },
+          {
+            "site": "hells-kitchen",
+            "status": "resolved",
+            "point": {
+              "x": 267.8,
+              "z": 326.06,
+              "along_x": -1.0,
+              "along_z": 0.0
+            },
+            "entrance": {
+              "x": 267.8,
+              "z": 332.54
+            }
+          },
+          {
+            "site": "lower-manhattan",
+            "status": "resolved",
+            "point": {
+              "x": -524.34,
+              "z": -118.15,
+              "along_x": 0.0,
+              "along_z": -1.0
+            },
+            "entrance": {
+              "x": -551.01,
+              "z": -123.65
+            }
+          },
+          {
+            "site": "murray-hill",
+            "status": "resolved",
+            "point": {
+              "x": 43.8,
+              "z": -281.8,
+              "along_x": 0.0,
+              "along_z": -1.0
+            },
+            "entrance": {
+              "x": 39.54,
+              "z": -280.79
+            }
+          }
+        ],
+        "spaces": [],
+        "orders": [],
+        "stock": [],
+        "unpaid": {
+          "rent": 0.0,
+          "fines": 0.0
+        }
+      },
+      "ledger_today": {
+        "street_food": 0.0,
+        "sales_waiting": 0.0,
+        "crew_waiting": 0.0
+      },
+      "notices_recent": [],
+      "load": {
+        "name": "FT Windows Release Modpack AFTER 20261028",
+        "status": "done",
+        "error": null,
+        "new_game": "saved"
+      },
+      "transactions_today": [],
+      "employees": [],
+      "game_camera": {
+        "x": 1037.05,
+        "y": 7.47,
+        "z": -129.95,
+        "yaw": 180.0,
+        "pitch": 29.02
+      },
+      "view_blocked": [
+        "FactorySupplyDepot (CityBuildingController, reveal 0.00, blocking the game's camera)"
+      ],
+      "job": null,
+      "other_vehicles": []
+    }
+  }
+}

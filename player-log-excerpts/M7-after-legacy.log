@@ -1,0 +1,52 @@
+... trimmed unrelated lines ...
+267: [Mod:FoodTrucks] Test bridge: listening on http://127.0.0.1:18330/ (session f28da162).
+268: [HART. Mode Patch] Rules: series_prefill_custom_game=on, scenario_indebted_start=off, rent_rebalance=on, happiness_rebalance=on, owner_job_full_pay=on, equipment_utilities=off, office_it=off, utility_closure_reasons=on, factory_diplomas=on, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+269: [HART. Mode Patch] Real Life Overhaul 0.50.0 (f339319c9ec1ad65) is a version HART. Mod Pack Patch hasn't reviewed. Factory diplomas, running costs, owner job pay and the hotel 'no home' rule are off until HART. Mod Pack Patch is updated; RLO runs as its author published it. A save's factory diploma records are kept for that update.
+270: [HART. Mode Patch] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+271: [HART. Mode Patch] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+272: [HART. Mode Patch] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+273: [HART. Mode Patch] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+274: [HART. Mode Patch] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+275: [HART. Mode Patch] Bakery (6d68edab0f5600f5): verified version, patched.
+276: [HART. Mode Patch] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+277: [HART. Mode Patch] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+278: [HART. Mode Patch] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+279: [HART. Mode Patch] Version 0.5.0 active, Harmony 2.4.2.0. Mods not loaded yet are patched when they load.
+280: [HART. Mod Pack] HART. Mod Pack: HardModePatch.dll is loaded. The pack's gameplay features are paused to prevent duplicate rules. Unsubscribe from HART. Mod Pack Patch, remove its HardModePatch folder from ModsLocal if present, then restart the game. Apply the series settings in Settings > Mods > HART. Mod Pack.
+281: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+282: [HART Rival Balance] Active, Harmony 2.4.2.0. Rival businesses are valued on the Normal preset; your own businesses keep the save's settings. Version 0.2.0, preset from the Mods option.
+283: [Mod:InternetCafe] Internet Cafe v0.3 registered (automatic PC admission, optional staffed drinks).
+284: [Mod:ModpackRig] HART rig probe ready (test helper, agent1 only).
+285: [Mod:PolyModsHyperreal] [Hyperreal] Config loaded from C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\PolyModsHyperreal\hyperreal_config.json
+286: [Mod:PolyModsHyperreal] [Hyperreal] PolyMods Hyperreal v1.1.2 loaded. ModRoot=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\ModsLocal\PolyModsHyperreal
+287: [Mod:RealLifeOverhaul] Dealership: the business type 'reallife_businesstype_cardealership' is registered for retail buildings, with its icon (the map's filter row has it).
+288: [Mod:RealLifeOverhaul] Game build check: Build 3682, the build Real Life Overhaul 0.50.0 is made for: PASS.
+289: [Mod:RealLifeOverhaul] Game contract: 182 pieces of the game checked, 0 part(s) off. This game is Build 3682; Real Life Overhaul 0.50.0 is made for Build 3682.
+... trimmed unrelated lines ...
+301: Loaded Big Ambitions (Build 3682)
+302: [HART. Mod Pack] Notice: HART. Mod Pack: HardModePatch.dll is loaded. The pack's gameplay features are paused to prevent duplicate rules. Unsubscribe from HART. Mod Pack Patch, remove its HardModePatch folder from ModsLocal if present, then restart the game. Apply the series settings in Settings > Mods > HART. Mod Pack.
+303: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+304: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+305: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+306: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+307: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+308: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+309: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+310: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+311: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+312: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+313: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+314: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+315: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+316: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+317: [HART. Mod Pack] Camera Tools: on, ModsLocal
+318: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+319: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+320: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+321: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+322: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+323: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+324: [Mod:CityPerformance] Pedestrian-refill smoothing requested=True; verified=False; faulted=False
+325: [Mod:CityPerformance] TREE requested=True; installed=False; faulted=False
+326: [Mod:CityPerformance] Hyperreal discovery: waiting for city-ready; requested=true
+327: [Mod:CityPerformance] CINEMA coverage requested=True

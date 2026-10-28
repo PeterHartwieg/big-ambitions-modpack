@@ -1,0 +1,139 @@
+... trimmed unrelated lines ...
+267: [Mod:FoodTrucks] Test bridge: listening on http://127.0.0.1:18330/ (session 165157b9).
+268: [HART. Mod Pack] Rules: series_prefill_custom_game=on, scenario_indebted_start=on, rent_rebalance=off, happiness_rebalance=on, owner_job_full_pay=on, equipment_utilities=on, office_it=on, utility_closure_reasons=on, mute_rlo_night_chirping=on, factory_diplomas=on, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+269: [HART. Mod Pack] Real Life Overhaul 0.50.0 (f339319c9ec1ad65): a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.
+270: [HART. Mod Pack] Owner job pay: RLO's OwnerFactor patched; rule on (jobs pay in full).
+271: [HART. Mod Pack] Running costs: RLO's utilities patched; equipment on, office IT on.
+272: [HART. Mod Pack] Utility closure reasons: BizMan reads RLO's current utility closure records.
+273: [HART. Mod Pack] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+274: [HART. Mod Pack] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+275: [HART. Mod Pack] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+276: [HART. Mod Pack] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+277: [HART. Mod Pack] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+278: [HART. Mod Pack] Bakery (6d68edab0f5600f5): verified version, patched.
+279: [HART. Mod Pack] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+280: [HART. Mod Pack] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+281: [HART. Mod Pack] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+282: [HART. Mod Pack] Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.
+283: [HART. Mod Pack] Real Life Overhaul (f339319c9ec1ad65): verified version, patched.
+284: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+285: [HART Rival Balance] Active, Harmony 2.4.2.0. Rival businesses are valued on the Normal preset; your own businesses keep the save's settings. Version 0.2.0, preset from the Mods option.
+286: [Mod:InternetCafe] Internet Cafe v0.3 registered (automatic PC admission, optional staffed drinks).
+287: [Mod:ModpackRig] HART rig probe ready (test helper, agent1 only).
+288: [Mod:PolyModsHyperreal] [Hyperreal] Config loaded from C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\PolyModsHyperreal\hyperreal_config.json
+289: [Mod:PolyModsHyperreal] [Hyperreal] PolyMods Hyperreal v1.1.2 loaded. ModRoot=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\ModsLocal\PolyModsHyperreal
+290: [Mod:RealLifeOverhaul] Dealership: the business type 'reallife_businesstype_cardealership' is registered for retail buildings, with its icon (the map's filter row has it).
+291: [Mod:RealLifeOverhaul] Game build check: Build 3682, the build Real Life Overhaul 0.50.0 is made for: PASS.
+292: [Mod:RealLifeOverhaul] Game contract: 182 pieces of the game checked, 0 part(s) off. This game is Build 3682; Real Life Overhaul 0.50.0 is made for Build 3682.
+... trimmed unrelated lines ...
+304: Loaded Big Ambitions (Build 3682)
+305: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+306: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+307: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+308: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+309: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+310: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+311: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+312: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+313: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+314: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+315: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+316: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+317: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+318: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+319: [HART. Mod Pack] Camera Tools: on, ModsLocal
+320: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+321: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+322: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+323: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+324: [Mod:FoodTrucks] Test bridge: loading 'FT Windows Release Modpack AFTER 20261028' (FT Playtest, day 1).
+325: [HART. Mod Pack] Happiness rebalance: 38 of the game's modifiers set.
+326: All addressables loaded
+327: [Mod:FoodTrucks] Save data in the save file: save count 3, written by 0.10.2, 2125 characters.
+328: [DynamicRivals-REBUILD] Native option hydration | wholesaleLoaded=True | importLoaded=True | wholesale=7 | import=8
+329: Failed to create agent because there is no valid NavMesh
+330: Unloading 8 Unused Serialized files (Serialized files now loaded: 102)
+331: Unloading 746 unused Assets to reduce memory usage. Loaded Objects now: 30803.
+332: Total: 14.481600 ms (FindLiveObjects: 1.152000 ms CreateObjectMapping: 0.461000 ms MarkObjects: 12.252800 ms  DeleteObjects: 0.615600 ms)
+333:
+... trimmed unrelated lines ...
+1431: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+1432: [HART. Mod Pack] A second copy (3825408579) is on; it waits. Turn one copy off.
+1433: [Mod:RealLifeOverhaul] Map links: job_offices on the city map with 6 place(s).
+1434: Localization for key 'rlo_map_job_offices' not found on gameobject 'Label'
+1435: [Mod:RealLifeOverhaul] Map places: 1 row(s) added to the city map's filters (under special buildings).
+1436: [Mod:RealLifeOverhaul] Map places check (markers taken off): 3 taken out of the game's list of 90 marker(s) before they went; 0 dead marker(s) left in it: PASS
+1437: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+1438: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+1439: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+1440: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+... trimmed unrelated lines ...
+1788: [Campaign Objectives] Dock change at 109.62 s: descendant 'Panel', -493, 213, 493 x 81; window rejected, missing; collapsed yes; canvas 2560 x 1440, screen 1920 x 1080
+1789: [HART. Mod Pack] Bakery: restored the published prices of 5 items.
+1790: Localization for key '7' not found
+1791: Localization for key '8' not found
+1792: Localization for key '25' not found
+1793: Localization for key 'balanced' not found
+1794: Localization for key 'strong' not found
+1795: Localization for key 'standard' not found
+1796: Localization for key 'strong' not found
+1797: Localization for key 'vanilla' not found
+... trimmed unrelated lines ...
+1801: Localization for key '5%' not found
+1802: [HART. Mod Pack] Rules: series_prefill_custom_game=on, scenario_indebted_start=off, rent_rebalance=off, happiness_rebalance=off, owner_job_full_pay=off, equipment_utilities=off, office_it=off, utility_closure_reasons=on, mute_rlo_night_chirping=on, factory_diplomas=off, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+1803: [HART. Mod Pack] Owner job pay: RLO's OwnerFactor patched; rule off (RLO's cut applies).
+1804: [HART. Mod Pack] Running costs: RLO's utilities patched; equipment off, office IT off.
+1805: [HART. Mod Pack] Utility closure reasons: BizMan reads RLO's current utility closure records.
+1806: [HART. Mod Pack] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+1807: [HART. Mod Pack] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+1808: [HART. Mod Pack] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+1809: [HART. Mod Pack] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+1810: [HART. Mod Pack] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+1811: [HART. Mod Pack] Bakery (6d68edab0f5600f5): verified version, patched.
+1812: [HART. Mod Pack] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+1813: [HART. Mod Pack] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+1814: [HART. Mod Pack] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+1815: [HART. Mod Pack] Factory diplomas: reusing the three school diplomas registered earlier this session (ids 18, 19, 34); machine gate is opt-in.
+1816: [HART. Mod Pack] Real Life Overhaul (f339319c9ec1ad65): verified version, patched.
+1817: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+1818: [HART. Mod Pack] The other copy (3825408579) took over.
+1819: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+1820: [Mod:FoodTrucks] Test bridge: clicked "SettingsButton" (Canvases/Topbar/Container/Buttons/SettingsButton).
+1821: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+1822: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+1823: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+1824: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+1825: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+1826: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+1827: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+1828: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+1829: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+1830: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+1831: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+1832: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+1833: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+1834: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+1835: [HART. Mod Pack] Camera Tools: on, ModsLocal
+1836: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+1837: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+1838: Localization for key '7' not found
+1839: Localization for key '8' not found
+1840: Localization for key '25' not found
+1841: Localization for key 'balanced' not found
+1842: Localization for key 'strong' not found
+1843: Localization for key 'standard' not found
+1844: Localization for key 'strong' not found
+1845: Localization for key 'vanilla' not found
+... trimmed unrelated lines ...
+2026: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+2027: [HART. Mod Pack] factory_diplomas turned on.
+2028: [Mod:FoodTrucks] Test bridge: clicked "Require trade diplomas to buy sewing, kiln and polishing machines (eight classes and an exam at the school)" (Canvases/Options/OptionsView/Views/Mods/Scroll View/Viewport/Content/OptionsToggle(Clone)/Toggle).
+2029: [Mod:FoodTrucks] Test bridge: clicked "Back [Escape]" (Canvases/Options/OptionsView/BackButton).
+2030: [Mod:FoodTrucks] Test bridge: clicked "Close" (Canvases/PlayerHUD/MiniMenuUI/Panel/Close).
+2031: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+2032: [Mod:FoodTrucks] Test bridge: clicked "Place order [F]" (Canvases/PlayerHUD/PurchaseUI/Panel/Bottom/Buttons/OrderButton).
+2033: [Mod:RealLifeOverhaul] Street talk check (offer): nothing offered: closed: the game is busy (a pause, the time machine, a question, the activity panel, the hospital, the subway or the casino boat); out: 0 walker(s), 0 standing or sitting; the nearest: not looked for: PASS.
+2034: [ModpackRig] native checkout reached fixture order callback, items=1
+2035: [Mod:FoodTrucks] Test bridge: clicked "Place order [F]" (Canvases/PlayerHUD/PurchaseUI/Panel/Bottom/Buttons/OrderButton).
+2036: [ModpackRig] fixture checkout closed=True
+2037: [Mod:FoodTrucks] Test bridge: clicked "Cancel [Escape]" (Canvases/PlayerHUD/PurchaseUI/Panel/Bottom/Buttons/CancelButton).

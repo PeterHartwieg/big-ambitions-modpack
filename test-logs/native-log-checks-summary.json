@@ -1,0 +1,145 @@
+{
+  "M2-before-cold.log": {
+    "full_log_sha256": "55f1d39f455a3658502c671b8656fb189b48adcf7b928efa33c23bdb867c96af",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": false,
+    "all_exception_blocks": 0
+  },
+  "M2-before-post-city.log": {
+    "full_log_sha256": "4bb6d83e0020a12d9f703a365228d7a537a2d7bc6f9e378d6619c8cb7435d55d",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": false,
+    "all_exception_blocks": 1
+  },
+  "M7-before-rule-on.log": {
+    "full_log_sha256": "f0fb57da0aac5e1a0c06450bfe1c2966d1d5607f3051465b07c084fec9016a98",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": false,
+    "all_exception_blocks": 1
+  },
+  "M2-after-cold.log": {
+    "full_log_sha256": "a18f1a24643fd0d7caebdb949abac4836439750fab33138ff0acad9d4948a095",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M2-after-post-city.log": {
+    "full_log_sha256": "09bd832ff11eb55c8b8a67f079c74d9887b15a1b495b0b498a146e8f5d02561f",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M4-after-factory.log": {
+    "full_log_sha256": "94cb351eeeb9619b82eff8d7cf705035a359c9cfe4b2ccc3723275a39a55006c",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M4-after-debt-off.log": {
+    "full_log_sha256": "1565abe068655c7cc6e076f859cd283e6a6c5d8f01c04a0f32b4b6e3b7319778",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M5-after-save.log": {
+    "full_log_sha256": "9ad78d4c4f443a8db58414a2c3998974947f9035fdec7786083fcd9ec578bbbb",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M5-after-reload.log": {
+    "full_log_sha256": "704df1817c45e6b293e8b6fda4eb9aee0f3288fce82eef7e39d286c4de187410",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M6-after-night.log": {
+    "full_log_sha256": "1ed5e9d9545b5e849676a91f1610f605df762267ad9fe875386529b6d18419ab",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M7-after-takeover.log": {
+    "full_log_sha256": "f68aa85853740f0c0aca48c8b083c1a13675d2ffa71a4e3a66d3cdceba13714c",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "M7-after-legacy.log": {
+    "full_log_sha256": "c3081201b7cde6514eeff62101cec291aca8317763c8312e252f1b91aa212bd9",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  },
+  "after-legacy-final.log": {
+    "full_log_sha256": "7a1b94ef8a96b2c7b7ec03fc0aadd275674f3e6244182742aa6e905f873a2cf9",
+    "always_on_ok": true,
+    "version_specific_rules_available": false,
+    "active_patch_lines": 132,
+    "inactive_patch_lines": [],
+    "mod_errors": [],
+    "foodtrucks_exceptions": [],
+    "hart_scan_clean": true,
+    "all_exception_blocks": 0
+  }
+}

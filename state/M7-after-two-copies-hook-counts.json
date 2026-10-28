@@ -1,0 +1,221 @@
+{
+  "source_sha256": "85fddf7e4d409d958de56a395caafb902f509e8dda98f6e87b4b6aee5cae3a74",
+  "trimmed": true,
+  "observation": {
+    "hooks": [
+      {
+        "hook": {
+          "target": "UI.Tasks.TasksUI.GetTodoDescription",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.closurereason",
+          "callback": "HardModePatch.UtilityClosureReasonPatch.Postfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "GlobalEvents.InvokeOnGameLoaded",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.rlogate",
+          "callback": "HardModePatch.RloGate.GameLoadedPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "GlobalEvents.InvokeOnGameLoaded",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.scenario",
+          "callback": "HardModePatch.IndebtedScenario.GameLoadedPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "BigAmbitions.ModsInternal.ModOptionsButtonControl.Initialize",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.ui.buttoncaptions",
+          "callback": "HARTModPack.OptionButtonCaptions.AfterInitialize"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "UI.MainMenu.CustomGameOptionsHandler.Start",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.prefill",
+          "callback": "HardModePatch.CustomGamePrefill.StartPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "UI.MainMenu.CustomGamePanel.Start",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.prefill",
+          "callback": "HardModePatch.CustomGamePrefill.PanelStartPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "SaveGameManager.New",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.scenario",
+          "callback": "HardModePatch.IndebtedScenario.NewGamePostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Buildings.Building.GetBuildingDailyMarketRent",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.rent",
+          "callback": "HardModePatch.RentRebalance.RentPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.EstimatedWeeklyIncomeHelper.GetEstimatedWeeklyIncome",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.rent",
+          "callback": "HardModePatch.RentRebalance.EstimatePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.EstimatedWeeklyIncomeHelper.GetEstimatedWeeklyIncome",
+          "kind": "Finalizers",
+          "owner": "hartmodpack.gameplay.rent",
+          "callback": "HardModePatch.RentRebalance.EstimateFinalizer"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.OnHappinessModifiersLoaded",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.happiness",
+          "callback": "HardModePatch.HappinessRebalance.LoadedPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.AddModifier",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.happiness",
+          "callback": "HardModePatch.HappinessRebalance.AddPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.UpdateHappiness",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.happiness",
+          "callback": "HardModePatch.HappinessRebalance.UpdatePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.CareerCatalogue.OwnerFactor",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.ownerpay",
+          "callback": "HardModePatch.OwnerJobPay.Prefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.Utilities.UtilitiesRules.AddDay",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay.runningcosts",
+          "callback": "HardModePatch.RunningCostsPatch.UsePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.Utilities.InternetRules.AddDay",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.runningcosts",
+          "callback": "HardModePatch.RunningCostsPatch.SeatPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.Utilities.UtilitiesDirector.NeedsNet",
+          "kind": "Transpilers",
+          "owner": "hartmodpack.gameplay.runningcosts",
+          "callback": "HardModePatch.RunningCostsPatch.NeedsTranspiler"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.Leisure.LeisureSound.Tick",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay.nightchirping",
+          "callback": "HardModePatch.NightChirpingPatch.Postfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "BigAmbitions.Items.ItemsGetter.RegisterModItem",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay",
+          "callback": "HardModePatch.BakeryPatch.RegisterPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Buildings.Retail.Simulation.RetailBusinessSimulator.GetMaxCustomerCapacityThisHour",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay",
+          "callback": "HardModePatch.InternetCafePatch.CapacityPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Controllers.PlayerItemPurchaser.GrabItem",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay",
+          "callback": "HardModePatch.RealLifeOverhaulPatch.GrabPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "UI.Purchase.PurchaseUI.PlaceOrder",
+          "kind": "Prefixes",
+          "owner": "hartmodpack.gameplay",
+          "callback": "HardModePatch.RealLifeOverhaulPatch.PurchasePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "RealLifeOverhaul.Careers.CareersDirector.Offered",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.gameplay",
+          "callback": "HardModePatch.RealLifeOverhaulPatch.OfferedPostfix"
+        },
+        "count": 1
+      }
+    ],
+    "all_identical_hooks_once": true,
+    "scope": "Read-only native Harmony patch table; no hooks installed or removed by observer",
+    "id": "M7-after-two-copies-hook-counts",
+    "op": "patch_counts",
+    "main_menu": false,
+    "utc": "2026-10-28T17:25:49.8995786Z"
+  }
+}

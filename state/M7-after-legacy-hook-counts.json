@@ -1,0 +1,140 @@
+{
+  "source_sha256": "f21b9b88169e15a6d331882317098d32da05c2fb0a145ca2cc27ffa7c5e17813",
+  "trimmed": true,
+  "observation": {
+    "hooks": [
+      {
+        "hook": {
+          "target": "GlobalEvents.InvokeOnGameLoaded",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch.rlogate",
+          "callback": "HardModePatch.RloGate.GameLoadedPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "GlobalEvents.InvokeOnGameLoaded",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch.scenario",
+          "callback": "HardModePatch.IndebtedScenario.GameLoadedPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "UI.MainMenu.CustomGameOptionsHandler.Start",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch.prefill",
+          "callback": "HardModePatch.CustomGamePrefill.StartPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "UI.MainMenu.CustomGamePanel.Start",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch.prefill",
+          "callback": "HardModePatch.CustomGamePrefill.PanelStartPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "SaveGameManager.New",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch.scenario",
+          "callback": "HardModePatch.IndebtedScenario.NewGamePostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Buildings.Building.GetBuildingDailyMarketRent",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch.rent",
+          "callback": "HardModePatch.RentRebalance.RentPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.EstimatedWeeklyIncomeHelper.GetEstimatedWeeklyIncome",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch.rent",
+          "callback": "HardModePatch.RentRebalance.EstimatePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.EstimatedWeeklyIncomeHelper.GetEstimatedWeeklyIncome",
+          "kind": "Finalizers",
+          "owner": "hardmodepatch.rent",
+          "callback": "HardModePatch.RentRebalance.EstimateFinalizer"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.OnHappinessModifiersLoaded",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch.happiness",
+          "callback": "HardModePatch.HappinessRebalance.LoadedPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.AddModifier",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch.happiness",
+          "callback": "HardModePatch.HappinessRebalance.AddPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Helpers.HappinessHelper.UpdateHappiness",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch.happiness",
+          "callback": "HardModePatch.HappinessRebalance.UpdatePrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "BigAmbitions.Items.ItemsGetter.RegisterModItem",
+          "kind": "Prefixes",
+          "owner": "hardmodepatch",
+          "callback": "HardModePatch.BakeryPatch.RegisterPrefix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "Buildings.Retail.Simulation.RetailBusinessSimulator.GetMaxCustomerCapacityThisHour",
+          "kind": "Postfixes",
+          "owner": "hardmodepatch",
+          "callback": "HardModePatch.InternetCafePatch.CapacityPostfix"
+        },
+        "count": 1
+      },
+      {
+        "hook": {
+          "target": "BigAmbitions.ModsInternal.ModOptionsButtonControl.Initialize",
+          "kind": "Postfixes",
+          "owner": "hartmodpack.ui.buttoncaptions",
+          "callback": "HARTModPack.OptionButtonCaptions.AfterInitialize"
+        },
+        "count": 1
+      }
+    ],
+    "all_identical_hooks_once": true,
+    "scope": "Read-only native Harmony patch table; no hooks installed or removed by observer",
+    "id": "M7-after-legacy-hook-counts",
+    "op": "patch_counts",
+    "main_menu": true,
+    "utc": "2026-10-28T17:30:46.1348211Z"
+  }
+}

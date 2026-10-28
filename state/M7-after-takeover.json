@@ -1,0 +1,1126 @@
+{
+  "source_sha256": "9691f8d59427074a31bdd24248d63b1cd68660fdb1edc7c14b5866797ac3f2e3",
+  "trimmed": true,
+  "observation": {
+    "native_entries": [
+      {
+        "id": "3825408579",
+        "folder": "C:\\Users\\Peter\\HART-Builds\\modpack-1.1.1-rig\\workshop-fixture\\HARTModPack",
+        "class": "HARTModPack.HARTModPackMod"
+      }
+    ],
+    "pack_copies": 1,
+    "active_id": "3825408579",
+    "lifecycle_complete": true,
+    "acceptance": {
+      "series": [
+        {
+          "owner": "HARTModPack",
+          "id": "scenario_indebted_start",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "rent_rebalance",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "happiness_rebalance",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "owner_job_full_pay",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "factory_diplomas",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "equipment_utilities",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "office_it",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTModPack",
+          "id": "mute_rlo_night_chirping",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "HARTRivalBalance",
+          "id": "rival_preset",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "wholesale_rival_count",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "import_rival_count",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "retail_occupancy",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "office_occupancy",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "warehouse_occupancy",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "residential_occupancy",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "DynamicRivals",
+          "id": "event_frequency",
+          "expected": 2,
+          "present": true,
+          "stored": 2,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "camera_enabled",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "camera_mouselook",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "car_camera",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "social_media",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "social_texts_max",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "life_events",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "accident_frequency",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "crime_frequency",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "roadside_checks",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "player_offences",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "street_event_frequency",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "fire_frequency",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "social_media_notices",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "accident_marker",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "accident_notices",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "ledger_online_notes",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "markets_dividend_notes",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers_agency_note",
+          "expected": 0,
+          "present": true,
+          "stored": 0,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "business_frequency",
+          "expected": 2,
+          "present": true,
+          "stored": 2,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "social_relationships",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "clothes_must_be_bought",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "driving_licence",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "driving_school",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_city",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "utilities",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company_staff",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company_cover",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company_marketing",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company_tax",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_company_licences",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_rota",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "interiors",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "business_pressure",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "family",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "home_life",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "social",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "leisure",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "civic",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "civic_elections",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "civic_office",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "city_life",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "ambient_sound",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "night_life",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "transit_buses",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "transit_subway",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "transit_taxi_call",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "nav_minimap",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "nav_gps",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "planner",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "jobs",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers_study",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers_jobs",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers_life",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "careers_degrees",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_products",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        },
+        {
+          "owner": "RealLifeOverhaul",
+          "id": "economy_consequences",
+          "expected": 1,
+          "present": true,
+          "stored": 1,
+          "pass": true
+        }
+      ],
+      "audio": [
+        {
+          "layer": 0,
+          "clip": null,
+          "mute": null,
+          "volume": null,
+          "playing": null
+        },
+        {
+          "layer": 1,
+          "clip": null,
+          "mute": null,
+          "volume": null,
+          "playing": null
+        },
+        {
+          "layer": 2,
+          "clip": null,
+          "mute": null,
+          "volume": null,
+          "playing": null
+        },
+        {
+          "layer": 3,
+          "clip": null,
+          "mute": null,
+          "volume": null,
+          "playing": null
+        }
+      ],
+      "status": {
+        "GameplayFeatures": {
+          "Active": true,
+          "Blocked": false,
+          "Available": null
+        },
+        "RunningCostsPatch": {
+          "Active": 1,
+          "Blocked": null,
+          "Available": true
+        },
+        "UtilityClosureReasonPatch": {
+          "Active": null,
+          "Blocked": null,
+          "Available": true
+        },
+        "NightChirpingPatch": {
+          "Active": null,
+          "Blocked": null,
+          "Available": true
+        },
+        "cricket_enabled": true
+      },
+      "patches": [
+        {
+          "method": "UI.Tasks.TasksUI.GetTodoDescription",
+          "owners": [
+            "hartmodpack.gameplay.closurereason"
+          ]
+        },
+        {
+          "method": "GlobalEvents.InvokeOnGameLoaded",
+          "owners": [
+            "hartmodpack.gameplay.rlogate",
+            "hartmodpack.gameplay.scenario"
+          ]
+        },
+        {
+          "method": "BigAmbitions.ModsInternal.ModOptionsButtonControl.Initialize",
+          "owners": [
+            "hartmodpack.ui.buttoncaptions"
+          ]
+        },
+        {
+          "method": "UI.MainMenu.CustomGameOptionsHandler.Start",
+          "owners": [
+            "hartmodpack.gameplay.prefill"
+          ]
+        },
+        {
+          "method": "UI.MainMenu.CustomGamePanel.Start",
+          "owners": [
+            "hartmodpack.gameplay.prefill"
+          ]
+        },
+        {
+          "method": "SaveGameManager.New",
+          "owners": [
+            "hartmodpack.gameplay.scenario"
+          ]
+        },
+        {
+          "method": "Buildings.Building.GetBuildingDailyMarketRent",
+          "owners": [
+            "hartmodpack.gameplay.rent"
+          ]
+        },
+        {
+          "method": "Helpers.EstimatedWeeklyIncomeHelper.GetEstimatedWeeklyIncome",
+          "owners": [
+            "hartmodpack.gameplay.rent"
+          ]
+        },
+        {
+          "method": "Helpers.HappinessHelper.OnHappinessModifiersLoaded",
+          "owners": [
+            "hartmodpack.gameplay.happiness"
+          ]
+        },
+        {
+          "method": "Helpers.HappinessHelper.AddModifier",
+          "owners": [
+            "hartmodpack.gameplay.happiness"
+          ]
+        },
+        {
+          "method": "Helpers.HappinessHelper.UpdateHappiness",
+          "owners": [
+            "hartmodpack.gameplay.happiness"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.CareerCatalogue.OwnerFactor",
+          "owners": [
+            "hartmodpack.gameplay.ownerpay"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.Utilities.UtilitiesRules.AddDay",
+          "owners": [
+            "hartmodpack.gameplay.runningcosts"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.Utilities.InternetRules.AddDay",
+          "owners": [
+            "hartmodpack.gameplay.runningcosts"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.Utilities.UtilitiesDirector.NeedsNet",
+          "owners": [
+            "hartmodpack.gameplay.runningcosts"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.Leisure.LeisureSound.Tick",
+          "owners": [
+            "hartmodpack.gameplay.nightchirping"
+          ]
+        },
+        {
+          "method": "BigAmbitions.Items.ItemsGetter.RegisterModItem",
+          "owners": [
+            "hartmodpack.gameplay"
+          ]
+        },
+        {
+          "method": "Buildings.Retail.Simulation.RetailBusinessSimulator.GetMaxCustomerCapacityThisHour",
+          "owners": [
+            "hartmodpack.gameplay"
+          ]
+        },
+        {
+          "method": "Controllers.PlayerItemPurchaser.GrabItem",
+          "owners": [
+            "hartmodpack.gameplay"
+          ]
+        },
+        {
+          "method": "UI.Purchase.PurchaseUI.PlaceOrder",
+          "owners": [
+            "hartmodpack.gameplay"
+          ]
+        },
+        {
+          "method": "RealLifeOverhaul.Careers.CareersDirector.Offered",
+          "owners": [
+            "hartmodpack.gameplay"
+          ]
+        }
+      ],
+      "price_level": 1000
+    },
+    "options": {
+      "pages": [
+        {
+          "modId": "3825408579",
+          "options": [
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ButtonOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "series_prefill_custom_game",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "scenario_indebted_start",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "rent_rebalance",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "happiness_rebalance",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "owner_job_full_pay",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "equipment_utilities",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "office_it",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "utility_closure_reasons",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "mute_rlo_night_chirping",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "factory_diplomas",
+              "DefaultValue": false,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "hardcore_keep_difficulty",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "hardcore_no_funds",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "hardcore_vehicle_prices_per_save",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "ambience_scales_with_demand",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bakery_vanilla_margins",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "hyperreal_map_return_fix",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "cafe_pc_capacity",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "vending_protect_rival_furniture",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bank_tax_withdrawals",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bank_no_emergency_borrowing",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bank_honest_credit_scores",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bank_product_limits",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "ToggleOption",
+              "id": "bank_no_remote_requests",
+              "DefaultValue": true,
+              "stored": null
+            },
+            {
+              "type": "SplitterOption",
+              "id": null
+            },
+            {
+              "type": "HeaderOption",
+              "id": null
+            },
+            {
+              "type": "ButtonOption",
+              "id": null
+            }
+          ]
+        }
+      ]
+    },
+    "id": "M7-after-takeover",
+    "op": "duplicate_takeover",
+    "main_menu": false,
+    "utc": "2026-10-28T17:26:39.9104961Z"
+  }
+}

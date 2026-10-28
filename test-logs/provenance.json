@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-28T14:21:08.923104+00:00",
+  "head": "2152955931808fffa387cdc6d3318c41515a0d27",
+  "fixture": "2152955 sources with only RealLifeOverhaulPatch.cs replaced by git show 8db1555; offline fixture only, never installed",
+  "old_source_sha256": "2bf71618549af5684c34e4c3afe67d9e3d91d65a9bb16e4dfdff359bd1fd6391",
+  "before_fixture_dll_sha256": "bf9d6bd57c524a5644ab8cd2b1fc6754fb325e8dad36a7657553abbef6b6443b",
+  "after_exact_package_dll_sha256": "eff5996eddceb5b2313b85b97995f4cbc5c787c183bb1e85094cd70b7626e37b",
+  "red_exit": 3762504530,
+  "green_exit": 0,
+  "game_assembly_sha256": "9427561b81aaab2ada09c22a3c98dd9a4017a65225b389513885bf336852e911"
+}

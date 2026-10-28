@@ -1,0 +1,110 @@
+PASS all game and RLO members resolve exactly
+PASS new factory rule defaults off
+PASS reviewed game purchase contract PlayerItemPurchaser.GrabItem
+PASS reviewed game purchase contract PurchaseUI.PlaceOrder
+PASS released RLO catalogue leaves ids 18, 19, 34 free
+PASS all candidate spare ids verified against released binary
+PASS pickup, checkout and Campus offering hooks apply
+PASS readonly catalogue replaced atomically before careers start
+PASS original courses and order unchanged
+PASS native school diploma shape: hmp_garment_making
+PASS existing skill ids and fee: hmp_garment_making
+PASS option off hides new enrolments: hmp_garment_making
+PASS native school diploma shape: hmp_electronics_technician
+PASS existing skill ids and fee: hmp_electronics_technician
+PASS option off hides new enrolments: hmp_electronics_technician
+PASS native school diploma shape: hmp_jewelry_goldsmithing
+PASS existing skill ids and fee: hmp_jewelry_goldsmithing
+PASS option off hides new enrolments: hmp_jewelry_goldsmithing
+PASS option on offers all three diplomas through RLO
+PASS missing director/study fails open
+PASS RLO permits native enrolment for id 18
+PASS RLO permits native enrolment for id 19
+PASS RLO permits native enrolment for id 34
+PASS native class and exam still route to school for diploma 18
+PASS native class and exam still route to school for diploma 19
+PASS native class and exam still route to school for diploma 34
+PASS 0.50.0 school decision permits an available class
+PASS 0.50.0 school decision permits an available exam
+PASS 0.50.0 school decision preserves busy-seat refusal
+PASS RLO class accounting for eight sittings leads to exam in about three weeks
+PASS native exam result grants matching diploma
+PASS unfinished diploma does not qualify
+PASS enrolled and completed diplomas survive RLO codec roundtrip
+PASS course progress and fees survive save/load
+PASS native 64-bit qualification mask includes new pass only
+PASS id 34 survives save/load and the high half of the native mask
+PASS option off retains enrolled and completed records
+PASS pure companion gate: active
+PASS held matching diploma allows sewing purchase
+PASS other diplomas still needed despite sewing pass
+PASS laser and plain consumer goods stay free
+PASS mixed basket catches an unqualified machine
+PASS checkout refuses mixed basket with matching in-world locale key
+PASS single-toggle checkout ignores unselected locked machines
+PASS single-toggle checkout refuses selected locked machine
+PASS tax payment UI stays untouched
+PASS actual patched checkout stops before money, queue and UI order state
+PASS actual patched depot pickup refuses before cargo is created
+PASS owned machine outside a sale is not gated
+PASS pure companion gate: director-failed
+PASS faulted careers director fails open
+PASS pure companion gate: careers-disabled
+PASS Careers off fails open immediately
+PASS pure companion gate: study-disabled
+PASS CareersStudy off fails open immediately
+PASS pure companion gate: study-unavailable
+PASS stopped study fails open immediately
+PASS HMP option off fails open immediately
+PASS pure companion gate: catalogue-unavailable
+PASS lost catalogue injection fails open
+PASS unmodified RLO safely ignores removed diploma ids
+PASS removal preserves ordinary diploma, skills and student debt
+PASS RLO can resave after HMP removal
+PASS the hold takes the three HMP diploma attempts from RLO's line
+PASS reviewed RLO with courses registered: every held record given back at once, the hold cleared
+PASS RLO's own reader keeps every given-back course and result, ordinary records unchanged
+PASS nothing held: the careers record is left alone
+PASS held from day 10 to 11: 1 classes counted missed, 4 when held (4 unmoved)
+PASS held from day 10 to 13: 2 classes counted missed, 4 when held (5 unmoved)
+PASS held from day 10 to 17: 4 classes counted missed, 4 when held (6 unmoved)
+PASS held from day 10 to 31: 4 classes counted missed, 4 when held (6 unmoved)
+PASS held from day 10 to 66: 4 classes counted missed, 4 when held (6 unmoved)
+PASS exam held on day 12 with 1 exam day(s) left, back on day 13: 5 left, not missed
+PASS exam held on day 12 with 1 exam day(s) left, back on day 14: 5 left, not missed
+PASS exam held on day 12 with 1 exam day(s) left, back on day 19: 1 left, not missed
+PASS exam held on day 12 with 1 exam day(s) left, back on day 60: 2 left, not missed
+PASS records RLO never rewrote are moved on in place and the hold is cleared
+PASS 39 results and three held attempts, two on the same day: nothing given back, the hold waits unchanged
+PASS a new HMP enrolment while the hold waits: the line is left alone and all three held attempts stay
+PASS the same save under an unreviewed RLO: the hold keeps the three attempts and adds the new course
+PASS with room for all three, RLO keeps every attempt and the hold is cleared
+PASS reflection failure opens the sale and latches the bridge off
+PASS unreviewed assembly identity rejected
+PASS reviewed RLO accepted
+PASS bridge fault latches gate off
+PASS id collision rejects injection without partial write
+PASS takeover before careers start: retiring copy removes its hooks and keeps the courses for saves
+PASS takeover before careers start: replacement reuses the retained catalogue without reinjecting
+PASS takeover before careers start: replacement reinstalls pickup, checkout and offering hooks
+PASS takeover before careers start: option on still offers all three diplomas
+PASS pure companion gate: director-unavailable
+PASS pure companion gate: active
+PASS takeover before careers start: factory gate refuses an unqualified machine only
+PASS takeover before careers start: actual patched checkout still stops a locked machine
+PASS takeover before careers start: actual patched depot pickup still refuses a locked machine
+PASS takeover before careers start: option off hides new enrolments again
+PASS takeover after careers and campus start: retiring copy removes its hooks and keeps the courses for saves
+PASS takeover after careers and campus start: replacement reuses the retained catalogue without reinjecting
+PASS takeover after careers and campus start: replacement reinstalls pickup, checkout and offering hooks
+PASS takeover after careers and campus start: option on still offers all three diplomas
+PASS pure companion gate: active
+PASS takeover after careers and campus start: factory gate refuses an unqualified machine only
+PASS takeover after careers and campus start: actual patched checkout still stops a locked machine
+PASS takeover after careers and campus start: actual patched depot pickup still refuses a locked machine
+PASS takeover after careers and campus start: option off hides new enrolments again
+PASS takeover refuses a catalogue changed since registration and writes nothing
+PASS a copy that did not register the courses still refuses the occupied ids
+PASS missing or changed RLO shape cannot resolve
+PASS missing or changed RLO leaves gate off
+109 offline factory checks passed; Unity UI, class play and actual saves still need an in-game check.

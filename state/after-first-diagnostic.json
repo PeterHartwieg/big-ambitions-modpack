@@ -1,0 +1,124 @@
+{
+  "source_sha256": "bd98c2c1c840a1f04897be1cd7ae3fdc96b8e5fa8d0c5f8d58d175759703d236",
+  "trimmed": true,
+  "observation": {
+    "state": {
+      "CityPerformance.PerformanceMod": {
+        "Id": "cityperformance.mod",
+        "Version": "0.5.0",
+        "AuditedGameHash": "9427561b81aaab2ada09c22a3c98dd9a4017a65225b389513885bf336852e911",
+        "Diagnostics": true,
+        "Smoothing": true,
+        "Verified": false,
+        "Faulted": false,
+        "Loaded": true
+      },
+      "CityPerformance.BackgroundSaves": {
+        "Enabled": true,
+        "Faulted": false,
+        "installed": false,
+        "validated": false,
+        "quitting": false,
+        "mainThread": 1,
+        "validatedRevision": 0
+      },
+      "CityPerformance.HyperrealDiscovery": {
+        "Owner": "cityperformance.mod.hyperreal",
+        "HyperrealHash": "7d1bd589947558e2f3cc476f06d4699618732835718ffd2335f2e5102cfcef10",
+        "Enabled": true,
+        "initialized": true,
+        "inCity": false,
+        "installed": false,
+        "active": false,
+        "blocked": false,
+        "rewritten": false,
+        "removeFailed": false,
+        "pending": 0,
+        "status": "waiting for city-ready; requested=True",
+        "inactiveReason": null
+      },
+      "CityPerformance.BakeryHelp": {
+        "Owner": "cityperformance.mod.bakeryhelp",
+        "BakeryHash": "6d68edab0f5600f51b912fb5228ac7fdc245e7962f8be968670715b2e60fee3a",
+        "Enabled": true,
+        "initialized": true,
+        "inCity": false,
+        "installed": false,
+        "active": false,
+        "blocked": false,
+        "removeFailed": false,
+        "rewritten": false,
+        "pending": 0,
+        "status": "waiting for city-ready; requested=True",
+        "inactiveReason": null
+      },
+      "HardModePatch.RunningCostsPatch": {
+        "Utilities": "RealLifeOverhaul.Utilities.",
+        "Power": 0,
+        "Water": 1,
+        "Internet": 2,
+        "Home": 0,
+        "Active": 1,
+        "patched": true,
+        "stampDay": -2147483648,
+        "<Available>k__BackingField": true
+      },
+      "Hart.RivalBalance.RivalEconomy": {
+        "preset": "Normal",
+        "missingLoggedFor": null,
+        "depth": 0
+      }
+    },
+    "assemblies": [
+      {
+        "name": "BigAmbitions",
+        "version": "0.0.0.0",
+        "path": "C:\\BigAmbitions-AgentTests\\Big Ambitions Agent Tests_Data\\Managed\\BigAmbitions.dll",
+        "sha256": "055700fd26a7a6430bbb6a9d79379781909fbc518af760453396947887db5063"
+      },
+      {
+        "name": "Bakery",
+        "version": "0.0.0.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\Bakery\\Bakery.dll",
+        "sha256": "6d68edab0f5600f51b912fb5228ac7fdc245e7962f8be968670715b2e60fee3a"
+      },
+      {
+        "name": "CityPerformance",
+        "version": "0.5.0.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\CityPerformance\\CityPerformance.dll",
+        "sha256": "ae114913db19d8fa7db0a967245410908ff671c8f4e90d0d4dca85fa2dfb9002"
+      },
+      {
+        "name": "HARTModPack",
+        "version": "1.1.1.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\HARTModPack\\HARTModPack.dll",
+        "sha256": "eff5996eddceb5b2313b85b97995f4cbc5c787c183bb1e85094cd70b7626e37b"
+      },
+      {
+        "name": "HARTRivalBalance",
+        "version": "0.2.0.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\HARTRivalBalance\\HARTRivalBalance.dll",
+        "sha256": "b0d7ab972fb169caa62383a2fcc63d8d67c6183b03af5919d6ab2fdf8bab3ca2"
+      },
+      {
+        "name": "PolyModsHyperreal",
+        "version": "0.0.0.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\PolyModsHyperreal\\PolyModsHyperreal.dll",
+        "sha256": "7d1bd589947558e2f3cc476f06d4699618732835718ffd2335f2e5102cfcef10"
+      },
+      {
+        "name": "RealLifeOverhaul",
+        "version": "0.50.0.0",
+        "path": "C:\\Users\\Peter\\AppData\\LocalLow\\Hovgaard Games\\Big Ambitions Agent Tests\\ModsLocal\\RealLifeOverhaul\\RealLifeOverhaul.dll",
+        "sha256": "f339319c9ec1ad65d4b3fa028d673f48e83fd075dff18606f91a662fbae54f5d"
+      }
+    ],
+    "profile": "C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests",
+    "width": 1920,
+    "height": 1080,
+    "id": "after-first-diagnostic",
+    "op": "diagnostic",
+    "main_menu": true,
+    "utc": "2026-10-28T17:10:33.0951916Z"
+  }
+}

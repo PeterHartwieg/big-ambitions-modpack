@@ -1,0 +1,5 @@
+{
+  "observer_sha256": "e3f4cf3fbdacce5ecb4d5d677f84ce0cf0cf2f393aadbcf6eec59e5a6d1c44e6",
+  "utc": "2026-10-28T17:11:49.0346914Z",
+  "change": "Observer Row excludes the caption child to select the row label; no product/game behavior replaced"
+}

@@ -1,0 +1,430 @@
+{
+  "utc": "2026-10-28T14:19:12.112001+00:00",
+  "packages": [
+    {
+      "label": "after",
+      "source": "C:\\Users\\Peter\\HART-Builds\\modpack-1.1.1-rig\\HARTModPack-1.1.1.zip",
+      "zip_sha256": "d4010115471229855d5cdd5a6ee839941ce32a941e45e0e790689669896aba40",
+      "crc": "PASS",
+      "files": [
+        {
+          "path": "HARTModPack/CHANGELOG.md",
+          "bytes": 3391,
+          "sha256": "e0ba96a43cb1dc1f06bf1efdf9b994dc0d32b5fe8c8824aecad00e44c49ef336"
+        },
+        {
+          "path": "HARTModPack/Dependencies/0Harmony.dll",
+          "bytes": 2461696,
+          "sha256": "7b9e756306fa3d7620e02a857c8927a6ab04973f9bd8a77d3866700a6deac55c"
+        },
+        {
+          "path": "HARTModPack/Dependencies/Harmony-LICENSE.txt",
+          "bytes": 1094,
+          "sha256": "407ddd98200c9f17f49942b5a7791e288a2bd553b59bf2f462db87dbb21c50bc"
+        },
+        {
+          "path": "HARTModPack/HARTModPack.dll",
+          "bytes": 217600,
+          "sha256": "eff5996eddceb5b2313b85b97995f4cbc5c787c183bb1e85094cd70b7626e37b"
+        },
+        {
+          "path": "HARTModPack/LICENSE.txt",
+          "bytes": 1562,
+          "sha256": "ac02c6412a1dc03ca46471bf45f7c7bde34db2a7661f087254a9363a9e27f2dc"
+        },
+        {
+          "path": "HARTModPack/Locales/en.json",
+          "bytes": 8290,
+          "sha256": "53930b9f7c71f637cae81b88efb89d7a1c43354d252168d86b9bb0be4054540c"
+        },
+        {
+          "path": "HARTModPack/README.md",
+          "bytes": 19412,
+          "sha256": "8c14483201c844e9066c58abfc5641f9fc2cde6aea54577a6fe94c1b4bbe33b7"
+        },
+        {
+          "path": "HARTModPack/docs/factory-diplomas.md",
+          "bytes": 11398,
+          "sha256": "e6ed58ae2b5c4817ec4f2082e12e7ba999f8c0bd57b061290ed14bdda1b5b09b"
+        },
+        {
+          "path": "HARTModPack/docs/hyperreal-map-return.md",
+          "bytes": 10271,
+          "sha256": "bba1d6f9f96fabbc56b63a4fb3290e8a74152b492effbd8158116e38770e8799"
+        },
+        {
+          "path": "HARTModPack/docs/merge-1.1.0.md",
+          "bytes": 7812,
+          "sha256": "cfd5dc67e127a87ed790bbb8ee4ab0f5e827695fca6361e7b01f6bdb843bb4d7"
+        },
+        {
+          "path": "HARTModPack/docs/performance-ownership.md",
+          "bytes": 7731,
+          "sha256": "2b2aa8fe6070d9335e6d01e3371972217521b50485119be1ebbdf11b3baac4b0"
+        },
+        {
+          "path": "HARTModPack/docs/reviews/rlo-0.50.0-targets.md",
+          "bytes": 103231,
+          "sha256": "4ff869736522307772756a3a7c5d73c7d5040b85d50df63d11cdb524f364704a"
+        },
+        {
+          "path": "HARTModPack/docs/rlo-compatibility.md",
+          "bytes": 24294,
+          "sha256": "df76e477926c8b9435b0a02f03538455d6cc774e4751e90504194000a82023ef"
+        },
+        {
+          "path": "HARTModPack/docs/series-settings.md",
+          "bytes": 14344,
+          "sha256": "aaf95e4000fa7832d501d42c347e5d9c14cdf3a4d922cb0d32ab83de13beb150"
+        },
+        {
+          "path": "HARTModPack/modpack.json",
+          "bytes": 3648,
+          "sha256": "89523bd050ee611df5dc021efe0e96f9841acfefbaaf5576fd88226927b1ce0a"
+        },
+        {
+          "path": "HARTModPack/preview.png",
+          "bytes": 952547,
+          "sha256": "3ef9bbfc0a12e371c41704832f13d8a30f034083238b0396efbef264c19d2ce2"
+        }
+      ]
+    },
+    {
+      "label": "before",
+      "source": "C:\\Users\\Peter\\HART-Builds\\release-20261023\\07-mod-pack-1.1.0\\HARTModPack-1.1.0.zip",
+      "zip_sha256": "c352808953072d54209478b790985a55ecf74b7316ba410dc79009d2d4f7b3a1",
+      "crc": "PASS",
+      "files": [
+        {
+          "path": "HARTModPack/CHANGELOG.md",
+          "bytes": 2732,
+          "sha256": "d45213bc39b457b389fc9c9e2c193d6f2a93b74812eb126f47c807147b3252e1"
+        },
+        {
+          "path": "HARTModPack/Dependencies/0Harmony.dll",
+          "bytes": 2461696,
+          "sha256": "7b9e756306fa3d7620e02a857c8927a6ab04973f9bd8a77d3866700a6deac55c"
+        },
+        {
+          "path": "HARTModPack/Dependencies/Harmony-LICENSE.txt",
+          "bytes": 1094,
+          "sha256": "407ddd98200c9f17f49942b5a7791e288a2bd553b59bf2f462db87dbb21c50bc"
+        },
+        {
+          "path": "HARTModPack/HARTModPack.dll",
+          "bytes": 196096,
+          "sha256": "8708bc45a0dfae6b96177b1bce4bcd5abda2c41f57f85f2ec6a670e718658c69"
+        },
+        {
+          "path": "HARTModPack/LICENSE.txt",
+          "bytes": 1531,
+          "sha256": "41d79fba50ca41ed7214c4008831ecd8d9066bd4fdd0c04a1444bddb1ce35590"
+        },
+        {
+          "path": "HARTModPack/Locales/en.json",
+          "bytes": 8167,
+          "sha256": "4924f71e9f9fb86f314f2c2aa2183651179b1f746478d53e24a8d86a2c8ff243"
+        },
+        {
+          "path": "HARTModPack/README.md",
+          "bytes": 15652,
+          "sha256": "fffef15a0b46af8dcb6e37e0080b6e472d4897bf9e84b72cbcded27bcee62e5a"
+        },
+        {
+          "path": "HARTModPack/docs/factory-diplomas.md",
+          "bytes": 10719,
+          "sha256": "b399e027e4c735d941f0d4f3f1a260def8fe60438d0dc4457f5dfbef15e1a874"
+        },
+        {
+          "path": "HARTModPack/docs/hyperreal-map-return.md",
+          "bytes": 10219,
+          "sha256": "d9df43bca3aee97a196cd1c06bc8cf1e17a06d63bf6b0866a3ea866a0bfabfbf"
+        },
+        {
+          "path": "HARTModPack/docs/merge-1.1.0.md",
+          "bytes": 7771,
+          "sha256": "95633b053247374a7886eb36589efc45fea78792e5dad1364fe1fc5dafd4e0d1"
+        },
+        {
+          "path": "HARTModPack/docs/performance-ownership.md",
+          "bytes": 7685,
+          "sha256": "7470bbfd9465b5d87a97b066edde1fe7af824955bd746057f178dc86f9f7ac24"
+        },
+        {
+          "path": "HARTModPack/docs/reviews/rlo-0.50.0-targets.md",
+          "bytes": 102524,
+          "sha256": "1ecb2ce94e7929b17623f53c474688c7c6a4e13bdbfd8e3d727aba5360e79ad3"
+        },
+        {
+          "path": "HARTModPack/docs/rlo-compatibility.md",
+          "bytes": 20689,
+          "sha256": "0356db99ec1bf34829be8cb1c579e8f3bae5789c886289bd2e60ad696f816dd1"
+        },
+        {
+          "path": "HARTModPack/docs/series-settings.md",
+          "bytes": 14195,
+          "sha256": "9bfc07336258edc31d66b93e8ed0a453b826688ff5de815fa3eb046421d36359"
+        },
+        {
+          "path": "HARTModPack/modpack.json",
+          "bytes": 3503,
+          "sha256": "7caa26f5f20ba83fbfbf70aa0cdce738bbb569aeab21913ae6ceca71e65aced1"
+        },
+        {
+          "path": "HARTModPack/preview.png",
+          "bytes": 952547,
+          "sha256": "3ef9bbfc0a12e371c41704832f13d8a30f034083238b0396efbef264c19d2ce2"
+        }
+      ]
+    },
+    {
+      "label": "rlo",
+      "source": "C:\\Users\\Peter\\HART-Diagnostics\\Performance\\modpack-1.1.0-rig-20261023\\packages\\RealLifeOverhaul-0.50.0.zip",
+      "zip_sha256": "8a2bf1737e664622d5f0459b302a701ca62a510505a0d4a58f1f6b2a54675a57",
+      "crc": "PASS",
+      "files": [
+        {
+          "path": "RealLifeOverhaul/RealLifeOverhaul.dll",
+          "bytes": 10830336,
+          "sha256": "f339319c9ec1ad65d4b3fa028d673f48e83fd075dff18606f91a662fbae54f5d"
+        },
+        {
+          "path": "RealLifeOverhaul/thumbnail.jpg",
+          "bytes": 215935,
+          "sha256": "f711731e8bddd16befa2182f0544e3d2bf731d2e7fb26bb56eb8784c1967aae4"
+        },
+        {
+          "path": "RealLifeOverhaul/Bundles/reallife_anim",
+          "bytes": 6294571,
+          "sha256": "d8c8e95cba530293961d2185d26251029f595d8391f77740683c0dc4afc4cdcd"
+        },
+        {
+          "path": "RealLifeOverhaul/Bundles/reallife_character",
+          "bytes": 44520019,
+          "sha256": "a439a42129c0e269cdc92a1e43c6e8429e2134ba1e2f6bff7806502b6a924432"
+        },
+        {
+          "path": "RealLifeOverhaul/Bundles/reallife_props",
+          "bytes": 12023742,
+          "sha256": "b36e365f627dbbeb2469eef4591ddb31a3f16fcb06c669dc2b65b25268aa3731"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/de.json",
+          "bytes": 2363089,
+          "sha256": "0f7d5feb9327bc2e2ef6ccce195f0a0528925a964d860d6e8c955625d3adfba2"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/en.json",
+          "bytes": 2262216,
+          "sha256": "cdbd20d13e6ab4bf021dcdd93cf3050f4c49824be87f21b25e4b973c8e925ae0"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/es.json",
+          "bytes": 2302524,
+          "sha256": "dff2608e22ace3f31ce75fd32dd40baff0b25bf78d7f6085a6cb2fba1d562653"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/fr.json",
+          "bytes": 2429410,
+          "sha256": "c9c58c8a88a800fb5798a5095a8928ef82f023edf3e755e37750c03583aaf5a2"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/nl.json",
+          "bytes": 2307637,
+          "sha256": "4f4f7cb653125d838dda20b0b6f89833bf20014b11e78b3994372a8982bacdeb"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/pt.json",
+          "bytes": 2439632,
+          "sha256": "4ec1bdf4cb30d4315228989a8dde2108d04a9813555f1441b4661524a2e560c4"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/ru.json",
+          "bytes": 3225102,
+          "sha256": "84d7f1aba2b8ffac341705209f502005f8b48f8818cabfb7d7e7033504d0cdc2"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/tr.json",
+          "bytes": 2395599,
+          "sha256": "4534ba8f2fd664be6d672c36195a2eed965bc1cb187718bdf50cec010f1b6f6d"
+        },
+        {
+          "path": "RealLifeOverhaul/Locales/zh-cn.json",
+          "bytes": 2259908,
+          "sha256": "a3d99a533fb9cc101a6cb4f9f76c61df67da718766b211192727f42eaa8ee482"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_high.ogg",
+          "bytes": 22882,
+          "sha256": "d08e6f1cfae864d0a7a5d3b4f741a8e6b54f8d010edef83c037f6e7eb2d3c0be"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_high_off.ogg",
+          "bytes": 18834,
+          "sha256": "7ca1dc61ef18968050b84dffc7d9d7915123c3a9ce98e5ac8e40aff05bf0b993"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_idle.ogg",
+          "bytes": 47335,
+          "sha256": "2b62467cb2666ae8294f283907d46a05a791f3738c3b018b478a69acabd93a8c"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_low.ogg",
+          "bytes": 39718,
+          "sha256": "1ab04de7d2cd064be9a5fc4b94c96d1a7ec2580a10ced8aecab12dd70d77896f"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_low_off.ogg",
+          "bytes": 25974,
+          "sha256": "388f8b0085a2fe70cb13a6a49a605852aa237daaa084dd0539a312955b654cd3"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_mid.ogg",
+          "bytes": 31041,
+          "sha256": "26689ddca5b9261f4f55df91d5a96c84e980cda144530dd03806e091b58b0b72"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/diesel_mid_off.ogg",
+          "bytes": 24654,
+          "sha256": "7f3ab5e8472b97470d8326309daaaf4a90b414d1545e1a2206fac19a550412dd"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/petrol_high.ogg",
+          "bytes": 33036,
+          "sha256": "7571d16eb35b2cceca357dd27811e97ea8eb5f2c04b7332dc664d247e54a64f5"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/petrol_high_off.ogg",
+          "bytes": 27165,
+          "sha256": "0558280f7a2e75892d3958f02f1e229ed6a8a0053cc1e4c1b8187713ae81d433"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/petrol_idle.ogg",
+          "bytes": 32134,
+          "sha256": "689df336596bb26800812fcc26ca5ae79f69d85f6941419bbd9b47ab51044ee3"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/petrol_low.ogg",
+          "bytes": 30515,
+          "sha256": "513eb43883888c6400e0005ead558aeacac396dd63b6b027373a750a9b150048"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/petrol_low_off.ogg",
+          "bytes": 24767,
+          "sha256": "18bf0b63102448b14920ef26ad62b1097ae592e5a2d836e0227d1a9732928f2f"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/pop_1.ogg",
+          "bytes": 7462,
+          "sha256": "7a9762da28005c1603e1c37a5c913702277ba12b275ef264741e9d2b04e4ef2e"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/pop_2.ogg",
+          "bytes": 7544,
+          "sha256": "76cd027d698b3cde24fe2f4cda28d280b41ed6c9ad5b69990d08f0aa63a89994"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/pop_3.ogg",
+          "bytes": 8416,
+          "sha256": "78c85a7e22aa59325c649adbfc0020f7dc58ca32c227bdddc2672b1915256409"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/pop_4.ogg",
+          "bytes": 7061,
+          "sha256": "dd463f2c1fcecec265f7052fad1332704f208681132aa3a7b2bf0717d59127cd"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/SOURCES.md",
+          "bytes": 17894,
+          "sha256": "bcf64df825d6ed8622100520cd88acff727ccad1decc649ea0fe359e068939c2"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_high.ogg",
+          "bytes": 28961,
+          "sha256": "5596f12b150268af1a008927b0f4e822916488fca7c77e9f25b22d3b827796be"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_high_off.ogg",
+          "bytes": 23919,
+          "sha256": "07cccb6d0c15cddc6c50cf12e829f509e92ae60bb801e33bfc1179466209f196"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_idle.ogg",
+          "bytes": 32030,
+          "sha256": "b687a91ad7019829a5684d9f7bd94ee615932bcfd11bfacb881fe4527a50269d"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_low.ogg",
+          "bytes": 30708,
+          "sha256": "fca28d39b0e9c6eee5874b56fd775a4bcd55f4356565b79d7e4ea45264427bcb"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_low_off.ogg",
+          "bytes": 24871,
+          "sha256": "ae5510df895a4b212f9f3c6136cebc32c74da215c01b1a22d252255b5d2d69b2"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_mid.ogg",
+          "bytes": 30950,
+          "sha256": "1b504db4bcf4d56e5f294c61bb9f6836c08dfac8275e24eb09a6dd39940d85c8"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/sport_mid_off.ogg",
+          "bytes": 24987,
+          "sha256": "43893a45c1898ecdc7f6228cb675369bf49bd0838609a24f4979057f97576078"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/turbo_flutter.ogg",
+          "bytes": 27623,
+          "sha256": "7c7123bd342225c5c1cc7655a382f9f316bc8f1e241520b37224994bb1b21735"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/turbo_whistle.ogg",
+          "bytes": 13967,
+          "sha256": "9371f0ff214e66a383c718004bab442ca639a8958fb20ddc285c890f227c574e"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/tyre_squeal.ogg",
+          "bytes": 22853,
+          "sha256": "6054b9d5719c3092857c00dcd206d266c41cb558caf45ef05c0ca44834770575"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_high.ogg",
+          "bytes": 28476,
+          "sha256": "c17cce4932255456cb68227657e4b8df611aaa20cfbf54437d9946f81c35d66f"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_high_off.ogg",
+          "bytes": 23061,
+          "sha256": "b4c8b79906d7319d9969cee55057826ac4689266088938754193649c83c1bac5"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_idle.ogg",
+          "bytes": 29957,
+          "sha256": "1fa0777613cd5e5f204db3681f1fb731bd6b2cc7d2ef0433a0df184b5224a689"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_low.ogg",
+          "bytes": 29942,
+          "sha256": "c96a76593e25a1e8f14063e6b5f09b0b38c18d0e4b8d308084a8263f6418a34b"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_low_off.ogg",
+          "bytes": 24192,
+          "sha256": "fcdb833b766df59d42d0aed61928be1eb00e574c567712c28a96d17623aef2b3"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_mid.ogg",
+          "bytes": 32796,
+          "sha256": "0a2d396e8361304518afe7755d2e9534a93fff3a18ec5197ee2ec5763eaff56e"
+        },
+        {
+          "path": "RealLifeOverhaul/Sounds/v8_mid_off.ogg",
+          "bytes": 26281,
+          "sha256": "fb601ab76883fca709069661dc1ca62613f814556f854727c7038fce0c5cb001"
+        }
+      ]
+    }
+  ],
+  "reverified_utc": "2026-10-28T16:36:35.985918+00:00"
+}

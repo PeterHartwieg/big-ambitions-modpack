@@ -1,0 +1,4 @@
+Native RLO AudioSource observations, not an audio recording. Rig global output stays muted.
+2026-10-28T17:21:14.7699889Z M6-after-night-on-delayed: clip=RealLifeOverhaul Ambience Crickets; mute=True; volume=0.09; playing=True
+2026-10-28T17:21:51.2636735Z M6-after-night-off-running: clip=RealLifeOverhaul Ambience Crickets; mute=False; volume=0.09; playing=True
+2026-10-28T17:22:08.0753053Z M6-after-night-restored-on: clip=RealLifeOverhaul Ambience Crickets; mute=True; volume=0.09; playing=True

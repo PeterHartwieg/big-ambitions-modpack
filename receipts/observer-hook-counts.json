@@ -1,0 +1,5 @@
+{
+  "observer_sha256": "28c7d2a54df73701ac2336f85c9d2fd02307d0687829df46c9154f70f6c60e2f",
+  "utc": "2026-10-28T17:24:47.1560927Z",
+  "change": "Added read-only Harmony hook-count observer"
+}

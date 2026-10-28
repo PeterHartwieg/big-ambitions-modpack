@@ -1,0 +1,139 @@
+... trimmed unrelated lines ...
+267: [Mod:FoodTrucks] Test bridge: listening on http://127.0.0.1:18330/ (session bf1e0657).
+268: [HART. Mod Pack] Rules: series_prefill_custom_game=on, scenario_indebted_start=off, rent_rebalance=off, happiness_rebalance=off, owner_job_full_pay=off, equipment_utilities=off, office_it=off, utility_closure_reasons=on, mute_rlo_night_chirping=on, factory_diplomas=off, hardcore_keep_difficulty=on, hardcore_no_funds=on, hardcore_vehicle_prices_per_save=on, ambience_scales_with_demand=on, bakery_vanilla_margins=on, hyperreal_map_return_fix=on, cafe_pc_capacity=on, vending_protect_rival_furniture=on, bank_tax_withdrawals=on, bank_no_emergency_borrowing=on, bank_honest_credit_scores=on, bank_product_limits=on, bank_no_remote_requests=on.
+269: [HART. Mod Pack] Real Life Overhaul 0.50.0 (f339319c9ec1ad65): a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.
+270: [HART. Mod Pack] Owner job pay: RLO's OwnerFactor patched; rule off (RLO's cut applies).
+271: [HART. Mod Pack] Running costs: RLO's utilities patched; equipment off, office IT off.
+272: [HART. Mod Pack] Utility closure reasons: BizMan reads RLO's current utility closure records.
+273: [HART. Mod Pack] Bakery: bakeryxx:itemname_bread now 3.00 wholesale, 7.50 market.
+274: [HART. Mod Pack] Bakery: bakeryxx:itemname_bun now 2.00 wholesale, 5.00 market.
+275: [HART. Mod Pack] Bakery: bakeryxx:itemname_chocolatecookie now 1.50 wholesale, 3.80 market.
+276: [HART. Mod Pack] Bakery: bakeryxx:itemname_latte now 1.10 wholesale, 4.50 market.
+277: [HART. Mod Pack] Bakery: bakeryxx:itemname_americano now 0.90 wholesale, 3.90 market.
+278: [HART. Mod Pack] Bakery (6d68edab0f5600f5): verified version, patched.
+279: [HART. Mod Pack] Internet Cafe (4fc4ea9bdc455d86): verified version, patched.
+280: [HART. Mod Pack] Hyperreal: unreviewed or unreadable game/mod/HDRP binary; map-return workaround inactive.
+281: [HART. Mod Pack] Hyperreal (7d1bd589947558e2): 1 of 5 hooked methods are missing or changed (hook 0). Left unpatched; it runs as its author published it.
+282: [HART. Mod Pack] Factory diplomas: three school diplomas registered before careers start (ids 18, 19, 34); machine gate is opt-in.
+283: [HART. Mod Pack] Real Life Overhaul (f339319c9ec1ad65): verified version, patched.
+284: [HART. Mod Pack] Version 1.1.1 active. Checking the pack once the other mods have loaded.
+285: [HART Rival Balance] Active, Harmony 2.4.2.0. Rival businesses are valued on the Normal preset; your own businesses keep the save's settings. Version 0.2.0, preset from the default.
+286: [Mod:InternetCafe] Internet Cafe v0.3 registered (automatic PC admission, optional staffed drinks).
+287: [Mod:ModpackRig] HART rig probe ready (test helper, agent1 only).
+288: [Mod:PolyModsHyperreal] [Hyperreal] Config loaded from C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\PolyModsHyperreal\hyperreal_config.json
+289: [Mod:PolyModsHyperreal] [Hyperreal] PolyMods Hyperreal v1.1.2 loaded. ModRoot=C:/Users/Peter/AppData/LocalLow/Hovgaard Games/Big Ambitions Agent Tests\ModsLocal\PolyModsHyperreal
+290: [Mod:RealLifeOverhaul] Dealership: the business type 'reallife_businesstype_cardealership' is registered for retail buildings, with its icon (the map's filter row has it).
+291: [Mod:RealLifeOverhaul] Game build check: Build 3682, the build Real Life Overhaul 0.50.0 is made for: PASS.
+292: [Mod:RealLifeOverhaul] Game contract: 182 pieces of the game checked, 0 part(s) off. This game is Build 3682; Real Life Overhaul 0.50.0 is made for Build 3682.
+... trimmed unrelated lines ...
+304: Loaded Big Ambitions (Build 3682)
+305: [HART. Mod Pack] Steam isn't connected; skipped turning on Workshop members.
+306: [HART. Mod Pack] Real Life Overhaul: on, 0.50.0, ModsLocal
+307: [HART. Mod Pack] Dynamic Rivals: on, ModsLocal
+308: [HART. Mod Pack] HART. Thriving Rivals: on, 0.2.0, ModsLocal
+309: [HART. Mod Pack] City Performance: on, 0.5.0, ModsLocal
+310: [HART. Mod Pack] HART. Street Food: on, ModsLocal
+311: [HART. Mod Pack] HART. Self Driving: on, ModsLocal
+312: [HART. Mod Pack] HART. RDSTR: on, ModsLocal
+313: [HART. Mod Pack] Alcware - Seasons: on, ModsLocal
+314: [HART. Mod Pack] Alcware - Retail Expansion: on, ModsLocal
+315: [HART. Mod Pack] Internet Cafe: on, ModsLocal
+316: [HART. Mod Pack] Bakery - V1.2: on, ModsLocal
+317: [HART. Mod Pack] POLYMODS HYPERREAL: on, ModsLocal
+318: [HART. Mod Pack] Campaign Objectives: on, 1.2.1, ModsLocal
+319: [HART. Mod Pack] Camera Tools: on, ModsLocal
+320: [HART. Mod Pack] HART Free Camera: on, 1.1.1, ModsLocal
+321: [HART. Mod Pack] Big Copilot Link: on, ModsLocal
+322: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+323: [Mod:CityPerformance] Pedestrian-refill smoothing requested=True; verified=False; faulted=False
+324: [Mod:CityPerformance] TREE requested=True; installed=False; faulted=False
+325: [Mod:CityPerformance] Hyperreal discovery: waiting for city-ready; requested=true
+326: [Mod:CityPerformance] CINEMA coverage requested=True
+327: [Mod:CityPerformance] Midnight cleanup deferral requested=True; installed=False; faulted=False
+328: [Mod:CityPerformance] Cleanup batching maximum_wait_seconds=300; pending_deadline_seconds=none
+329: [Mod:CityPerformance] AUTOSAVE inactive: option off, quitting, or unverified build.
+... trimmed unrelated lines ...
+626: [DynamicRivals-REBUILD] Waiting | rival role caches not ready yet | GetAllRivalData=0
+627: [HART. Mod Pack] Series settings: applying 75 values.
+628: [HART. Mod Pack] scenario_indebted_start turned on.
+629: [HART. Mod Pack] Series settings: HART. Mod Pack scenario_indebted_start 0 -> 1 (series start: $551.37 cash and the $75,454.35 loan).
+630: [HART. Mod Pack] Series settings: HART. Mod Pack rent_rebalance already 0 (the default, now stored).
+631: [HART. Mod Pack] happiness_rebalance turned on.
+632: [HART. Mod Pack] Series settings: HART. Mod Pack happiness_rebalance 0 -> 1 (series rule).
+633: [HART. Mod Pack] owner_job_full_pay turned on.
+634: [HART. Mod Pack] Series settings: HART. Mod Pack owner_job_full_pay 0 -> 1 (series rule).
+635: [HART. Mod Pack] factory_diplomas turned on.
+636: [HART. Mod Pack] Series settings: HART. Mod Pack factory_diplomas 0 -> 1 (series rule).
+637: [HART. Mod Pack] equipment_utilities turned on.
+638: [HART. Mod Pack] Series settings: HART. Mod Pack equipment_utilities 0 -> 1 (Economy Expansion running costs on RLO).
+639: [HART. Mod Pack] office_it turned on.
+640: [HART. Mod Pack] Series settings: HART. Mod Pack office_it 0 -> 1 (Economy Expansion running costs on RLO).
+641: [HART. Mod Pack] Series settings: HART. Mod Pack mute_rlo_night_chirping already 1 (the default, now stored).
+642: [HART. Mod Pack] Series settings: HART. Thriving Rivals rival_preset already 1 (the default, now stored).
+643: [HART. Mod Pack] Series settings: Dynamic Rivals wholesale_rival_count already 0.
+644: [HART. Mod Pack] Series settings: Dynamic Rivals import_rival_count already 1.
+645: [HART. Mod Pack] Series settings: Dynamic Rivals retail_occupancy already 0 (the default, now stored).
+646: [HART. Mod Pack] Series settings: Dynamic Rivals office_occupancy already 0 (the default, now stored).
+647: [HART. Mod Pack] Series settings: Dynamic Rivals warehouse_occupancy already 0 (the default, now stored).
+648: [HART. Mod Pack] Series settings: Dynamic Rivals residential_occupancy already 0 (the default, now stored).
+649: [HART. Mod Pack] Series settings: Dynamic Rivals event_frequency already 2 (the default, now stored).
+650: [HART. Mod Pack] Series settings: Real Life Overhaul camera_enabled already 0.
+651: [HART. Mod Pack] Series settings: Real Life Overhaul camera_mouselook already 0.
+652: [HART. Mod Pack] Series settings: Real Life Overhaul car_camera already 0.
+653: [HART. Mod Pack] Series settings: Real Life Overhaul social_media 1 -> 0 (Flare off while Persistent City is parked (21 Oct)).
+654: [HART. Mod Pack] Series settings: Real Life Overhaul social_texts_max already 1.
+655: [HART. Mod Pack] Series settings: Real Life Overhaul life_events already 0.
+656: [HART. Mod Pack] Series settings: Real Life Overhaul accident_frequency already 1.
+657: [HART. Mod Pack] Series settings: Real Life Overhaul crime_frequency already 1.
+658: [HART. Mod Pack] Series settings: Real Life Overhaul roadside_checks already 0.
+659: [HART. Mod Pack] Series settings: Real Life Overhaul player_offences already 0.
+660: [HART. Mod Pack] Series settings: Real Life Overhaul street_event_frequency already 1.
+661: [HART. Mod Pack] Series settings: Real Life Overhaul fire_frequency already 1.
+662: [HART. Mod Pack] Series settings: Real Life Overhaul social_media_notices already 0.
+663: [HART. Mod Pack] Series settings: Real Life Overhaul accident_marker already 0.
+664: [HART. Mod Pack] Series settings: Real Life Overhaul accident_notices already 0.
+665: [HART. Mod Pack] Series settings: Real Life Overhaul ledger_online_notes already 0.
+666: [HART. Mod Pack] Series settings: Real Life Overhaul markets_dividend_notes already 0.
+667: [HART. Mod Pack] Series settings: Real Life Overhaul careers_agency_note already 0.
+668: [HART. Mod Pack] Series settings: Real Life Overhaul business_frequency already 2.
+669: [HART. Mod Pack] Series settings: Real Life Overhaul social_relationships already 1 (the default, now stored).
+670: [HART. Mod Pack] Series settings: Real Life Overhaul clothes_must_be_bought already 1.
+671: [HART. Mod Pack] Series settings: Real Life Overhaul driving_licence already 1 (the default, now stored).
+672: [HART. Mod Pack] Series settings: Real Life Overhaul driving_school already 1 (the default, now stored).
+673: [HART. Mod Pack] Series settings: Real Life Overhaul economy already 1 (the default, now stored).
+674: [HART. Mod Pack] Series settings: Real Life Overhaul economy_city already 1 (the default, now stored).
+675: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company already 1 (the default, now stored).
+676: [HART. Mod Pack] Series settings: Real Life Overhaul utilities already 1 (the default, now stored).
+677: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company_staff already 1 (the default, now stored).
+678: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company_cover already 1 (the default, now stored).
+679: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company_marketing already 1 (the default, now stored).
+680: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company_tax already 1 (the default, now stored).
+681: [HART. Mod Pack] Series settings: Real Life Overhaul economy_company_licences already 1 (the default, now stored).
+682: [HART. Mod Pack] Series settings: Real Life Overhaul economy_rota already 1 (the default, now stored).
+683: [HART. Mod Pack] Series settings: Real Life Overhaul interiors already 1 (the default, now stored).
+684: [HART. Mod Pack] Series settings: Real Life Overhaul business_pressure already 1 (the default, now stored).
+685: [HART. Mod Pack] Series settings: Real Life Overhaul family already 1 (the default, now stored).
+686: [HART. Mod Pack] Series settings: Real Life Overhaul home_life already 1 (the default, now stored).
+687: [HART. Mod Pack] Series settings: Real Life Overhaul social already 1 (the default, now stored).
+688: [HART. Mod Pack] Series settings: Real Life Overhaul leisure already 1 (the default, now stored).
+689: [HART. Mod Pack] Series settings: Real Life Overhaul civic already 1 (the default, now stored).
+690: [HART. Mod Pack] Series settings: Real Life Overhaul civic_elections already 1 (the default, now stored).
+691: [HART. Mod Pack] Series settings: Real Life Overhaul civic_office already 1 (the default, now stored).
+692: [HART. Mod Pack] Series settings: Real Life Overhaul city_life already 1 (the default, now stored).
+693: [HART. Mod Pack] Series settings: Real Life Overhaul ambient_sound already 1 (the default, now stored).
+694: [HART. Mod Pack] Series settings: Real Life Overhaul night_life already 1 (the default, now stored).
+695: [HART. Mod Pack] Series settings: Real Life Overhaul transit_buses already 1 (the default, now stored).
+696: [HART. Mod Pack] Series settings: Real Life Overhaul transit_subway already 1 (the default, now stored).
+697: [HART. Mod Pack] Series settings: Real Life Overhaul transit_taxi_call already 1 (the default, now stored).
+698: [HART. Mod Pack] Series settings: Real Life Overhaul nav_minimap already 1 (the default, now stored).
+699: [HART. Mod Pack] Series settings: Real Life Overhaul nav_gps already 1 (the default, now stored).
+700: [HART. Mod Pack] Series settings: Real Life Overhaul planner already 1 (the default, now stored).
+701: [HART. Mod Pack] Series settings: Real Life Overhaul jobs already 1 (the default, now stored).
+702: [HART. Mod Pack] Series settings: Real Life Overhaul careers already 1 (the default, now stored).
+703: [HART. Mod Pack] Series settings: Real Life Overhaul careers_study already 1 (the default, now stored).
+704: [HART. Mod Pack] Series settings: Real Life Overhaul careers_jobs already 1 (the default, now stored).
+705: [HART. Mod Pack] Series settings: Real Life Overhaul careers_life already 1 (the default, now stored).
+706: [HART. Mod Pack] Series settings: Real Life Overhaul careers_degrees already 1 (the default, now stored).
+707: [HART. Mod Pack] Series settings: Real Life Overhaul economy_products already 1 (the default, now stored).
+708: [HART. Mod Pack] Series settings: Real Life Overhaul economy_consequences already 1 (the default, now stored).
+709: [HART. Mod Pack] Series settings: 7 changed, 68 already set, 0 skipped. Restart the game to use them.
