@@ -17,7 +17,7 @@ var context = new AssemblyLoadContext("ApiCheck");
 context.Resolving += (ctx, name) =>
 {
     if (skip.Contains(name.Name)) return null;
-    string path = Path.Combine(game, name.Name + ".dll");
+    string path = name.Name == "0Harmony" ? Path.Combine(repo, "build/HARTModPack/Dependencies/0Harmony.dll") : Path.Combine(game, name.Name + ".dll");
     return File.Exists(path) ? ctx.LoadFromAssemblyPath(path) : null;
 };
 var mod = context.LoadFromAssemblyPath(modDll);
@@ -80,6 +80,16 @@ try
     var value = id.PropertyType.GetField("Value") ?? throw new MissingMemberException(id.PropertyType.FullName, "Value");
     if (directory.PropertyType != typeof(string) || value.FieldType != typeof(ulong)) throw new MissingMemberException("Item.Directory or PublishedFileId.Value changed type");
     Console.WriteLine($"ok   reflection: {helper.FullName}.GetUserSubscribedItems -> {item.Assembly.GetName().Name}: {item.FullName}.Id.Value, .Directory");
+}
+catch (Exception ex) { failures++; Console.WriteLine($"FAIL reflection: {ex.GetType().Name} {ex.Message}"); }
+checkedCount++;
+try
+{
+    var itemAssembly = context.LoadFromAssemblyPath(Path.Combine(game, "BigAmbitions.Items.dll"));
+    var instance = itemAssembly.GetType("BigAmbitions.Items.ItemInstance", true)!;
+    var field = instance.GetField("_itemCached", BindingFlags.NonPublic | BindingFlags.Instance);
+    if (field == null || field.FieldType.FullName != "BigAmbitions.Items.Item") throw new MissingFieldException("ItemInstance._itemCached");
+    Console.WriteLine("ok   reflection: nonmutating ItemInstance._itemCached read");
 }
 catch (Exception ex) { failures++; Console.WriteLine($"FAIL reflection: {ex.GetType().Name} {ex.Message}"); }
 Console.WriteLine($"{checkedCount - failures}/{checkedCount} game references resolve against {game}");

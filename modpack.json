@@ -1,0 +1,145 @@
+{
+  "name": "HART. Mod Pack",
+  "version": "1.1.1",
+  "assembly": "HARTModPack",
+  "gameBuild": 3682,
+  "integratedFrom": {
+    "assembly": "HardModePatch",
+    "version": "0.5.0",
+    "commit": "36e8eec"
+  },
+  "settingsPage": "HART. Mod Pack",
+  "legacyPatchPolicy": "If HardModePatch.dll is loaded, the pack gameplay stands down until restart. Unsubscribe from HART. Mod Pack Patch and remove any ModsLocal copy. The member checker remains active.",
+  "members": [
+    {
+      "assembly": "RealLifeOverhaul",
+      "title": "Real Life Overhaul",
+      "workshopId": 3816536560,
+      "required": true,
+      "testedVersions": [
+        "0.45.0",
+        "0.49.0",
+        "0.50.0"
+      ]
+    },
+    {
+      "assembly": "DynamicRivals",
+      "title": "Dynamic Rivals",
+      "workshopId": 3801170388,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "HARTRivalBalance",
+      "title": "HART. Thriving Rivals",
+      "workshopId": 3825350971,
+      "required": true,
+      "testedVersions": [
+        "0.2.0"
+      ]
+    },
+    {
+      "assembly": "CityPerformance",
+      "title": "City Performance",
+      "workshopId": 3825351532,
+      "required": true,
+      "testedVersions": [
+        "0.5.0"
+      ]
+    },
+    {
+      "assembly": "FoodTrucks",
+      "title": "HART. Street Food",
+      "workshopId": 3822355169,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "DrivenRides",
+      "title": "HART. Self Driving",
+      "workshopId": 3819853552,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "Roadster",
+      "title": "HART. RDSTR",
+      "workshopId": 3821783833,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "AlcwareSeasons",
+      "title": "Alcware - Seasons",
+      "workshopId": 3803289067,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "RetailCapacityUpgrades",
+      "title": "Alcware - Retail Expansion",
+      "workshopId": 3801675050,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "InternetCafe",
+      "title": "Internet Cafe",
+      "workshopId": 3796860957,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "Bakery",
+      "title": "Bakery - V1.2",
+      "workshopId": 3810927743,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "PolyModsHyperreal",
+      "title": "POLYMODS HYPERREAL",
+      "workshopId": 3803756901,
+      "required": true,
+      "testedVersions": []
+    },
+    {
+      "assembly": "CampaignObjectives",
+      "title": "Campaign Objectives",
+      "workshopId": 3807225297,
+      "required": true,
+      "testedVersions": [
+        "1.2.0",
+        "1.2.1"
+      ]
+    },
+    {
+      "assembly": "CameraTools",
+      "title": "Camera Tools",
+      "workshopId": 3743579410,
+      "required": false,
+      "testedVersions": []
+    },
+    {
+      "assembly": "HARTFreeCamera",
+      "title": "HART Free Camera",
+      "workshopId": 3806807684,
+      "required": false,
+      "testedVersions": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    {
+      "assembly": "BigCopilotLink",
+      "title": "Big Copilot Link",
+      "workshopId": 3806322395,
+      "required": false,
+      "testedVersions": []
+    }
+  ],
+  "excluded": [
+    "PersistentCity"
+  ],
+  "validation": "Offline checks only for the merged binary. Historical playtests do not establish merged 1.1.1 acceptance."
+}

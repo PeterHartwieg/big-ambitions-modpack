@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.1 (28 October 2026)
+
+- The series and member-check buttons show their real names again instead of "YOUR TEXT HERE".
+- Applying the HART series settings from the main menu no longer logs an error.
+- Big Copilot Link can read the pack's HART settings for planning. Gameplay is unchanged.
+- Also accepts the reviewed RLO 0.50.0 companion build (DLL SHA-256 `1f7647f2e188a43e…`), so every integrated RLO rule, BizMan reasons and the night chirping mute run on it too.
+- With a Workshop and a ModsLocal copy both on, the copy that takes over keeps the factory diploma machine gate instead of losing it until restart.
+
+## 1.1.0 (23 October 2026)
+
+- Supports reviewed RLO 0.50.0, retaining 0.49.0. All existing RLO contracts match; extend the main and BizMan presentation allowlists.
+- Add Mute RLO night chirping, on by default and in the series preset. Mute only the generated cricket AudioSource; restore its prior mute state when disabled or unloaded without changing RLO settings.
+- Fill in the published Thriving Rivals and City Performance Workshop IDs.
+- Integrate all HardModePatch 0.5.0 settings, gameplay rules, compatibility fixes and the RLO hash guard into HARTModPack.dll. Preserve rule defaults, preset values and save markers.
+- Put the series button, rule toggles and member status on one HART. Mod Pack page.
+- Stop the integrated gameplay if HardModePatch.dll is loaded, in either load order. Show one notice to unsubscribe from Mod Pack Patch, remove any ModsLocal copy and restart. Keep the member checker available.
+- Remove HardModePatch from required members. Thriving Rivals and City Performance remain separate requirements.
+- Package pinned Harmony in Dependencies/; no other mod DLLs are bundled.
+- Offline validation and merged-runtime acceptance are recorded in docs/merge-1.1.0.md.
+
 ## 1.0.0 (22 October 2026)
 
 - First release. Checks required pack members, turns on subscribed required mods the game left off, and reports missing, failed, duplicate or untested members.

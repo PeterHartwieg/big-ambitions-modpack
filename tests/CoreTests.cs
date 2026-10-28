@@ -12,7 +12,7 @@ public class PackTests
     public void Members_match_the_release_plan()
     {
         var required = Pack.Members.Where(m => m.Required).Select(m => m.AssemblyName).ToArray();
-        Assert.Equal(new[] { "RealLifeOverhaul", "DynamicRivals", "HARTRivalBalance", "HardModePatch", "CityPerformance", "FoodTrucks", "DrivenRides",
+        Assert.Equal(new[] { "RealLifeOverhaul", "DynamicRivals", "HARTRivalBalance", "CityPerformance", "FoodTrucks", "DrivenRides",
             "Roadster", "AlcwareSeasons", "RetailCapacityUpgrades", "InternetCafe", "Bakery", "PolyModsHyperreal", "CampaignObjectives" }, required);
         var optional = Pack.Members.Where(m => !m.Required).Select(m => m.AssemblyName).ToArray();
         Assert.Equal(new[] { "CameraTools", "HARTFreeCamera", "BigCopilotLink" }, optional);
@@ -70,13 +70,13 @@ public class VersionTests
     [Fact]
     public void Tested_table_is_pinned_for_this_release()
     {
-        Assert.Equal(new[] { "0.45.0", "0.49.0" }, TestedVersions.For("RealLifeOverhaul"));
-        Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("HardModePatch"));
+        Assert.Equal(new[] { "0.45.0", "0.49.0", "0.50.0" }, TestedVersions.For("RealLifeOverhaul"));
+        Assert.Empty(TestedVersions.For("HardModePatch"));
         Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("CityPerformance"));
         Assert.Equal(new[] { "0.2.0" }, TestedVersions.For("HARTRivalBalance"));
         Assert.Equal(new[] { "1.2.0", "1.2.1" }, TestedVersions.For("CampaignObjectives"));
         Assert.Equal(VersionVerdict.Tested, TestedVersions.Check("RealLifeOverhaul", "0.49.0"));
-        Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("RealLifeOverhaul", "0.50.0"));
+        Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("RealLifeOverhaul", "0.51.0"));
         // A member with no table entry that starts exposing a version is reported, so the table gets updated.
         Assert.Equal(VersionVerdict.Untested, TestedVersions.Check("Bakery", "1.3.0"));
     }
@@ -103,7 +103,7 @@ public class TurnOnPlannerTests
     [Fact]
     public void Leaves_the_Workshop_copy_off_when_ModsLocal_has_the_mod()
     {
-        var plan = TurnOnPlanner.Plan(new[] { Item(1, "HardModePatch") }, new[] { "hardmodepatch" }, new HashSet<ulong>());
+        var plan = TurnOnPlanner.Plan(new[] { Item(1, "CityPerformance") }, new[] { "cityperformance" }, new HashSet<ulong>());
         Assert.Empty(plan.ToAdd);
         Assert.Single(plan.Notes);
     }
@@ -141,9 +141,9 @@ public class StatusTests
     public void Reports_each_state()
     {
         var snap = new PackSnapshot { Steam = SteamState.Listed };
-        snap.Loaded.Add(Copy("RealLifeOverhaul", ModSource.Workshop, "0.50.0+abc"));
-        snap.Loaded.Add(Copy("HardModePatch", ModSource.Workshop, "0.5.0"));
-        snap.Loaded.Add(Copy("HardModePatch", ModSource.Local, "0.5.0"));
+        snap.Loaded.Add(Copy("RealLifeOverhaul", ModSource.Workshop, "0.51.0+abc"));
+        snap.Loaded.Add(Copy("CityPerformance", ModSource.Workshop, "0.5.0"));
+        snap.Loaded.Add(Copy("CityPerformance", ModSource.Local, "0.5.0"));
         snap.Loaded.Add(Copy("Bakery", ModSource.Local));
         snap.Subscribed.Add(new SubscribedItem { Id = 5, AssemblyName = "Roadster", Enabled = false });
         snap.Subscribed.Add(new SubscribedItem { Id = 6, AssemblyName = "DrivenRides", Enabled = false });
@@ -152,11 +152,11 @@ public class StatusTests
         snap.Failed.Add(new FailedMod { AssemblyName = "DynamicRivals", Reason = "Dynamic Rivals: duplicate" });
         var all = StatusEvaluator.Evaluate(snap);
 
-        Assert.Equal(17, all.Count);
+        Assert.Equal(16, all.Count);
         Assert.Equal(VersionVerdict.Untested, Of(all, "RealLifeOverhaul").Verdict);
-        Assert.Equal("0.50.0", Of(all, "RealLifeOverhaul").Version);
-        Assert.True(Of(all, "HardModePatch").LoadedTwice);
-        Assert.Equal(VersionVerdict.Tested, Of(all, "HardModePatch").Verdict);
+        Assert.Equal("0.51.0", Of(all, "RealLifeOverhaul").Version);
+        Assert.True(Of(all, "CityPerformance").LoadedTwice);
+        Assert.Equal(VersionVerdict.Tested, Of(all, "CityPerformance").Verdict);
         Assert.Equal(VersionVerdict.NotExposed, Of(all, "Bakery").Verdict);
         Assert.Equal(MemberState.SwitchedOff, Of(all, "Roadster").State);
         Assert.Equal(MemberState.TurnedOn, Of(all, "DrivenRides").State);
@@ -207,13 +207,12 @@ public class StatusTests
         var snap = new PackSnapshot { Steam = SteamState.Listed };
         foreach (var m in Pack.Members.Where(m => m.Required)) snap.Loaded.Add(Copy(m.AssemblyName, ModSource.Workshop));
         snap.Loaded.Single(c => c.AssemblyName == "RealLifeOverhaul").InformationalVersion = "0.49.0";
-        snap.Loaded.Single(c => c.AssemblyName == "HardModePatch").InformationalVersion = "0.5.0";
         snap.Loaded.Single(c => c.AssemblyName == "CityPerformance").InformationalVersion = "0.5.0";
         snap.Loaded.Single(c => c.AssemblyName == "HARTRivalBalance").AssemblyVersion = new Version(0, 2, 0, 0);
         snap.Loaded.Single(c => c.AssemblyName == "CampaignObjectives").InformationalVersion = "1.2.0";
         var all = StatusEvaluator.Evaluate(snap);
         Assert.False(Texts.Check(all).Any);
-        Assert.Equal("All 14 required mods are on.", Texts.Summary(all, SteamState.Listed));
+        Assert.Equal("All 13 required mods are on.", Texts.Summary(all, SteamState.Listed));
     }
 
     [Fact]

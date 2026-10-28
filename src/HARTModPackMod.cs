@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using BAModAPI;
 using HARTModPack.Core;
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyInformationalVersion("1.0.0")]
+[assembly: AssemblyVersion("1.1.1.0")]
+[assembly: AssemblyInformationalVersion("1.1.1")]
 [assembly: RegisterModClass(typeof(HARTModPack.HARTModPackMod))]
 namespace HARTModPack
 {
     // Initialization scope: loaded once at startup and kept for the whole session, like the members it checks.
-    // No Harmony: everything goes through the game's public mod-loading and options classes.
+    // Pack management uses public APIs; integrated gameplay uses guarded Harmony hooks.
     [ModEntryOnInitializationLoad]
     public sealed class HARTModPackMod : IModBigAmbitions
     {
@@ -61,8 +61,11 @@ namespace HARTModPack
         {
             try
             {
+                OptionButtonCaptions.Start();
                 StatusPage.Register(modId);
+                HardModePatch.GameplayFeatures.Begin(modId);
                 PackRunner.Begin();
+                CompanionSave.Start();
                 active = copy;
                 Log.Info("Version " + Pack.Version + " active. Checking the pack once the other mods have loaded.");
             }
@@ -76,8 +79,11 @@ namespace HARTModPack
         static void Deactivate()
         {
             active = null;
+            try { CompanionSave.Stop(); } catch (Exception ex) { Log.Error("Stopping companion: " + ex); }
+            try { HardModePatch.GameplayFeatures.End(); } catch (Exception ex) { Log.Error("Stopping gameplay: " + ex); }
             try { PackRunner.End(); } catch (Exception ex) { Log.Error("Stopping: " + ex); }
             try { StatusPage.Unregister(); } catch (Exception ex) { Log.Error("Removing the Mods page: " + ex); }
+            try { OptionButtonCaptions.Stop(); } catch (Exception ex) { Log.Error("Removing button captions: " + ex); }
         }
     }
 

@@ -19,6 +19,16 @@ out = root / 'build' / 'HARTModPack'
 dll = out / 'HARTModPack.dll'
 if not dll.is_file(): sys.exit('Run tools/build.sh first')
 files = {
+    'Dependencies/0Harmony.dll': root / 'build/deps/0Harmony.dll',
+    'Dependencies/Harmony-LICENSE.txt': root / 'build/deps/Harmony-LICENSE.txt',
+    'modpack.json': root / 'modpack.json',
+    'docs/merge-1.1.0.md': root / 'docs/merge-1.1.0.md',
+    'docs/rlo-compatibility.md': root / 'docs/rlo-compatibility.md',
+    'docs/reviews/rlo-0.50.0-targets.md': root / 'docs/reviews/rlo-0.50.0-targets.md',
+    'docs/series-settings.md': root / 'docs/series-settings.md',
+    'docs/performance-ownership.md': root / 'docs/performance-ownership.md',
+    'docs/hyperreal-map-return.md': root / 'docs/hyperreal-map-return.md',
+    'docs/factory-diplomas.md': root / 'docs/factory-diplomas.md',
     'Locales/en.json': root / 'config/Locales/en.json',
     'README.md': root / 'README.md',
     'CHANGELOG.md': root / 'CHANGELOG.md',

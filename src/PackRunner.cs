@@ -23,10 +23,26 @@ namespace HARTModPack
         static HashSet<string> initEntries;      // startup-scope entries when that scope finished loading
         static bool startupNoticesQueued;        // once per session, even if a second copy of the pack takes over
 
+        static bool legacyNoticeShown;
+        bool legacyPageRefreshed;
         bool running;
         SteamState steam = SteamState.NotConnected;
         List<SubscribedItem> subscribed;
         readonly HashSet<ulong> turnedOn = new HashSet<ulong>();
+
+        void Update()
+        {
+            // AssemblyLoad may arrive off the Unity thread. Gameplay is stopped synchronously there;
+            // all page/notification work waits for this main-thread update.
+            if (!HardModePatch.GameplayFeatures.Blocked) return;
+            if (!legacyPageRefreshed)
+            {
+                legacyPageRefreshed = true;
+                StatusPage.RefreshGameplay();
+            }
+            if (!legacyNoticeShown && Notifications.onShow != null)
+                legacyNoticeShown = Show(Texts.LegacyPatchNotice, 30f, null);
+        }
 
         public static void Begin()
         {
@@ -169,7 +185,7 @@ namespace HARTModPack
                     Log.Info("Pack notice hidden until the list changes.");
                 });
             }
-            bool settingsModOn = statuses.Any(s => s.Member.AssemblyName == "HardModePatch" && s.State == MemberState.On);
+            bool settingsModOn = HardModePatch.GameplayFeatures.Active;
             string reminded = UnityEngine.PlayerPrefs.HasKey(NoticePolicy.ReminderKey) ? UnityEngine.PlayerPrefs.GetString(NoticePolicy.ReminderKey) : null;
             if (NoticePolicy.ShowReminder(reminded, settingsModOn, restartPending) && Show(Texts.SettingsReminder(), 15f, null))
             {

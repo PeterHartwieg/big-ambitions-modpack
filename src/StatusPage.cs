@@ -19,6 +19,8 @@ namespace HARTModPack
         static List<string> lastLines;
         static bool tableRegistered;
         static bool watchingDiscovery;
+        static List<string> currentStatusKeys;
+        static bool statusUnavailable;
 
         static string TableFolder
         {
@@ -55,6 +57,7 @@ namespace HARTModPack
                 try { OptionsService.RemoveModOptions(modId); } catch (Exception) { }
             }
             modId = null;
+            currentStatusKeys = null;
         }
 
         // Rewrites the table and rebuilds the page only when a line changed. A rebuild while the page is open
@@ -107,10 +110,17 @@ namespace HARTModPack
             catch (Exception ex) { Log.Warn("Couldn't re-register the status lines: " + ex.Message); }
         }
 
+        public static void RefreshGameplay() { Build(currentStatusKeys, statusUnavailable); }
+
         static void Build(List<string> statusKeys, bool unavailable)
         {
             if (modId == null) return;
+            currentStatusKeys = statusKeys;
+            statusUnavailable = unavailable;
             var options = new ModOptions().AddHeader(LocaleKeys.Title);
+            if (HardModePatch.GameplayFeatures.Blocked) options.AddHeader(LocaleKeys.LegacyPatch);
+            else if (HardModePatch.GameplayFeatures.Active) HardModePatch.Options.AppendTo(options);
+            options.AddSplitter();
             if (statusKeys == null || statusKeys.Count == 0)
             {
                 options.AddHeader(unavailable ? LocaleKeys.Unavailable : LocaleKeys.Checking);

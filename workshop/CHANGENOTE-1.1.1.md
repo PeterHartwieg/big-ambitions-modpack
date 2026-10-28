@@ -1,0 +1,5 @@
+# HART. Mod Pack 1.1.1
+
+- The series and member-check buttons show their real names again instead of "YOUR TEXT HERE".
+- Applying the HART series settings from the main menu no longer logs an error.
+- Big Copilot Link can read the pack's HART settings for planning. Gameplay is unchanged.
