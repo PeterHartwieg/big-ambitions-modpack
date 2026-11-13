@@ -1,0 +1,8 @@
+[b]HART. Mod Pack 1.2.0[/b]
+
+[list]
+[*]The pack now works with Real Life Overhaul 1.0.x.
+[*]Factory diplomas are off on RLO 1.0, because RLO now uses those course ids. The series button skips them.
+[*]The series button sets RLO 1.0's offence toggles.
+[*]The rent rule now only applies to rents you pay.
+[/list]

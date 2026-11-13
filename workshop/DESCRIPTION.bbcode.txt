@@ -3,7 +3,7 @@
 
 All the mods from my HART modded Big Ambitions series in one subscription. HART. Mod Pack lists every mod of the series as a required item, so Steam offers to subscribe to all of them with this one. Version 1.1.1 includes the series settings, house rules and compatibility fixes previously shipped as HART. Mod Pack Patch, plus the member checker.
 
-Supports reviewed RLO 0.50.0.
+Supports reviewed RLO 0.50.0 and Real Life Overhaul 1.0.x.
 
 [h2]How to install[/h2]
 [list]
