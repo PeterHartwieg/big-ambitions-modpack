@@ -178,6 +178,7 @@ SetRule("OfficeIt", false);
 Check(Net(officeNet, 5, false) == 2916, "rule off: RLO's plan only");
 SetRule("OfficeIt", true);
 Check(Net(officeNet, 5, false) == 2916 + 3 * 15000 / 5, "three desks add $150 a month each, a fifth a day in a 5-day month");
+Check(Net(officeNet, 30, false) == 14580 / 30 + 3 * 15000 / 5, "RLO's plan over a 30-day billing month (RLO 1.0, Living population): the desks still pay $150 over the save's 5-day month");
 Check(Net(officeNet, 5, true) == 0, "an outage day charges nothing, as RLO credits it");
 Check(Net(shopNet, 5, false) == 2916, "a shop's computer is not an office desk");
 var studioNet = Account(studio, 2, Office);

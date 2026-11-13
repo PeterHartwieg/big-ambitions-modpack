@@ -73,4 +73,15 @@ public class NightChirpingTests
         Assert.False(TargetGate.Reviewed("f339319c9ec1ad66", Targets.RealLifeOverhaul.VerifiedHashes));
         Assert.Equal(VersionVerdict.Tested, TestedVersions.Check("RealLifeOverhaul", TestedVersions.Exposed("0.50.0+850e278", null!)));
     }
+
+    [Fact]
+    public void Reviewed_105_release_is_accepted_and_one_byte_off_is_not()
+    {
+        const string hash = "0c4b4aea5c339f9131f46d3a72b54657dd79bb0a8f086069243c34e7f6286ae7";
+        Assert.True(TargetGate.Reviewed(TargetGate.HashPrefix(hash), Targets.RealLifeOverhaul.VerifiedHashes));
+        // The same release with one byte appended, as RloGateCheck loads it.
+        Assert.False(TargetGate.Reviewed("bcfcc56ddf18554a", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.False(TargetGate.Reviewed("0c4b4aea5c339f92", Targets.RealLifeOverhaul.VerifiedHashes));
+        Assert.Equal(VersionVerdict.Tested, TestedVersions.Check("RealLifeOverhaul", TestedVersions.Exposed("1.0.5+a9f51ac", null!)));
+    }
 }

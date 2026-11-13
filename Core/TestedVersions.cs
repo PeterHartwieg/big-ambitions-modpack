@@ -14,8 +14,8 @@ namespace HARTModPack.Core
     {
         static readonly Dictionary<string, string[]> Table = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            // Historical 0.45.0/0.49.0 retained; 0.50.0 reviewed offline on 23 October 2026.
-            { "RealLifeOverhaul", new[] { "0.45.0", "0.49.0", "0.50.0" } },
+            // Historical 0.45.0/0.49.0 retained; 0.50.0 reviewed offline on 23 October 2026, 1.0.5 on 13 November 2026.
+            { "RealLifeOverhaul", new[] { "0.45.0", "0.49.0", "0.50.0", "1.0.5" } },
             { "HARTRivalBalance", new[] { "0.2.0" } },
             { "CityPerformance", new[] { "0.5.0" } },
             { "CampaignObjectives", new[] { "1.2.0", "1.2.1" } },

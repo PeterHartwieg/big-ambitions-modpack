@@ -33,6 +33,22 @@ namespace HardModePatch
         // HMP's three courses are in RLO's catalogue, so RLO can read and keep their records.
         public static bool CoursesRegistered { get { return injected != null; } }
 
+        // RLO's own catalogue, without HMP's courses, already has one of HMP's ids (RLO 1.0's building trades use
+        // 18, 19 and 34). Read only, for any RLO build; false when it can't be read.
+        internal static bool IdsTakenBy(Assembly rlo)
+        {
+            if (injected != null || rlo == null) return false;
+            try
+            {
+                var type = rlo.GetType(Careers + "CourseDef", false);
+                var all = type == null ? null : AccessTools.DeclaredField(rlo.GetType(Careers + "StudyCatalogue", false), "All");
+                var id = type == null ? null : AccessTools.DeclaredField(type, "Id");
+                var courses = all == null || !all.IsStatic || id == null || id.FieldType != typeof(int) ? null : all.GetValue(null) as Array;
+                return courses != null && FactoryDiplomas.IdsTaken(courses.Cast<object>().Where(c => c != null).Select(c => (int)id.GetValue(c)));
+            }
+            catch (Exception) { return false; }
+        }
+
         static MethodInfo Method(Type type, string name, Type result, bool isStatic, params Type[] parameters)
         {
             var method = type == null ? null : AccessTools.DeclaredMethod(type, name, parameters);

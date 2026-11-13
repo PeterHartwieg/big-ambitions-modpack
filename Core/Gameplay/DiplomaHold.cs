@@ -184,9 +184,26 @@ namespace HardModePatch.Core
         // changed. Null when there is nothing to hold.
         public static string Keep(string careers, string held, int today)
         {
+            return Keep(careers, held, today, r => true);
+        }
+
+        // RLO 1.0 has courses of its own under our ids, and it writes 25 fields a course record (homework minutes,
+        // from RLO 0.61.0). RLO 0.50.0 wrote 24 and read those ids as ours. So a record there with fewer fields was
+        // written before RLO took the ids: Keep holds a copy of those, never RLO's own records. RLO's line is not
+        // changed. RLO 0.57.0 to 0.60.x already had the courses and wrote 24 fields; a save last written by one of
+        // them has its building-trade records held too, as Keep did for every unreviewed build.
+        public const int Rlo1CourseFields = 25;
+
+        public static string KeepWrittenBeforeRlo1(string careers, string held, int today)
+        {
+            return Keep(careers, held, today, r => r.Fields.Length < Rlo1CourseFields);
+        }
+
+        static string Keep(string careers, string held, int today, Func<Held, bool> written)
+        {
             var line = Parse(careers);
             var previous = Parse(held);
-            var ours = Ours(line, today);
+            var ours = Ours(line, today).Where(written).ToList();
             if (ours.Count == 0) return held;
             if (previous != null && previous.Version != line.Version) return held;
             // Matched one for one: each record in the line takes one held copy of the same part and text, if any.

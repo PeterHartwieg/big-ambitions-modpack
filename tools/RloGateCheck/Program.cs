@@ -85,8 +85,15 @@ string line = "v=1~h:7|1|9|0|0|0|1|0|0|-1|0~s:3|5000|5000|8~c:19|0|2|3|3|8|1|390
     + "~r:18|0|1|8|8|7|4|3600|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1~w:~q:~t:-1|0";
 object[] readArgs = { line, 0 };
 var read = rlo.GetType("RealLifeOverhaul.Careers.CareersStore", true).GetMethod("Read")!.Invoke(null, readArgs)!;
-Check(((IList)read.GetType().GetField("Courses")!.GetValue(read)!).Count == 1 && ((IList)read.GetType().GetField("Results")!.GetValue(read)!).Count == 0,
-    "this RLO's reader drops the diploma records, so its next save would lose them");
+// RLO 1.0 uses ids 18, 19 and 34 for its own building-trade courses: its reader keeps those records as its own.
+var rloIds = before.Cast<object>().Select(c => (int)c.GetType().GetField("Id")!.GetValue(c)!).ToArray();
+bool taken = rloIds.Intersect(new[] { 18, 19, 34 }).Any();
+if (taken)
+    Check(((IList)read.GetType().GetField("Courses")!.GetValue(read)!).Count == 2 && ((IList)read.GetType().GetField("Results")!.GetValue(read)!).Count == 1,
+        "this RLO has courses of its own under ids 18, 19 and 34 and its reader keeps those records");
+else
+    Check(((IList)read.GetType().GetField("Courses")!.GetValue(read)!).Count == 1 && ((IList)read.GetType().GetField("Results")!.GetValue(read)!).Count == 0,
+        "this RLO's reader drops the diploma records, so its next save would lose them");
 Type gameType = game.GetType("GameInstance", true);
 object save = RuntimeHelpers.GetUninitializedObject(gameType);
 var regs = (IList)Activator.CreateInstance(gameType.GetField("BuildingRegistrations")!.FieldType)!;
@@ -106,6 +113,29 @@ Check(Loaded() && plain.Count == 1 && NoticeSink.Keys.Count == 0, "no diploma re
 gameType.GetField("modData")!.SetValue(save, data);
 Check(Loaded() && data["reallife:careers"] == line, "city loaded: RLO's careers record is left as it is");
 var hold = P("Core.DiplomaHold");
+if (taken)
+{
+    // The save above is a 0.50.0 save with HMP diplomas (24-field records). RLO 1.0 reads them as its own courses,
+    // so HMP keeps a copy of the originals; RLO's line is left as it is.
+    Check(data.TryGetValue("hardmodepatch:factory_diplomas_held", out var kept) && (int)hold.GetMethod("Count")!.Invoke(null, new object[] { kept })! == 2
+        && !kept.Contains("5|0|2|1") && kept.Contains("31#19|") && kept.Contains("31#18|"), "HMP's records from a 0.50.0 save are held with the day, nothing else");
+    Check(NoticeSink.Keys.SequenceEqual(new[] { "hardmode_rlo_unreviewed" }), "one in-game notice says so");
+    // RLO 1.0.5 reads and saves the line: the records come back with 25 fields, as its own courses.
+    var store = rlo.GetType("RealLifeOverhaul.Careers.CareersStore", true)!;
+    string resaved = (string)store.GetMethod("Write")!.Invoke(null, new[] { read })!;
+    Check(resaved.Contains("~c:19|") && resaved.Contains("~r:18|"), "RLO 1.0.5 keeps and rewrites those records as its own courses");
+    data["reallife:careers"] = resaved;
+    gameType.GetField("Day")!.SetValue(save, 32);
+    Check(Loaded() && data["reallife:careers"] == resaved && data["hardmodepatch:factory_diplomas_held"] == kept && NoticeSink.Keys.Count == 1,
+        "after RLO 1.0.5 resaves, the hold keeps the originals unchanged and the notice isn't repeated");
+    // A save started under RLO 1.0 with its own bricklaying course and crane ticket.
+    var own = new Dictionary<string, string> { { "reallife:careers", "v=1~h:7|1|9~c:18|0|2|3|3|8|1|2400|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1|0"
+        + "~r:19|0|1|3|3|7|4|650|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1|0~w:~q:~t:-1|0" } };
+    gameType.GetField("modData")!.SetValue(save, own);
+    Check(Loaded() && own.Count == 1, "RLO 1.0's own records under ids 18, 19 and 34 are never held");
+    Console.WriteLine($"ALL {checks} RLO GATE CHECKS PASSED (offline; the in-game notice and a real save remain unverified)");
+    return 0;
+}
 Check(data.TryGetValue("hardmodepatch:factory_diplomas_held", out var held) && (int)hold.GetMethod("Count")!.Invoke(null, new object[] { held })! == 2
     && !held.Contains("5|0|2|1") && held.Contains("31#19|"), "both diploma records are held in HMP's own save line with the day, nothing else");
 Check(NoticeSink.Keys.SequenceEqual(new[] { "hardmode_rlo_unreviewed" }), "one in-game notice says so");

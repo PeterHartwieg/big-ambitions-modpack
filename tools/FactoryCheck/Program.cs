@@ -73,6 +73,54 @@ foreach (var contract in (IEnumerable)bridge.GetMethod("Contracts").Invoke(targe
 var catalogue = T("StudyCatalogue").GetField("All");
 var original = (Array)catalogue.GetValue(null);
 var originalIds = original.Cast<object>().Select(c => (int)Get(c, "Id")).ToArray();
+if (originalIds.Intersect(new[] { 18, 19, 34 }).Any())
+{
+    // RLO 1.0 uses 18, 19 and 34 for its building trades. The factory diplomas stay off on such a build, and the
+    // records under those ids are RLO's own: nothing is added, gated, held or given back.
+    Check(new[] { 18, 19, 34 }.All(id => Rlo("StudyCatalogue", "Find", id) is object c && !((string)Get(c, "Key")).StartsWith("hmp_")),
+        "this RLO has courses of its own under ids 18, 19 and 34");
+    Check((bool)bridge.GetMethod("IdsTakenBy", Any).Invoke(null, new object[] { rlo }), "the pack sees that RLO owns its diploma ids");
+    var refusing = new Harmony("factorycheck");
+    string? refusal = null;
+    try { bridge.GetMethod("Apply").Invoke(target, new object[] { refusing, rlo, hooks }); }
+    catch (TargetInvocationException ex) { refusal = ex.InnerException?.Message; }
+    Check(refusal != null && refusal.Contains("occupied") && ReferenceEquals(original, catalogue.GetValue(null))
+        && !(bool)bridge.GetProperty("CoursesRegistered").GetValue(null), "courses not added: Apply refuses and RLO's catalogue is unchanged");
+    bridge.GetMethod("Revert").Invoke(target, null);
+    refusing.UnpatchAll(refusing.Id);
+    Check(hooks.Take(3).All(h => Harmony.GetPatchInfo(h) == null || !Harmony.GetPatchInfo(h).Owners.Contains(refusing.Id)), "no purchase or Campus hook stays applied");
+    Option(true);
+    Check(Call("Denied", (object)new[] { "ba:itemname_kilnmachine", "ba:itemname_industrialsewingmachine" }) == null, "rule on: machine sales stay unrestricted");
+    var gameAssembly = hooks[0].DeclaringType!.Assembly;
+    Type gameType = gameAssembly.GetType("GameInstance", true)!;
+    object save = RuntimeHelpers.GetUninitializedObject(gameType);
+    var registrations = (IList)Activator.CreateInstance(gameType.GetField("BuildingRegistrations")!.FieldType)!;
+    registrations.Add(RuntimeHelpers.GetUninitializedObject(registrations.GetType().GetGenericArguments()[0]));
+    Set(save, "BuildingRegistrations", registrations);
+    Set(save, "Day", 60);
+    // A bricklaying course under way and a passed crane ticket, RLO's own.
+    string own = "v=1~h:7|1|9|0|0|0|1|0|0|-1|0~s:3|5000|5000|8~c:18|0|2|3|3|8|1|2400|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1|0"
+        + "~r:19|0|1|3|3|7|4|650|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1|0~w:~q:~t:-1|0";
+    var modData = new Dictionary<string, string> { { "reallife:careers", own } };
+    Set(save, "modData", modData);
+    var gateType = patch.GetType("HardModePatch.RloGate", true)!;
+    Check(!(bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData.Count == 1 && modData["reallife:careers"] == own,
+        "reviewed RLO 1.0 on save load: RLO's own records are left as they are and nothing is held");
+    const string earlier = "v=1~c:12#19|0|2|3|3|8|1|3900|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1";
+    modData["hardmodepatch:factory_diplomas_held"] = earlier;
+    Check((bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData["reallife:careers"] == own
+        && modData["hardmodepatch:factory_diplomas_held"] == earlier, "an earlier hold is neither given back nor changed");
+    // A 0.50.0 save with HMP diplomas (24-field records): RLO 1.0 reads them as its own courses, so HMP holds a copy.
+    string legacy = "v=1~h:7|1|9|0|0|0|1|0|0|-1|0~s:3|5000|5000|8~c:19|0|2|3|3|8|1|3900|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1"
+        + "~r:18|0|1|8|8|7|4|3600|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1~w:~q:~t:-1|0";
+    modData.Clear(); modData["reallife:careers"] = legacy;
+    Check((bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData["reallife:careers"] == legacy
+        && modData.TryGetValue("hardmodepatch:factory_diplomas_held", out var legacyHeld) && legacyHeld.Contains("60#19|0|2|") && legacyHeld.Contains("60#18|0|1|"),
+        "reviewed RLO 1.0: HMP's records from a 0.50.0 save are held, RLO's line unchanged");
+    Option(false);
+    Console.WriteLine($"{checks} offline factory checks passed; Unity UI, class play and actual saves still need an in-game check.");
+    return 0;
+}
 Check(!originalIds.Intersect(new[] { 18, 19, 34 }).Any(), "released RLO catalogue leaves ids 18, 19, 34 free");
 Check(new[] { 18, 19, 34, 35, 36, 37, 38, 39 }.All(id => !originalIds.Contains(id)), "all candidate spare ids verified against released binary");
 var harmony = new Harmony("factorycheck");

@@ -53,6 +53,21 @@ foreach (var type in patch.GetTypes().Where(t => patchInterface.IsAssignableFrom
     }
     // Applying checks what only Harmony checks: injected parameter names, return types and transpiler output.
     var harmony = new HarmonyLib.Harmony("hookcheck." + type.Name);
+    // RLO 1.0 has courses of its own under the factory diploma ids: the diplomas must refuse to apply, patching nothing.
+    var taken = type.GetMethod("IdsTakenBy", BindingFlags.NonPublic | BindingFlags.Static);
+    if (taken != null && (bool)taken.Invoke(null, new object[] { target }))
+    {
+        string? refusal = null;
+        try { type.GetMethod("Apply").Invoke(instance, new object[] { harmony, target, hooks }); }
+        catch (TargetInvocationException ex) { refusal = ex.InnerException?.Message; }
+        bool clean = !HarmonyLib.Harmony.GetAllPatchedMethods().Any(m => HarmonyLib.Harmony.GetPatchInfo(m).Owners.Contains(harmony.Id));
+        Console.WriteLine(refusal != null && refusal.Contains("occupied") && clean
+            ? "    refused as expected: this RLO uses ids 18, 19 and 34 for its own courses; nothing patched"
+            : "    EXPECTED a refusal with nothing patched, got " + (refusal ?? "applied"));
+        if (refusal == null || !refusal.Contains("occupied") || !clean) failures++;
+        harmony.UnpatchAll(harmony.Id);
+        continue;
+    }
     try
     {
         type.GetMethod("Apply").Invoke(instance, new object[] { harmony, target, hooks });
