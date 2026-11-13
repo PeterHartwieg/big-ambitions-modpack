@@ -2,7 +2,7 @@
 
 The Workshop item for the mods of the HART modded series of Big Ambitions. Its Workshop page lists every pack member under Steam's Required items. It includes the series settings, gameplay rules and compatibility fixes from HardModePatch 0.5.0, finds the members, turns on the ones the game left off, and reports missing or untested members.
 
-Version 1.1.1, built for game build 3682. One HARTModPack.dll and one settings page. Gameplay uses checksum-pinned Harmony; scenario and diploma records keep their original save keys.
+Version 1.2.0, built for game build 3682. One HARTModPack.dll and one settings page. Gameplay uses checksum-pinned Harmony; scenario and diploma records keep their original save keys.
 
 Supports reviewed RLO 0.50.0 and any RLO 1.0.x release (1.0.5 is the reviewed exemplar; other 1.0.x releases are accepted by version and each feature checks its own hooks). On RLO 1.0 the factory diplomas stay off, because RLO 1.0 uses their course ids 18, 19 and 34 for its own building-trade courses. [The per-target review](docs/rlo-compatibility.md) records signatures, IL comparisons and offline checks. **Mute RLO night chirping** defaults on and the series preset enables it. It mutes only RLO’s generated cricket layer; switching it off restores normal sound without restarting or changing RLO’s settings.
 
@@ -70,13 +70,13 @@ The behaviour these calls rely on, from reading the decompile of build 3682 (22 
 ## Build and test
 
 - `dotnet test tests/HARTModPack.Core.Tests.csproj`: the pure rules in `Core/`.
-- `tools/build.sh`: runs the tests, compiles `HARTModPack.dll` with the .NET SDK's C# compiler against the game's assemblies, and packages `build/HARTModPack/`, `build/HARTModPack-1.1.1.zip` and their SHA-256 files. Game DLLs come from `BA_GAME_DLLS`, else `../big-ambitions-hard-mode-patch/build/game-dlls`.
+- `tools/build.sh`: runs the tests, compiles `HARTModPack.dll` with the .NET SDK's C# compiler against the game's assemblies, and packages `build/HARTModPack/`, `build/HARTModPack-1.2.0.zip` and their SHA-256 files. Game DLLs come from `BA_GAME_DLLS`, else `../big-ambitions-hard-mode-patch/build/game-dlls`.
 - `tools/check-api.sh [Managed folder]`: resolves every game reference in the built DLL, and the members it reads by reflection, against the build 3682 Windows DLLs and, when present, this Mac's Steam install.
 - `dotnet run --project tools/VersionProbe -- <ModsLocal or Workshop content folder>`: prints each mod's assembly name and versions, for updating the tested-version table.
 
 ## Evidence
 
-**1.1.1:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs.
+**1.2.0:** offline validation only (checked offline 13 November 2026); in-game acceptance on RLO 1.0.x is pending. **1.1.1:** offline validation only; new native acceptance remains pending. The dated checks below used the earlier separate DLLs.
 
 **Offline, 13 November 2026, RLO 1.0.5:** the pack accepts the 1.0.5 release DLL (`0c4b4aea5c339f91`) for running costs, offices need internet, owner job pay, the hotel rule, BizMan reasons and the night chirping mute. Factory diplomas stay off on 1.0.5, and the diploma hold no longer copies RLO's own courses under ids 18, 19 and 34. `tools/check-all.sh` passed against 1.0.5 and a one-byte-altered copy; 0.50.0 and the companion build still pass. See [the review of 1.0.5](docs/rlo-compatibility.md#review-of-105-13-november-2026).
 

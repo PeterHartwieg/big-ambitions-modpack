@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 (13 November 2026)
+
+- The pack now works with Real Life Overhaul 1.0.x.
+- Factory diplomas are off on RLO 1.0, because RLO now uses those course ids. The series button skips them.
+- The series button sets RLO 1.0's offence toggles.
+- The rent rule now only applies to rents you pay.
+
 ## 1.1.1 (28 October 2026)
 
 - The series and member-check buttons show their real names again instead of "YOUR TEXT HERE".
