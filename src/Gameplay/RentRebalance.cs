@@ -20,8 +20,8 @@ namespace HardModePatch
         static readonly Harmony harmony = new Harmony(GameplayFeatures.HarmonyId + ".rent");
         [ThreadStatic] static int rivalEstimates, livingReads;
         static readonly Harmony living = new Harmony(GameplayFeatures.HarmonyId + ".rent.living");
-        static bool livingTried, livingBlocked;
-        public static bool Available { get; private set; }
+        static bool hooked, livingTried, livingBlocked;
+        public static bool Available { get { return hooked && !livingBlocked; } }
 
         public static IList<MethodBase> ResolveLivingReaders(Assembly rlo)
         {
@@ -36,8 +36,14 @@ namespace HardModePatch
         public static void ApplyLivingReaders(Harmony owner, IList<MethodBase> readers)
         {
             foreach (var reader in readers.Where(r => r != null))
+            {
                 owner.Patch(reader, prefix: new HarmonyMethod(typeof(RentRebalance), "LivingPrefix"),
                     finalizer: new HarmonyMethod(typeof(RentRebalance), "LivingFinalizer"));
+                // A rented home's roommate rent comes from the stored lease, not the market rent read.
+                if (reader.DeclaringType.FullName == RloLine.LivingRentReaders[1][0] && reader.Name == RloLine.LivingRentReaders[1][1])
+                    owner.Patch(reader, prefix: new HarmonyMethod(typeof(Roommates), "Prefix"),
+                        finalizer: new HarmonyMethod(typeof(Roommates), "Finalizer"));
+            }
         }
 
         static void OnLoad(object sender, AssemblyLoadEventArgs e) { TryLiving(e.LoadedAssembly); }
@@ -46,7 +52,15 @@ namespace HardModePatch
         {
             if (livingTried || a == null || a.GetName().Name != Targets.RealLifeOverhaul.AssemblyName) return;
             livingTried = true;
-            if (!RloGate.Accepts(a)) return;
+            if (!RloGate.Accepts(a))
+            {
+                if (RloLine.AllLivingReadersNeeded(a.GetName().Version))
+                {
+                    livingBlocked = true;
+                    Log.Warn("Rent rebalance: the pack hasn't reviewed this Real Life Overhaul; the rule leaves every rent at the game's value with it.");
+                }
+                return;
+            }
             try
             {
                 var readers = ResolveLivingReaders(a);
@@ -92,14 +106,14 @@ namespace HardModePatch
                 var hooks = ResolveHooks();
                 if (hooks.Any(h => h == null)) throw new MissingMethodException("Rent hooks changed.");
                 ApplyHooks(harmony, hooks);
-                Available = true;
+                hooked = true;
                 AppDomain.CurrentDomain.AssemblyLoad += OnLoad;
                 foreach (var a in AppDomain.CurrentDomain.GetAssemblies()) TryLiving(a);
             }
             catch (Exception ex)
             {
                 harmony.UnpatchAll(harmony.Id);
-                Available = false;
+                hooked = false;
                 Log.Error("Rent rebalance unavailable; the game's rents apply: " + ex);
             }
         }
@@ -109,7 +123,7 @@ namespace HardModePatch
             AppDomain.CurrentDomain.AssemblyLoad -= OnLoad;
             harmony.UnpatchAll(harmony.Id);
             living.UnpatchAll(living.Id);
-            Available = livingTried = livingBlocked = false;
+            hooked = livingTried = livingBlocked = false;
         }
 
         static void RentPostfix(Building __instance, ref int __result)
@@ -122,12 +136,47 @@ namespace HardModePatch
             catch (Exception ex) { Log.Error("Rent rebalance: " + ex.Message); }
         }
 
-        static void LivingPrefix() { livingReads++; }
-
-        static Exception LivingFinalizer(Exception __exception)
+        static void LivingPrefix(out bool __state)
         {
-            if (livingReads > 0) livingReads--;
+            livingReads++;
+            __state = true;
+        }
+
+        static Exception LivingFinalizer(Exception __exception, bool __state)
+        {
+            if (__state && livingReads > 0) livingReads--;
             return __exception;
+        }
+
+        // While RLO reads a rented home's lease for roommates, the lease is at most the game's market rent.
+        // A class of its own: Harmony keeps one __state type per patch class.
+        static class Roommates
+        {
+            static void Prefix(BuildingRegistration home, out float __state)
+            {
+                __state = -1f;
+                try
+                {
+                    if (!Rules.RentRebalance.Enabled || livingBlocked || home == null || home.RentPerDay <= 0f || home.BuildingOwnedByPlayer) return;
+                    var building = home.BuildingCached;
+                    if (ReferenceEquals(building, null)) return;
+                    int market;
+                    livingReads++;
+                    try { market = building.GetBuildingDailyMarketRent(); }
+                    finally { livingReads--; }
+                    float lease = RloLine.RoommateLease(home.RentPerDay, market);
+                    if (lease >= home.RentPerDay) return;
+                    __state = home.RentPerDay;
+                    home.RentPerDay = lease;
+                }
+                catch (Exception ex) { Log.Error("Rent rebalance roommates: " + ex.Message); }
+            }
+
+            static Exception Finalizer(Exception __exception, BuildingRegistration home, float __state)
+            {
+                if (__state >= 0f && home != null) home.RentPerDay = __state;
+                return __exception;
+            }
         }
 
         static void EstimatePrefix(BuildingRegistration registration, out bool __state)

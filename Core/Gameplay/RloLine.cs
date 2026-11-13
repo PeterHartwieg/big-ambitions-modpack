@@ -41,6 +41,13 @@ namespace HardModePatch.Core
             return version != null && version.Major >= 1;
         }
 
+        // RLO's roommates pay a share of the player's lease. A lease signed with the rent rule on stores the scaled
+        // rent, so roommates pay on no more than the game's market rent; a cheaper lease stays as it is.
+        public static float RoommateLease(float lease, int gameMarketRent)
+        {
+            return gameMarketRent > 0 && gameMarketRent < lease ? gameMarketRent : lease;
+        }
+
         public static IList<SeriesOption> SeriesOptions(IEnumerable<FoundOption> registered, bool diplomasOff)
         {
             bool split = registered.Any(o => o.Owner == SeriesSettings.Rlo && o.Id == Offences[0]);

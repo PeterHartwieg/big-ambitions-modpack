@@ -97,6 +97,13 @@ var nightHooks = (IList<MethodBase>)night.GetMethod("ResolveHooks")!.Invoke(null
 Check(nightHooks.All(h => h != null), "unreviewed RLO still has the exact cricket target");
 night.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
 Check(!(bool)night.GetProperty("Available")!.GetValue(null)! && !Patched(nightHooks[0]), "unknown hash leaves RLO crickets unpatched");
+// The rent rule on a refused RLO 1.0 or later: RLO's living reads are not separated, so the rule leaves every rent alone.
+var rentRule = P("RentRebalance");
+rentRule.GetMethod("Start")!.Invoke(null, null);
+bool rloLine = rlo.GetName().Version!.Major >= 1;
+Check((bool)rentRule.GetProperty("Available")!.GetValue(null)! != rloLine,
+    rloLine ? "the rent rule reports unavailable on a refused RLO 1.0 or later" : "the rent rule stays available on a refused RLO before 1.0");
+rentRule.GetMethod("Stop")!.Invoke(null, null);
 
 // Factory diplomas through the patcher: refused before any hook, catalogue untouched.
 var careers = rlo.GetType("RealLifeOverhaul.Careers.StudyCatalogue", true).GetField("All")!;
@@ -208,6 +215,10 @@ int Hotfix()
     Feature("night chirping mute", (bool)night.GetProperty("Available")!.GetValue(null)!, nightHooks.All(h => h != null));
     var readers = (IList<MethodBase>)P("RentRebalance").GetMethod("ResolveLivingReaders")!.Invoke(null, new object[] { rlo })!;
     Check(readers.Count == 5 && readers.All(r => r != null) || broken != null, "the rent rule finds RLO's five living economy rent reads on this 1.0.x release");
+    var rentRule = P("RentRebalance");
+    rentRule.GetMethod("Start")!.Invoke(null, null);
+    Feature("rent rule", (bool)rentRule.GetProperty("Available")!.GetValue(null)!, readers.All(r => r != null));
+    rentRule.GetMethod("Stop")!.Invoke(null, null);
 
     var careers = rlo.GetType("RealLifeOverhaul.Careers.StudyCatalogue", true)!.GetField("All")!;
     var before = careers.GetValue(null);
@@ -223,6 +234,9 @@ int Hotfix()
     string diplomasOff = (string)P("Core.RloLine").GetField("DiplomasOff")!.GetRawConstantValue()!;
     Check(P("Patcher").GetMethod("StateOf")!.Invoke(patcher, new[] { target })!.ToString() == "OffOnRlo1" && (bool)P("RealLifeOverhaulPatch").GetProperty("OffOnRlo1")!.GetValue(null)!,
         "factory diplomas: the Mods page shows 'off on RLO 1.0'");
+    string companionState = (string)P("CompanionGame").GetMethod("TargetName", Any)!.Invoke(null, new[] { P("Patcher").GetMethod("StateOf")!.Invoke(patcher, new[] { target }) })!;
+    Check(new[] { "missing", "verified", "compatible", "refused", "incompatible" }.Contains(companionState) && companionState == "incompatible",
+        "companion v1: the stood-down RLO target reports 'incompatible', inside the contract's states");
     Check(LogSink.Lines.Count(l => l == diplomasOff) == 1 && !LogSink.Lines.Any(l => l.Contains("patching failed") || l.Contains("   at ")), "one 'off on RLO 1.0' log line, no stack trace");
     Check(!Patched(grab) && ReferenceEquals(before, careers.GetValue(null)) && !(bool)P("RealLifeOverhaulPatch").GetProperty("CoursesRegistered")!.GetValue(null)!, "factory diplomas stay off: no hook, RLO's catalogue unchanged");
     logHarmony.UnpatchAll(logHarmony.Id);

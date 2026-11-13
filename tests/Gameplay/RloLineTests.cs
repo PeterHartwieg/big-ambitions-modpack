@@ -68,6 +68,16 @@ public class RloLineTests
         Assert.False(RloLine.AllLivingReadersNeeded(new Version(0, 50, 0)));
     }
 
+    [Theory]
+    [InlineData(78f, 39, 39f)]
+    [InlineData(39f, 39, 39f)]
+    [InlineData(30f, 39, 30f)]
+    [InlineData(78f, 0, 78f)]
+    public void RoommatesPayOnNoMoreThanTheGameRent(float lease, int market, float expected)
+    {
+        Assert.Equal(expected, RloLine.RoommateLease(lease, market));
+    }
+
     [Fact]
     public void OffOnRlo1TextsAreClear()
     {

@@ -21,6 +21,7 @@ dotnet run --project "$REPO/tools/CompatibilityCheck" -- "$G" "$D" "$TARGETS"
 dotnet run --project "$REPO/tools/RloGateCheck" -- "$G" "$D" "$UNREVIEWED"
 dotnet run --project "$REPO/tools/RloGateCheck" -- "$G" "$D" "$R" --as-hotfix
 dotnet run --project "$REPO/tools/RloGateCheck" -- "$G" "$D" "$R" --as-hotfix OwnerFactor
+dotnet run --project "$REPO/tools/RloGateCheck" -- "$G" "$D" "$R" --as-hotfix DailyRent
 dotnet run --project "$REPO/tools/SettingsCheck" -- "$G" "$D" "$R" "$DR" "$RB" "$REPO/tools/export-series-settings.ps1"
 
 LEGACY="${BA_LEGACY_PATCH:-$REPO/../big-ambitions-hard-mode-patch/build/HardModePatch/HardModePatch.dll}"

@@ -228,6 +228,25 @@ if (rloPath != null)
                 rlo.GetType("RealLifeOverhaul.Uptown.LifeGame", true).GetMethod("ToResidents") };
             Check(playerPaid.All(m => m != null && Harmony.GetPatchInfo(m) == null), "rent rule: RLO's estate and Uptown code setting the player's own rent is not separated, so that rent stays scaled");
         }
+        // A rented home: RLO reads the stored lease for roommates. A lease signed with the rule on holds the scaled rent.
+        var roommateRent = rlo.GetType("RealLifeOverhaul.Roommates.RoommateGame", true).GetMethod("RentPerDay");
+        var weekly = rlo.GetType("RealLifeOverhaul.Roommates.RoommateRules", true).GetMethod("Weekly");
+        object home = Empty(registrationType);
+        registrationType.GetField("_buildingCached", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(home, flat);
+        float Roommate(float lease)
+        {
+            Set(home, "RentPerDay", lease);
+            var args = new object[] { home, null };
+            float input = (float)roommateRent.Invoke(null, args);
+            Check((float)Get(home, "RentPerDay") == lease && !(bool)args[1], "rent rule: the player's lease of " + lease + " is left as it was after the roommate read");
+            return input;
+        }
+        Check(Roommate(78f) == 39f && (int)weekly.Invoke(null, new object[] { Roommate(78f), 50 }) == (int)weekly.Invoke(null, new object[] { 39f, 50 }),
+            "rent rule: roommates on a scaled 78/day lease pay on the game's 39/day, not twice that");
+        Check(Roommate(30f) == 30f, "rent rule: roommates on a lease below the game's rent pay on the lease");
+        SetRule(false);
+        Check(Roommate(78f) == 78f, "rent rule off: roommates pay on the stored lease");
+        SetRule(true);
         Check(rlo1 ? readers.All(r => r != null) : readers.Where(r => r != null).Select(Name).SequenceEqual(new[] { "RoommateGame.RentPerDay", "DistrictGame.Figures" }),
             "rent rule: RLO's living economy rent reads resolve (" + string.Join(", ", readers.Where(r => r != null).Select(Name)) + ")");
         stubHarmony.UnpatchAll(stubHarmony.Id);
