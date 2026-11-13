@@ -48,6 +48,7 @@
   "hardmode_state_unverified": "Patched (new version, not yet reviewed)",
   "hardmode_state_incompatible": "Not patched: this version changed the methods the patch needs",
   "hardmode_state_refused": "Not patched: this version hasn't been reviewed yet; HART. Mod Pack needs an update",
+  "hardmode_state_off_on_rlo1": "Off on RLO 1.0: RLO uses the factory diploma course ids for its own courses",
   "hardmode_state_missing": "Not installed or not loaded",
   "hardmode_target_ambience": "Meaningful Ambience",
   "hardmode_ambience_scales_with_demand": "Decor adds a share of the customers the game sends",

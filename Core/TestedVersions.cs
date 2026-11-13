@@ -14,8 +14,8 @@ namespace HARTModPack.Core
     {
         static readonly Dictionary<string, string[]> Table = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            // Historical 0.45.0/0.49.0 retained; 0.50.0 reviewed offline on 23 October 2026, 1.0.5 on 13 November 2026.
-            { "RealLifeOverhaul", new[] { "0.45.0", "0.49.0", "0.50.0", "1.0.5" } },
+            // Historical 0.45.0/0.49.0 retained; 0.50.0 reviewed offline on 23 October 2026, 1.0.5 on 13 November 2026 as the exemplar of the 1.0.x line.
+            { "RealLifeOverhaul", new[] { "0.45.0", "0.49.0", "0.50.0", "1.0.5", "1.0.*" } },
             { "HARTRivalBalance", new[] { "0.2.0" } },
             { "CityPerformance", new[] { "0.5.0" } },
             { "CampaignObjectives", new[] { "1.2.0", "1.2.1" } },
@@ -52,7 +52,9 @@ namespace HARTModPack.Core
         public static VersionVerdict Check(string assemblyName, string exposedVersion)
         {
             if (string.IsNullOrEmpty(exposedVersion)) return VersionVerdict.NotExposed;
-            return For(assemblyName).Any(v => string.Equals(v, exposedVersion, StringComparison.OrdinalIgnoreCase))
+            return For(assemblyName).Any(v => v.EndsWith(".*", StringComparison.Ordinal)
+                    ? exposedVersion.StartsWith(v.Substring(0, v.Length - 1), StringComparison.OrdinalIgnoreCase)
+                    : string.Equals(v, exposedVersion, StringComparison.OrdinalIgnoreCase))
                 ? VersionVerdict.Tested
                 : VersionVerdict.Untested;
         }

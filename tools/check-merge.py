@@ -15,7 +15,8 @@ commit = '36e8eec'
 adapters = {'src/Options.cs', 'src/SeriesSettingsButton.cs', 'src/HappinessRebalance.cs'}
 # Explicit 1.1.0 follow-up deltas; preserve the rest of each imported implementation byte for byte.
 reviewed_updates = {
-    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91"')],
+    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91"'),
+        ('        Refused\n    }', '        Refused,\n        OffOnRlo1\n    }')],
     # RLO 1.0 uses the diploma ids for its own courses and adds a by-phone closure key (docs/rlo-compatibility.md, review of 1.0.5).
     'Core/FactoryDiplomas.cs': [('        public static bool GateReady(',
         "        // RLO's own catalogue, before HMP adds anything, already has a course under one of HMP's ids. RLO 1.0 uses\n"
@@ -41,8 +42,8 @@ reviewed_updates = {
         ('+ " and the hotel', '+ ", utility closure reasons, night chirping mute and the hotel'),
         ('|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled;', '|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled || Rules.MuteRloNightChirping.Enabled;')],
     'src/UtilityClosureReasonPatch.cs': [
-        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91" }'),
-        ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0, 0.50.0 and 1.0.5')],
+        ('if (!TargetGate.Reviewed(Patcher.HashOf(a), new[] { "4f82b4f88f919178" }))', 'if (!RloLine.Accepts(Patcher.HashOf(a), new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91" }, a.GetName().Version))'),
+        ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0, 0.50.0 and 1.0.x')],
 }
 # Exact companion follow-up sources, reviewed as ordinary diffs. All other imported sources and defaults stay pinned.
 companion_imports = json.loads((root / 'tools/companion-import-digests.json').read_text())
@@ -87,7 +88,7 @@ old_locale = json.loads(subprocess.check_output(['git', '-C', str(legacy), 'show
 for key, value in old_locale.items():
     assert locale[key] == value.replace('HART. Mod Pack Patch', 'HART. Mod Pack').replace('HART. Mode Patch', 'HART. Mod Pack'), key
 assert all(isinstance(m['workshopId'], int) for m in manifest['members'])
-assert next(m for m in manifest['members'] if m['assembly'] == 'RealLifeOverhaul')['testedVersions'][-1] == '1.0.5'
+assert next(m for m in manifest['members'] if m['assembly'] == 'RealLifeOverhaul')['testedVersions'][-2:] == ['1.0.5', '1.0.*']
 print('PASS series roster agrees; current release pins and numeric Workshop IDs; 13 required, 3 optional; imported locale labels retained')
 
 text = (root / 'workshop/DESCRIPTION.bbcode.txt').read_text()

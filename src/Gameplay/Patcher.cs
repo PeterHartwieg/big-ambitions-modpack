@@ -144,6 +144,11 @@ namespace HardModePatch
                 states[target.Key] = TargetState.Refused;
                 return;
             }
+            if (patch is RealLifeOverhaulPatch && RealLifeOverhaulPatch.StandDown(assembly))
+            {
+                states[target.Key] = TargetState.OffOnRlo1;
+                return;
+            }
             IList<MethodBase> hooks;
             try { hooks = patch.ResolveHooks(assembly); }
             catch (Exception ex) { Log.Error(target.Title + ": hook lookup failed, left unpatched: " + ex); states[target.Key] = TargetState.Incompatible; return; }

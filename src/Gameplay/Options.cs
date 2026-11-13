@@ -107,6 +107,7 @@ namespace HardModePatch
                 case TargetState.Unverified: return "hardmode_state_unverified";
                 case TargetState.Incompatible: return "hardmode_state_incompatible";
                 case TargetState.Refused: return "hardmode_state_refused";
+                case TargetState.OffOnRlo1: return "hardmode_state_off_on_rlo1";
                 default: return "hardmode_state_missing";
             }
         }

@@ -19,7 +19,7 @@ Undecided rows of the RLO triage keep RLO's default, and so does every option no
 | HART. Mod Pack | `rent_rebalance` | 0 | 0 | running costs replace the flat rent multiplier |
 | HART. Mod Pack | `happiness_rebalance` | 1 | 0 | series rule |
 | HART. Mod Pack | `owner_job_full_pay` | 1 | 0 | series rule |
-| HART. Mod Pack | `factory_diplomas` | 1 | 0 | series rule |
+| HART. Mod Pack | `factory_diplomas` (left as it is on RLO 1.0, where the diplomas are off) | 1 | 0 | series rule |
 | HART. Mod Pack | `equipment_utilities` | 1 | 0 | series rule |
 | HART. Mod Pack | `office_it` | 1 | 0 | series rule |
 | HART. Thriving Rivals | `rival_preset` | 1 | 1 | preset Normal (0 Easy, 1 Normal, 2 Hard) |
@@ -39,7 +39,7 @@ Undecided rows of the RLO triage keep RLO's default, and so does every option no
 | Real Life Overhaul | `accident_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `crime_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `roadside_checks` | 0 | 1 | triage |
-| Real Life Overhaul | `player_offences` (0.50.0 and earlier; RLO 1.0 split it into eight `offence_*` toggles, so the button skips it on 1.0.5) | 0 | 1 | triage |
+| Real Life Overhaul | `player_offences` (0.50.0 and earlier; on RLO 1.0 the button writes the eight `offence_*` toggles to 0 instead) | 0 | 1 | triage |
 | Real Life Overhaul | `street_event_frequency` | 1 | 4 (1 to 10) | triage: one day in twelve |
 | Real Life Overhaul | `fire_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `social_media_notices` | 0 | 1 | triage |

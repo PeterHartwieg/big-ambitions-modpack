@@ -60,7 +60,12 @@ namespace HardModePatch
             return Feature(true, available, available ? "active" : "unavailable", available ? null : "hooks-unavailable");
         }
         static bool Effective(Rule rule) { return Equals(State(rule)["effective"], true); }
-        static string TargetName(TargetState state) { return state == TargetState.Unverified ? "compatible" : state.ToString().ToLowerInvariant(); }
+        // The v1 contract has no "off on RLO 1.0" state; it reports as before, incompatible.
+        internal static string TargetName(TargetState state)
+        {
+            if (state == TargetState.Unverified) return "compatible";
+            return state == TargetState.OffOnRlo1 ? "incompatible" : state.ToString().ToLowerInvariant();
+        }
         static Dictionary<string, object> Runtime(int rloCount)
         {
             var rules = Row();

@@ -8,10 +8,37 @@ using HarmonyLib;
 // diploma records are held. Run it with a copy of a released RealLifeOverhaul.dll whose bytes differ from every
 // reviewed build (for example the release with one byte appended), so the member shapes match and only the review is
 // missing. No game launched, engine methods called or save read; game objects are plain uninitialised containers.
-if (args.Length != 3)
+if (args.Length < 3 || args.Length > 5 || (args.Length > 3 && args[3] != "--as-hotfix"))
 {
-    Console.Error.WriteLine("Usage: RloGateCheck <game Managed folder> <HARTModPack.dll> <unreviewed RealLifeOverhaul.dll>");
+    Console.Error.WriteLine("Usage: RloGateCheck <game Managed folder> <HARTModPack.dll> <unreviewed RealLifeOverhaul.dll> [--as-hotfix [member to break]]");
     return 2;
+}
+string rloPath = Path.GetFullPath(args[2]);
+bool hotfix = args.Length > 3;
+string broken = args.Length > 4 ? args[4] : null;
+if (hotfix)
+{
+    var bytes = File.ReadAllBytes(rloPath);
+    using (var pe = new System.Reflection.PortableExecutable.PEReader(new MemoryStream(bytes)))
+    {
+        var md = System.Reflection.Metadata.PEReaderExtensions.GetMetadataReader(pe);
+        int start = pe.PEHeaders.MetadataStartOffset;
+        int row = start + System.Reflection.Metadata.Ecma335.MetadataReaderExtensions.GetTableMetadataOffset(md, System.Reflection.Metadata.Ecma335.TableIndex.Assembly);
+        int build = BitConverter.ToUInt16(bytes, row + 8);
+        BitConverter.GetBytes((ushort)(build + 1)).CopyTo(bytes, row + 8);
+        if (broken != null)
+        {
+            int heap = start + System.Reflection.Metadata.Ecma335.MetadataReaderExtensions.GetHeapMetadataOffset(md, System.Reflection.Metadata.Ecma335.HeapIndex.String);
+            int size = System.Reflection.Metadata.Ecma335.MetadataReaderExtensions.GetHeapSize(md, System.Reflection.Metadata.Ecma335.HeapIndex.String);
+            var name = System.Text.Encoding.UTF8.GetBytes("\0" + broken + "\0");
+            int at = bytes.AsSpan(heap, size).IndexOf(name);
+            if (at < 0) throw new Exception("FAIL " + broken + " is not a member name in this RLO");
+            bytes[heap + at + name.Length - 2] = (byte)'X';
+        }
+    }
+    rloPath = Path.Combine(Path.GetTempPath(), "rlogatecheck-" + Environment.ProcessId, "RealLifeOverhaul.dll");
+    Directory.CreateDirectory(Path.GetDirectoryName(rloPath)!);
+    File.WriteAllBytes(rloPath, bytes);
 }
 string managed = Path.GetFullPath(args[0]);
 AssemblyLoadContext.Default.Resolving += (context, name) =>
@@ -22,7 +49,7 @@ AssemblyLoadContext.Default.Resolving += (context, name) =>
 };
 var patch = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(args[1]));
 var game = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine(managed, "BigAmbitions.dll"));
-var rlo = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(args[2]));
+var rlo = AssemblyLoadContext.Default.LoadFromAssemblyPath(rloPath);
 const BindingFlags Any = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 int checks = 0;
 void Check(bool ok, string name)
@@ -37,6 +64,11 @@ harmony.Patch(game.GetType("UI.Notification.Notifications", true).GetMethods().S
     prefix: new HarmonyMethod(typeof(NoticeSink).GetMethod("Capture")));
 
 var gate = P("RloGate");
+if (hotfix)
+{
+    try { return Hotfix(); }
+    finally { Directory.Delete(Path.GetDirectoryName(rloPath)!, true); }
+}
 Check(!(bool)gate.GetMethod("Accepts").Invoke(null, new object[] { rlo }), "an RLO build with no reviewed hash is refused");
 Check((bool)gate.GetProperty("Refused").GetValue(null), "the gate reports the refusal");
 string message = (string)gate.GetProperty("Message").GetValue(null);
@@ -65,6 +97,13 @@ var nightHooks = (IList<MethodBase>)night.GetMethod("ResolveHooks")!.Invoke(null
 Check(nightHooks.All(h => h != null), "unreviewed RLO still has the exact cricket target");
 night.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
 Check(!(bool)night.GetProperty("Available")!.GetValue(null)! && !Patched(nightHooks[0]), "unknown hash leaves RLO crickets unpatched");
+// The rent rule on a refused RLO 1.0 or later: RLO's living reads are not separated, so the rule leaves every rent alone.
+var rentRule = P("RentRebalance");
+rentRule.GetMethod("Start")!.Invoke(null, null);
+bool rloLine = rlo.GetName().Version!.Major >= 1;
+Check((bool)rentRule.GetProperty("Available")!.GetValue(null)! != rloLine,
+    rloLine ? "the rent rule reports unavailable on a refused RLO 1.0 or later" : "the rent rule stays available on a refused RLO before 1.0");
+rentRule.GetMethod("Stop")!.Invoke(null, null);
 
 // Factory diplomas through the patcher: refused before any hook, catalogue untouched.
 var careers = rlo.GetType("RealLifeOverhaul.Careers.StudyCatalogue", true).GetField("All")!;
@@ -145,6 +184,73 @@ gameType.GetField("Day")!.SetValue(save, 32);
 Check(Loaded() && data["hardmodepatch:factory_diplomas_held"] == held && NoticeSink.Keys.Count == 1, "after RLO resaves, the hold stays as it was and the notice isn't repeated");
 Console.WriteLine($"ALL {checks} RLO GATE CHECKS PASSED (offline; the in-game notice and a real save remain unverified)");
 return 0;
+
+int Hotfix()
+{
+    var version = rlo.GetName().Version!;
+    Check(version.Major == 1 && version.Minor == 0 && version.Build != 5, "the copy reports Real Life Overhaul " + version.ToString(3) + ", a 1.0.x release other than the reviewed 1.0.5");
+    Check((bool)gate.GetMethod("Accepts")!.Invoke(null, new object[] { rlo })! && !(bool)gate.GetProperty("Refused")!.GetValue(null)! && gate.GetProperty("Message")!.GetValue(null) == null,
+        "a 1.0.x release with an unknown hash is accepted by version, with no refusal message");
+    var off = new List<string>();
+    void Feature(string name, bool available, bool hooksHold)
+    {
+        Check(available == hooksHold, name + (hooksHold ? " checks its own hooks and runs" : " finds its hooks changed and stays off on its own"));
+        if (!available) off.Add(name);
+    }
+    var costs = P("RunningCostsPatch");
+    var costHooks = (IList<MethodBase>)costs.GetMethod("ResolveHooks")!.Invoke(null, new object[] { rlo })!;
+    costs.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
+    Feature("running costs", (bool)costs.GetProperty("Available")!.GetValue(null)!, costHooks.All(h => h != null) && (bool)costs.GetMethod("NeedsNetReadsList")!.Invoke(null, new object[] { costHooks[2] })!);
+    var closure = P("UtilityClosureReasonPatch");
+    var closureHooks = (IList<MethodBase>)closure.GetMethod("ResolveHooks")!.Invoke(null, new object[] { rlo })!;
+    closure.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
+    Feature("utility closure reasons", (bool)closure.GetProperty("Available")!.GetValue(null)!, closureHooks.All(h => h != null));
+    var pay = P("OwnerJobPay");
+    pay.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
+    var factor = rlo.GetType("RealLifeOverhaul.CareerCatalogue", true)!.GetMethod("OwnerFactor", new[] { typeof(int) });
+    Feature("owner job pay", (bool)pay.GetProperty("Available")!.GetValue(null)!, factor != null);
+    var night = P("NightChirpingPatch");
+    var nightHooks = (IList<MethodBase>)night.GetMethod("ResolveHooks")!.Invoke(null, new object[] { rlo })!;
+    night.GetMethod("TryPatch", Any)!.Invoke(null, new object[] { rlo });
+    Feature("night chirping mute", (bool)night.GetProperty("Available")!.GetValue(null)!, nightHooks.All(h => h != null));
+    var readers = (IList<MethodBase>)P("RentRebalance").GetMethod("ResolveLivingReaders")!.Invoke(null, new object[] { rlo })!;
+    Check(readers.Count == 5 && readers.All(r => r != null) || broken != null, "the rent rule finds RLO's five living economy rent reads on this 1.0.x release");
+    var rentRule = P("RentRebalance");
+    rentRule.GetMethod("Start")!.Invoke(null, null);
+    Feature("rent rule", (bool)rentRule.GetProperty("Available")!.GetValue(null)!, readers.All(r => r != null));
+    rentRule.GetMethod("Stop")!.Invoke(null, null);
+
+    var careers = rlo.GetType("RealLifeOverhaul.Careers.StudyCatalogue", true)!.GetField("All")!;
+    var before = careers.GetValue(null);
+    var bridge = Activator.CreateInstance(P("RealLifeOverhaulPatch"))!;
+    var patchArray = Array.CreateInstance(P("ITargetPatch"), 1); patchArray.SetValue(bridge, 0);
+    var patcher = Activator.CreateInstance(P("Patcher"), new Harmony("hartmodpack.gameplay"), patchArray)!;
+    var logs = typeof(LogSink).GetMethod("Capture")!;
+    var logHarmony = new Harmony("rlogatecheck.log");
+    foreach (var level in new[] { "Info", "Warn", "Error" }) logHarmony.Patch(patch.GetType("HardModePatch.Log", true)!.GetMethod(level, Any)!, prefix: new HarmonyMethod(logs));
+    P("Patcher").GetMethod("Install", Any)!.Invoke(patcher, new[] { bridge, rlo });
+    var target = P("Core.Targets").GetField("RealLifeOverhaul")!.GetValue(null);
+    var grab = game.GetType("Controllers.PlayerItemPurchaser", true)!.GetMethod("GrabItem")!;
+    string diplomasOff = (string)P("Core.RloLine").GetField("DiplomasOff")!.GetRawConstantValue()!;
+    Check(P("Patcher").GetMethod("StateOf")!.Invoke(patcher, new[] { target })!.ToString() == "OffOnRlo1" && (bool)P("RealLifeOverhaulPatch").GetProperty("OffOnRlo1")!.GetValue(null)!,
+        "factory diplomas: the Mods page shows 'off on RLO 1.0'");
+    string companionState = (string)P("CompanionGame").GetMethod("TargetName", Any)!.Invoke(null, new[] { P("Patcher").GetMethod("StateOf")!.Invoke(patcher, new[] { target }) })!;
+    Check(new[] { "missing", "verified", "compatible", "refused", "incompatible" }.Contains(companionState) && companionState == "incompatible",
+        "companion v1: the stood-down RLO target reports 'incompatible', inside the contract's states");
+    Check(LogSink.Lines.Count(l => l == diplomasOff) == 1 && !LogSink.Lines.Any(l => l.Contains("patching failed") || l.Contains("   at ")), "one 'off on RLO 1.0' log line, no stack trace");
+    Check(!Patched(grab) && ReferenceEquals(before, careers.GetValue(null)) && !(bool)P("RealLifeOverhaulPatch").GetProperty("CoursesRegistered")!.GetValue(null)!, "factory diplomas stay off: no hook, RLO's catalogue unchanged");
+    logHarmony.UnpatchAll(logHarmony.Id);
+    if (broken != null) Check(off.Count == 1, "only " + string.Join(", ", off) + " is off after breaking " + broken + "; the rest of the RLO integration runs");
+    else Check(off.Count == 0, "every feature runs on this 1.0.x release");
+    Console.WriteLine($"ALL {checks} RLO 1.0.x HOTFIX CHECKS PASSED (offline; a real hotfix in the game remains unverified)");
+    return 0;
+}
+
+public static class LogSink
+{
+    public static readonly List<string> Lines = new();
+    public static bool Capture(string message) { Lines.Add(message); return false; }
+}
 
 public static class NoticeSink
 {

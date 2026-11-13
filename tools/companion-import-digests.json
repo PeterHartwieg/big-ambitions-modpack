@@ -1,7 +1,9 @@
 {
   "Core/DiplomaHold.cs": "0c2dff6d89bb3d9d34792909c9e5d3f6a13d5b2a3f4a6ef31b4ffcf3f4cded84",
-  "src/RloGate.cs": "c4c95cd59ab3a22896593bebd6c60ff49e1850ee34698b96c4918130e339402f",
-  "src/RealLifeOverhaulPatch.cs": "a81a1bc74108a1187685a709c9b31ec6e235f466250ba4b1f492d01511e7a853",
+  "src/RloGate.cs": "4e9e0ffa8a9a849876d977384c7bfedc116caa99131cbd6b7a04feac3a3b0fb8",
+  "src/RealLifeOverhaulPatch.cs": "d2e2aca0c2904580123073e83e4df7e5f5c8b19f2a7253c826aa092a4fabfe22",
   "src/RunningCostsPatch.cs": "c64ae954511390ee7063d692706d8b60a2cd45ef127ab2597b9125a17ed462e8",
-  "src/InternetCafePatch.cs": "80246ecbaa32744e21db3c39dd96b393014f716738889d5b3eb762562b60087d"
+  "src/InternetCafePatch.cs": "80246ecbaa32744e21db3c39dd96b393014f716738889d5b3eb762562b60087d",
+  "src/Patcher.cs": "76958d165de54298760ca0dad513931bf7ae7fa1909d4aa027481a226addd3ce",
+  "src/RentRebalance.cs": "516fdc069a576708e9aabf75a46a32d2e63667d6563b523da5577c523a9daf48"
 }

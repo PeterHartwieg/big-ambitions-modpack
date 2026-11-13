@@ -204,6 +204,63 @@ if (rloPath != null)
     Check((bool)state[1] && Rent("ba:buildingtype_retail", 34) == 34, "a rival's weekly estimate keeps the game's rent");
     finalizer.Invoke(null, new object[] { null, true });
     Check(Rent("ba:buildingtype_retail", 34) == 102, "the scaled rent returns after the rival estimate");
+    if (rloPath != null)
+    {
+        var rlo = AppDomain.CurrentDomain.GetAssemblies().Single(a => a.GetName().Name == "RealLifeOverhaul");
+        var readers = (IList<MethodBase>)rent.GetMethod("ResolveLivingReaders")?.Invoke(null, new object[] { rlo }) ?? new MethodBase[0];
+        bool rlo1 = rlo.GetName().Version.Major >= 1;
+        string Name(MethodBase m) => m.DeclaringType.Name + "." + m.Name;
+        var marketRent = buildingType.GetMethod("GetBuildingDailyMarketRent", Type.EmptyTypes);
+        var stubHarmony = new Harmony("scenariocheck.rent.rlo");
+        stubHarmony.Patch(marketRent, prefix: new HarmonyMethod(typeof(RentStub).GetMethod("Prefix")), postfix: new HarmonyMethod(postfix));
+        rent.GetMethod("ApplyLivingReaders")?.Invoke(null, new object[] { stubHarmony, readers });
+        object flat = Empty(buildingType);
+        Set(flat, "BuildingType", "ba:buildingtype_residential");
+        Check((int)marketRent.Invoke(flat, null) == 78, "rent rule: the rent the player pays is still scaled with RLO loaded");
+        if (rlo1)
+        {
+            var population = rlo.GetType("RealLifeOverhaul.Population.PopulationGame", true).GetMethod("Rent", BindingFlags.Static | BindingFlags.NonPublic);
+            Check((int)population.Invoke(null, new[] { flat }) == 3900, "rent rule: an RLO household's market rent reads the game's rent, not the scaled one");
+            Check((int)marketRent.Invoke(flat, null) == 78, "rent rule: the scaled rent returns after the household read");
+            var plots = rlo.GetType("RealLifeOverhaul.Construction.BuildModeGame", true).GetMethod("DailyRent");
+            Check((long)plots.Invoke(null, new object[] { null, 0 }) == 0 && (int)marketRent.Invoke(flat, null) == 78, "rent rule: a living read that returns early leaves the player's rent scaled");
+            var playerPaid = new[] { rlo.GetType("RealLifeOverhaul.Economy.EstateGame", true).GetMethod("Release", BindingFlags.Static | BindingFlags.NonPublic),
+                rlo.GetType("RealLifeOverhaul.Uptown.LifeGame", true).GetMethod("ToResidents") };
+            Check(playerPaid.All(m => m != null && Harmony.GetPatchInfo(m) == null), "rent rule: RLO's estate and Uptown code setting the player's own rent is not separated, so that rent stays scaled");
+        }
+        // A rented home: RLO reads the stored lease for roommates. A lease signed with the rule on holds the scaled rent.
+        var roommateRent = rlo.GetType("RealLifeOverhaul.Roommates.RoommateGame", true).GetMethod("RentPerDay");
+        var weekly = rlo.GetType("RealLifeOverhaul.Roommates.RoommateRules", true).GetMethod("Weekly");
+        object home = Empty(registrationType);
+        registrationType.GetField("_buildingCached", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(home, flat);
+        float Roommate(float lease)
+        {
+            Set(home, "RentPerDay", lease);
+            var args = new object[] { home, null };
+            float input = (float)roommateRent.Invoke(null, args);
+            Check((float)Get(home, "RentPerDay") == lease && !(bool)args[1], "rent rule: the player's lease of " + lease + " is left as it was after the roommate read");
+            return input;
+        }
+        Check(Roommate(78f) == 39f && (int)weekly.Invoke(null, new object[] { Roommate(78f), 50 }) == (int)weekly.Invoke(null, new object[] { 39f, 50 }),
+            "rent rule: roommates on a scaled 78/day lease pay on the game's 39/day, not twice that");
+        Check(Roommate(30f) == 30f, "rent rule: roommates on a lease below the game's rent pay on the lease");
+        foreach (var (stub, what) in new[] { ("Skip", "skips"), ("Throw", "throws") })
+        {
+            var earlier = new Harmony("scenariocheck.rent.earlier");
+            earlier.Patch(roommateRent, prefix: new HarmonyMethod(typeof(RoommateStub).GetMethod(stub)) { priority = Priority.First });
+            Set(home, "RentPerDay", 78f);
+            try { roommateRent.Invoke(null, new object[] { home, null }); }
+            catch (TargetInvocationException) { }
+            finally { earlier.UnpatchAll(earlier.Id); }
+            Check((float)Get(home, "RentPerDay") == 78f, "rent rule: the 78/day lease stays when an earlier roommate prefix " + what);
+        }
+        SetRule(false);
+        Check(Roommate(78f) == 78f, "rent rule off: roommates pay on the stored lease");
+        SetRule(true);
+        Check(rlo1 ? readers.All(r => r != null) : readers.Where(r => r != null).Select(Name).SequenceEqual(new[] { "RoommateGame.RentPerDay", "DistrictGame.Figures" }),
+            "rent rule: RLO's living economy rent reads resolve (" + string.Join(", ", readers.Where(r => r != null).Select(Name)) + ")");
+        stubHarmony.UnpatchAll(stubHarmony.Id);
+    }
     SetRule(false);
 }
 // Happiness rebalance: hooks resolve and apply, values set and restored, outside grants, no home in a hotel.
@@ -300,4 +357,14 @@ public static class MenuHappinessProbe
 {
     public static int Calls;
     public static bool Prefix() { Calls++; return false; }
+}
+
+public static class RentStub
+{
+    public static bool Prefix(ref int __result) { __result = 39; return false; }
+}
+public static class RoommateStub
+{
+    public static bool Skip(ref float __result) { __result = 0f; return false; }
+    public static void Throw() { throw new InvalidOperationException("earlier prefix"); }
 }
