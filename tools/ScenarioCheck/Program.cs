@@ -244,7 +244,6 @@ if (rloPath != null)
         Check(Roommate(78f) == 39f && (int)weekly.Invoke(null, new object[] { Roommate(78f), 50 }) == (int)weekly.Invoke(null, new object[] { 39f, 50 }),
             "rent rule: roommates on a scaled 78/day lease pay on the game's 39/day, not twice that");
         Check(Roommate(30f) == 30f, "rent rule: roommates on a lease below the game's rent pay on the lease");
-        // An earlier prefix that skips or throws skips ours, but our finalizer still runs: the lease must stay.
         foreach (var (stub, what) in new[] { ("Skip", "skips"), ("Throw", "throws") })
         {
             var earlier = new Harmony("scenariocheck.rent.earlier");

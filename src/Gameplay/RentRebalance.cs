@@ -152,7 +152,6 @@ namespace HardModePatch
         // A class of its own: Harmony keeps one __state type per patch class.
         static class Roommates
         {
-            // Null means this prefix left the lease alone. It stays null when an earlier prefix skips or throws.
             static void Prefix(BuildingRegistration home, out float? __state)
             {
                 __state = null;
