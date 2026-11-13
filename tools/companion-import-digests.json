@@ -1,6 +1,6 @@
 {
-  "Core/DiplomaHold.cs": "79d069f083a782846f4657b8b475cfaf814edea2c93953f26689af9904040531",
-  "src/RloGate.cs": "070a7958f313af95f25cf3c99682833868dd2d28f8eb59c858ed8a7bce2ce443",
+  "Core/DiplomaHold.cs": "0c2dff6d89bb3d9d34792909c9e5d3f6a13d5b2a3f4a6ef31b4ffcf3f4cded84",
+  "src/RloGate.cs": "c4c95cd59ab3a22896593bebd6c60ff49e1850ee34698b96c4918130e339402f",
   "src/RealLifeOverhaulPatch.cs": "a81a1bc74108a1187685a709c9b31ec6e235f466250ba4b1f492d01511e7a853",
   "src/RunningCostsPatch.cs": "c64ae954511390ee7063d692706d8b60a2cd45ef127ab2597b9125a17ed462e8",
   "src/InternetCafePatch.cs": "80246ecbaa32744e21db3c39dd96b393014f716738889d5b3eb762562b60087d"

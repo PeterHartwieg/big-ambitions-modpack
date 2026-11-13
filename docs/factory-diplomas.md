@@ -2,7 +2,7 @@
 
 > Imported design and historical evidence from HardModePatch 0.5.0. Its implementation now ships in HART. Mod Pack 1.1.1 under `Core/Gameplay` and `src/Gameplay`. Original version, namespace and save-key references below are historical; current migration and acceptance status is in [merge-1.1.0.md](merge-1.1.0.md). City Performance retains performance ownership.
 
-> RLO 1.0 uses course ids 18, 19 and 34 for its own building-trade courses (bricklaying, the crane ticket, construction management). On RLO 1.0.5 these diplomas are not added and machine sales stay unrestricted; see [the review of 1.0.5](rlo-compatibility.md#review-of-105-13-november-2026).
+> RLO 1.0 uses course ids 18, 19 and 34 for its own building-trade courses (bricklaying, the crane ticket, construction management). On RLO 1.0.5 these diplomas are not added and machine sales stay unrestricted. A save's diploma records from RLO 0.50.0 stay under those ids, so RLO 1.0 reads them as its own courses; the pack keeps a copy of the originals in its hold. See [the review of 1.0.5](rlo-compatibility.md#review-of-105-13-november-2026).
 
 `factory_diplomas` is off by default under Settings > Mods > HART. Mode Patch > Real Life Overhaul: advanced factories. Enable it for diploma requirements on new machine purchases. Machines already owned keep working. The Laser Cutting Machine and Consumer Goods Assembly Machine have no new requirement; the game's own manufacturing course is unchanged.
 

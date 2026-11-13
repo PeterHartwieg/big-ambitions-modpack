@@ -115,18 +115,26 @@ namespace HardModePatch
             // RLO can't read our courses: an unreviewed build, or a reviewed one whose catalogue didn't take them.
             if (refused || !RealLifeOverhaulPatch.CoursesRegistered)
             {
-                // RLO 1.0 has courses of its own under HMP's ids, so the records there are RLO's: nothing is held or
-                // given back, and RLO's line and any earlier hold stay as they are.
+                // RLO 1.0 has courses of its own under HMP's ids, so the records it wrote there are RLO's. Only records
+                // written before RLO took the ids (HMP's, from RLO 0.50.0 and earlier) are copied to the hold; RLO's
+                // line stays as it is and nothing is given back.
                 if (RealLifeOverhaulPatch.IdsTakenBy(rlo))
                 {
-                    if (!idsTakenLogged)
+                    string legacy = DiplomaHold.KeepWrittenBeforeRlo1(line, held, game.Day);
+                    if (legacy != null && legacy != held)
+                    {
+                        data[DiplomaHold.HoldKey] = legacy;
+                        Log.Info("Factory diplomas: " + DiplomaHold.Count(legacy) + " diploma record(s) written before Real Life Overhaul 1.0 held. This RLO uses course ids "
+                            + string.Join(", ", DiplomaHold.Ids.Select(i => i.ToString()).ToArray()) + " for courses of its own and reads those records as its own courses.");
+                    }
+                    else if (!idsTakenLogged)
                     {
                         idsTakenLogged = true;
                         Log.Info("Factory diplomas: this Real Life Overhaul uses course ids " + string.Join(", ", DiplomaHold.Ids.Select(i => i.ToString()).ToArray())
-                            + " for courses of its own, so its records there are RLO's. Nothing is held or given back" + (held != null ? "; the save's earlier hold stays as it is." : "."));
+                            + " for courses of its own, so its records there are RLO's. Nothing new is held and nothing is given back" + (held != null ? "; the save's earlier hold stays as it is." : "."));
                     }
-                    if (refused && RloRulesOn()) Notice();
-                    return refused;
+                    if (refused && (legacy != null || RloRulesOn())) Notice();
+                    return legacy != null || refused;
                 }
                 string kept = DiplomaHold.Keep(line, held, game.Day);
                 if (kept != null && kept != held)

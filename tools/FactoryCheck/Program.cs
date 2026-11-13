@@ -108,8 +108,15 @@ if (originalIds.Intersect(new[] { 18, 19, 34 }).Any())
         "reviewed RLO 1.0 on save load: RLO's own records are left as they are and nothing is held");
     const string earlier = "v=1~c:12#19|0|2|3|3|8|1|3900|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1";
     modData["hardmodepatch:factory_diplomas_held"] = earlier;
-    Check(!(bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData["reallife:careers"] == own
+    Check((bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData["reallife:careers"] == own
         && modData["hardmodepatch:factory_diplomas_held"] == earlier, "an earlier hold is neither given back nor changed");
+    // A 0.50.0 save with HMP diplomas (24-field records): RLO 1.0 reads them as its own courses, so HMP holds a copy.
+    string legacy = "v=1~h:7|1|9|0|0|0|1|0|0|-1|0~s:3|5000|5000|8~c:19|0|2|3|3|8|1|3900|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1"
+        + "~r:18|0|1|8|8|7|4|3600|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1~w:~q:~t:-1|0";
+    modData.Clear(); modData["reallife:careers"] = legacy;
+    Check((bool)gateType.GetMethod("OnGameLoaded", Any)!.Invoke(null, new[] { save })! && modData["reallife:careers"] == legacy
+        && modData.TryGetValue("hardmodepatch:factory_diplomas_held", out var legacyHeld) && legacyHeld.Contains("60#19|0|2|") && legacyHeld.Contains("60#18|0|1|"),
+        "reviewed RLO 1.0: HMP's records from a 0.50.0 save are held, RLO's line unchanged");
     Option(false);
     Console.WriteLine($"{checks} offline factory checks passed; Unity UI, class play and actual saves still need an in-game check.");
     return 0;

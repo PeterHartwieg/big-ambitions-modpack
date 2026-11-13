@@ -115,15 +115,24 @@ Check(Loaded() && data["reallife:careers"] == line, "city loaded: RLO's careers 
 var hold = P("Core.DiplomaHold");
 if (taken)
 {
-    Check(data.Count == 1 && NoticeSink.Keys.Count == 0, "RLO's own records under ids 18, 19 and 34 are not held, and no RLO rule is on: no notice");
-    const string earlier = "v=1~c:12#19|0|2|3|3|8|1|3900|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1";
-    data["hardmodepatch:factory_diplomas_held"] = earlier;
+    // The save above is a 0.50.0 save with HMP diplomas (24-field records). RLO 1.0 reads them as its own courses,
+    // so HMP keeps a copy of the originals; RLO's line is left as it is.
+    Check(data.TryGetValue("hardmodepatch:factory_diplomas_held", out var kept) && (int)hold.GetMethod("Count")!.Invoke(null, new object[] { kept })! == 2
+        && !kept.Contains("5|0|2|1") && kept.Contains("31#19|") && kept.Contains("31#18|"), "HMP's records from a 0.50.0 save are held with the day, nothing else");
+    Check(NoticeSink.Keys.SequenceEqual(new[] { "hardmode_rlo_unreviewed" }), "one in-game notice says so");
+    // RLO 1.0.5 reads and saves the line: the records come back with 25 fields, as its own courses.
+    var store = rlo.GetType("RealLifeOverhaul.Careers.CareersStore", true)!;
+    string resaved = (string)store.GetMethod("Write")!.Invoke(null, new[] { read })!;
+    Check(resaved.Contains("~c:19|") && resaved.Contains("~r:18|"), "RLO 1.0.5 keeps and rewrites those records as its own courses");
+    data["reallife:careers"] = resaved;
     gameType.GetField("Day")!.SetValue(save, 32);
-    Check(Loaded() && data["reallife:careers"] == line && data["hardmodepatch:factory_diplomas_held"] == earlier && NoticeSink.Keys.Count == 0,
-        "an earlier hold and RLO's line both stay as they are");
-    muteRule.GetType().GetMethod("Set")!.Invoke(muteRule, new object[] { true });
-    Check(Loaded() && Loaded() && NoticeSink.Keys.SequenceEqual(new[] { "hardmode_rlo_unreviewed" }) && data.Count == 2,
-        "with an RLO rule on, one in-game notice says the rules are off, still nothing held");
+    Check(Loaded() && data["reallife:careers"] == resaved && data["hardmodepatch:factory_diplomas_held"] == kept && NoticeSink.Keys.Count == 1,
+        "after RLO 1.0.5 resaves, the hold keeps the originals unchanged and the notice isn't repeated");
+    // A save started under RLO 1.0 with its own bricklaying course and crane ticket.
+    var own = new Dictionary<string, string> { { "reallife:careers", "v=1~h:7|1|9~c:18|0|2|3|3|8|1|2400|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|-1|0"
+        + "~r:19|0|1|3|3|7|4|650|0|0|0|0|2|20|23|0|71|2|23|0|0|0|0|-1|0~w:~q:~t:-1|0" } };
+    gameType.GetField("modData")!.SetValue(save, own);
+    Check(Loaded() && own.Count == 1, "RLO 1.0's own records under ids 18, 19 and 34 are never held");
     Console.WriteLine($"ALL {checks} RLO GATE CHECKS PASSED (offline; the in-game notice and a real save remain unverified)");
     return 0;
 }
