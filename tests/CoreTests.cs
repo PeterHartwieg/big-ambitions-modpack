@@ -70,7 +70,7 @@ public class VersionTests
     [Fact]
     public void Tested_table_is_pinned_for_this_release()
     {
-        Assert.Equal(new[] { "0.45.0", "0.49.0", "0.50.0" }, TestedVersions.For("RealLifeOverhaul"));
+        Assert.Equal(new[] { "0.45.0", "0.49.0", "0.50.0", "1.0.5" }, TestedVersions.For("RealLifeOverhaul"));
         Assert.Empty(TestedVersions.For("HardModePatch"));
         Assert.Equal(new[] { "0.5.0" }, TestedVersions.For("CityPerformance"));
         Assert.Equal(new[] { "0.2.0" }, TestedVersions.For("HARTRivalBalance"));

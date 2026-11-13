@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using HardModePatch.Core;
 using HarmonyLib;
@@ -17,7 +18,7 @@ namespace HardModePatch
         static readonly Harmony harmony = new Harmony(GameplayFeatures.HarmonyId + ".rlogate");
         static readonly object gate = new object();
         static Assembly seen;
-        static bool accepted, noticeShown;
+        static bool accepted, noticeShown, idsTakenLogged;
 
         public static string Message { get; private set; }
 
@@ -114,6 +115,19 @@ namespace HardModePatch
             // RLO can't read our courses: an unreviewed build, or a reviewed one whose catalogue didn't take them.
             if (refused || !RealLifeOverhaulPatch.CoursesRegistered)
             {
+                // RLO 1.0 has courses of its own under HMP's ids, so the records there are RLO's: nothing is held or
+                // given back, and RLO's line and any earlier hold stay as they are.
+                if (RealLifeOverhaulPatch.IdsTakenBy(rlo))
+                {
+                    if (!idsTakenLogged)
+                    {
+                        idsTakenLogged = true;
+                        Log.Info("Factory diplomas: this Real Life Overhaul uses course ids " + string.Join(", ", DiplomaHold.Ids.Select(i => i.ToString()).ToArray())
+                            + " for courses of its own, so its records there are RLO's. Nothing is held or given back" + (held != null ? "; the save's earlier hold stays as it is." : "."));
+                    }
+                    if (refused && RloRulesOn()) Notice();
+                    return refused;
+                }
                 string kept = DiplomaHold.Keep(line, held, game.Day);
                 if (kept != null && kept != held)
                 {

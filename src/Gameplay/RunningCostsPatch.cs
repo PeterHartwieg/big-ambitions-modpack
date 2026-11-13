@@ -26,7 +26,8 @@ namespace HardModePatch
         const int Power = 0, Water = 1, Internet = 2, Home = 0, Active = 1;
         static readonly Harmony harmony = new Harmony(GameplayFeatures.HarmonyId + ".runningcosts");
         static FieldInfo placeField, serviceField, kindField, stateField, accruedField, needsField;
-        static Func<int> priceLevel;
+        static Func<int> priceLevel, saveMonthDays;
+        static MethodInfo getMonthDays;
         static string[] officeNeeds;
         static bool patched;
         static readonly HashSet<string> warnings = new HashSet<string>();
@@ -93,7 +94,11 @@ namespace HardModePatch
             if (needsField != null && (!needsField.IsStatic || needsField.FieldType != typeof(string[]))) needsField = null;
             var level = prices == null ? null : AccessTools.DeclaredProperty(prices, "Level");
             var getLevel = level == null ? null : level.GetGetMethod();
-            bool shape = placeField != null && serviceField != null && kindField != null && stateField != null && accruedField != null
+            var calendar = target.GetType("RealLifeOverhaul.GameCalendar", false);
+            var monthDays = calendar == null ? null : AccessTools.DeclaredProperty(calendar, "MonthDays");
+            getMonthDays = monthDays == null ? null : monthDays.GetGetMethod();
+            if (getMonthDays != null && (!getMonthDays.IsStatic || getMonthDays.ReturnType != typeof(int))) getMonthDays = null;
+            bool shape = getMonthDays != null && placeField != null && serviceField != null && kindField != null && stateField != null && accruedField != null
                 && needsField != null && getLevel != null && getLevel.IsStatic && getLevel.ReturnType == typeof(int);
             return new MethodBase[]
             {
@@ -124,6 +129,7 @@ namespace HardModePatch
                     return;
                 }
                 priceLevel = (Func<int>)Delegate.CreateDelegate(typeof(Func<int>), (MethodInfo)hooks[3]);
+                saveMonthDays = (Func<int>)Delegate.CreateDelegate(typeof(Func<int>), getMonthDays);
                 officeNeeds = ((string[])needsField.GetValue(null)).Concat(RunningCosts.OfficeTypes).Distinct().ToArray();
                 harmony.Patch(hooks[0], prefix: new HarmonyMethod(typeof(RunningCostsPatch), "UsePrefix"));
                 harmony.Patch(hooks[1], postfix: new HarmonyMethod(typeof(RunningCostsPatch), "SeatPostfix"));
@@ -257,7 +263,8 @@ namespace HardModePatch
         }
 
         // InternetRules.AddDay(Account a, int monthDays, bool outage): an office's desks billed with its connection on
-        // each day RLO charges the connection itself.
+        // each day RLO charges the connection itself. The desks' month is the save's (GameCalendar.MonthDays), as RLO
+        // passed up to 0.50.0; RLO 1.0 passes a 30-day month for its own plans while Living population is on.
         static void SeatPostfix(object a, int monthDays, bool outage)
         {
             if (!Rules.OfficeIt.Enabled || a == null || outage) return;
@@ -266,7 +273,7 @@ namespace HardModePatch
                 if (Int(serviceField, a) != Internet || Int(stateField, a) != Active) return;
                 var reg = Find(a);
                 if (reg == null || !RunningCosts.IsOffice(reg.businessTypeName)) return;
-                int cents = RunningCosts.SeatDayCents(LoadOf(reg).Seats, priceLevel(), monthDays);
+                int cents = RunningCosts.SeatDayCents(LoadOf(reg).Seats, priceLevel(), saveMonthDays());
                 if (cents <= 0) return;
                 long accrued = (int)accruedField.GetValue(a) + (long)cents;
                 accruedField.SetValue(a, (int)Math.Min(accrued, int.MaxValue / 4));

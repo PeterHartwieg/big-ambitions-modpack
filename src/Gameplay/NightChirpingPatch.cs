@@ -66,8 +66,8 @@ namespace HardModePatch
             if (!RloGate.Accepts(a)) return; // The shared gate logs once, including this feature.
             try
             {
-                if (!TargetGate.Reviewed(Patcher.HashOf(a), new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e" }))
-                { Fail("this sound adapter is reviewed for RLO 0.49.0 and 0.50.0"); return; }
+                if (!TargetGate.Reviewed(Patcher.HashOf(a), new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91" }))
+                { Fail("this sound adapter is reviewed for RLO 0.49.0, 0.50.0 and 1.0.5"); return; }
                 var hooks = ResolveHooks(a);
                 if (hooks.Any(h => h == null)) { Fail("the exact RLO cricket target did not resolve"); return; }
                 harmony.Patch(hooks[0], postfix: new HarmonyMethod(typeof(NightChirpingPatch), "Postfix"));

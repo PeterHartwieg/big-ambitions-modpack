@@ -14,6 +14,8 @@ namespace HardModePatch.Core
                 case "reallife_util_closed_connecting": return "hardmode_closed_connecting";
                 case "reallife_util_closed_cut": return "hardmode_closed_cut";
                 case "reallife_util_closed_apply": return "hardmode_closed_apply";
+                // RLO 1.0's wording while there is no utilities office to visit: apply in the Utilities app.
+                case "reallife_util_closed_apply_app": return "hardmode_closed_apply";
                 default: return null;
             }
         }

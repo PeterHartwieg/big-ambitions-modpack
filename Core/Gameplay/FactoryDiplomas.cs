@@ -46,6 +46,14 @@ namespace HardModePatch.Core
             return true;
         }
 
+        // RLO's own catalogue, before HMP adds anything, already has a course under one of HMP's ids. RLO 1.0 uses
+        // 18, 19 and 34 for its building trades, so records under those ids are RLO's own and never HMP's.
+        public static bool IdsTaken(IEnumerable<int> rloIds)
+        {
+            foreach (var id in rloIds) if (ForId(id) != null) return true;
+            return false;
+        }
+
         public static bool GateReady(bool selected, bool injected, bool careers, bool study, bool record)
         {
             return selected && injected && careers && study && record;

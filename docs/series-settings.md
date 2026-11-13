@@ -39,7 +39,7 @@ Undecided rows of the RLO triage keep RLO's default, and so does every option no
 | Real Life Overhaul | `accident_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `crime_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `roadside_checks` | 0 | 1 | triage |
-| Real Life Overhaul | `player_offences` | 0 | 1 | triage |
+| Real Life Overhaul | `player_offences` (0.50.0 and earlier; RLO 1.0 split it into eight `offence_*` toggles, so the button skips it on 1.0.5) | 0 | 1 | triage |
 | Real Life Overhaul | `street_event_frequency` | 1 | 4 (1 to 10) | triage: one day in twelve |
 | Real Life Overhaul | `fire_frequency` | 1 | 2 (1 to 10) | triage: the minimum |
 | Real Life Overhaul | `social_media_notices` | 0 | 1 | triage |

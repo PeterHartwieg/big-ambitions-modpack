@@ -15,7 +15,21 @@ commit = '36e8eec'
 adapters = {'src/Options.cs', 'src/SeriesSettingsButton.cs', 'src/HappinessRebalance.cs'}
 # Explicit 1.1.0 follow-up deltas; preserve the rest of each imported implementation byte for byte.
 reviewed_updates = {
-    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e"')],
+    'Core/Targets.cs': [('"2f360a365cf7915f", "4f82b4f88f919178"', '"2f360a365cf7915f", "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91"')],
+    # RLO 1.0 uses the diploma ids for its own courses and adds a by-phone closure key (docs/rlo-compatibility.md, review of 1.0.5).
+    'Core/FactoryDiplomas.cs': [('        public static bool GateReady(',
+        "        // RLO's own catalogue, before HMP adds anything, already has a course under one of HMP's ids. RLO 1.0 uses\n"
+        "        // 18, 19 and 34 for its building trades, so records under those ids are RLO's own and never HMP's.\n"
+        '        public static bool IdsTaken(IEnumerable<int> rloIds)\n'
+        '        {\n'
+        '            foreach (var id in rloIds) if (ForId(id) != null) return true;\n'
+        '            return false;\n'
+        '        }\n\n'
+        '        public static bool GateReady(')],
+    'Core/UtilityClosureReason.cs': [('                case "reallife_util_closed_apply": return "hardmode_closed_apply";\n',
+        '                case "reallife_util_closed_apply": return "hardmode_closed_apply";\n'
+        "                // RLO 1.0's wording while there is no utilities office to visit: apply in the Utilities app.\n"
+        '                case "reallife_util_closed_apply_app": return "hardmode_closed_apply";\n')],
     'Core/Rules.cs': [
         ('public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);',
          'public static readonly Rule UtilityClosureReasons = new Rule("utility_closure_reasons", null, true);\n        public static readonly Rule MuteRloNightChirping = new Rule("mute_rlo_night_chirping", null, true);'),
@@ -27,8 +41,8 @@ reviewed_updates = {
         ('+ " and the hotel', '+ ", utility closure reasons, night chirping mute and the hotel'),
         ('|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled;', '|| Rules.OwnerJobFullPay.Enabled || Rules.HappinessRebalance.Enabled || Rules.MuteRloNightChirping.Enabled;')],
     'src/UtilityClosureReasonPatch.cs': [
-        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e" }'),
-        ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0 and 0.50.0')],
+        ('new[] { "4f82b4f88f919178" }', 'new[] { "4f82b4f88f919178", "f339319c9ec1ad65", "1f7647f2e188a43e", "0c4b4aea5c339f91" }'),
+        ('reviewed for RLO 0.49.0 only', 'reviewed for RLO 0.49.0, 0.50.0 and 1.0.5')],
 }
 # Exact companion follow-up sources, reviewed as ordinary diffs. All other imported sources and defaults stay pinned.
 companion_imports = json.loads((root / 'tools/companion-import-digests.json').read_text())
@@ -73,7 +87,7 @@ old_locale = json.loads(subprocess.check_output(['git', '-C', str(legacy), 'show
 for key, value in old_locale.items():
     assert locale[key] == value.replace('HART. Mod Pack Patch', 'HART. Mod Pack').replace('HART. Mode Patch', 'HART. Mod Pack'), key
 assert all(isinstance(m['workshopId'], int) for m in manifest['members'])
-assert next(m for m in manifest['members'] if m['assembly'] == 'RealLifeOverhaul')['testedVersions'][-1] == '0.50.0'
+assert next(m for m in manifest['members'] if m['assembly'] == 'RealLifeOverhaul')['testedVersions'][-1] == '1.0.5'
 print('PASS series roster agrees; current release pins and numeric Workshop IDs; 13 required, 3 optional; imported locale labels retained')
 
 text = (root / 'workshop/DESCRIPTION.bbcode.txt').read_text()
