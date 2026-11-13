@@ -91,13 +91,21 @@ namespace HardModePatch
         {
             var foundList = Registered().Select(r => r.Found).ToList();
             var lines = new List<string>();
-            foreach (var wanted in SeriesSettings.Options)
+            bool diplomasOff = DiplomasOff();
+            if (diplomasOff) lines.Add(RloLine.SeriesDiplomasOff);
+            foreach (var wanted in RloLine.SeriesOptions(foundList, diplomasOff))
             {
                 string reason;
                 var found = SeriesSettings.Pick(wanted, foundList, out reason);
                 lines.Add(found == null ? wanted.Label + ": skipped, " + reason : wanted.Label + " -> " + SeriesSettings.PrefKey(found.ModId, found.Id) + " = " + wanted.Value);
             }
             return lines;
+        }
+
+        static bool DiplomasOff()
+        {
+            var rlo = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == SeriesSettings.Rlo);
+            return RealLifeOverhaulPatch.OffOnRlo1 || RealLifeOverhaulPatch.IdsTakenBy(rlo);
         }
 
         // The main menu is open: its controller is registered (the game's InstanceBehavior singleton, unregistered on
@@ -142,8 +150,11 @@ namespace HardModePatch
             try { registered = Registered(); }
             catch (Exception ex) { Log.Error("Series settings: could not read the registered mod options, nothing written: " + ex); Notice(FailedKey); return; }
             var foundList = registered.Select(r => r.Found).ToList();
-            Log.Info("Series settings: applying " + SeriesSettings.Options.Length + " values.");
-            foreach (var wanted in SeriesSettings.Options)
+            bool diplomasOff = DiplomasOff();
+            var options = RloLine.SeriesOptions(foundList, diplomasOff);
+            Log.Info("Series settings: applying " + options.Count + " values.");
+            if (diplomasOff) Log.Info(RloLine.SeriesDiplomasOff);
+            foreach (var wanted in options)
             {
                 string reason;
                 var found = SeriesSettings.Pick(wanted, foundList, out reason);

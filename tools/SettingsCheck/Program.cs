@@ -77,6 +77,33 @@ foreach (var r in rows.Where(r => r.Owner == "DynamicRivals"))
 foreach (var r in rows.Where(r => r.Owner == "HARTModPack"))
     Check(Line(r.Owner, r.Id) == "HART. Mod Pack " + r.Id + " -> m:3830000000:" + r.Id + " = " + r.Value, "HMP: " + r.Id + " = " + r.Value);
 Check(rows.Where(r => r.Owner == "RealLifeOverhaul").All(r => Line(r.Owner, r.Id).EndsWith("skipped, Real Life Overhaul isn't loaded or has no options")), "RLO not registered here: every RLO value is skipped and named, nothing guessed");
+
+var rlo = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(args[2]));
+if (rlo.GetType("RealLifeOverhaul.Careers.CourseDef", false) != null && Strings(Path.GetFullPath(args[2])).Contains("offence_red_light"))
+{
+    var offences = new[] { "offence_red_light", "offence_speeding", "offence_pavement", "offence_wrong_way", "offence_drink", "offence_jaywalk", "offence_cross_red", "offence_horn" };
+    var rloIds = rows.Where(r => r.Owner == "RealLifeOverhaul" && r.Id != "player_offences").Select(r => (r.Id, r.Kind)).Concat(offences.Select(o => (o, "Toggle"))).ToList();
+    Type[] rloTypes;
+    try { rloTypes = rlo.GetTypes(); } catch (ReflectionTypeLoadException e) { rloTypes = e.Types.Where(t => t != null).ToArray()!; }
+    var callback = rloTypes.SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly))
+        .First(m => !m.IsGenericMethodDefinition && !m.DeclaringType!.ContainsGenericParameters && m.ReturnType == typeof(void) && m.GetParameters().Length == 1 && m.GetParameters()[0].ParameterType == typeof(bool));
+    var rloPage = Activator.CreateInstance(pageType)!;
+    var toggle = pageType.GetMethod("AddToggle")!;
+    var slider = pageType.GetMethod("AddSlider")!;
+    toggle.Invoke(rloPage, new object[] { "rlo_owner_probe", "probe", true, callback.CreateDelegate(typeof(Action<bool>)) });
+    foreach (var (id, kind) in rloIds)
+        if (kind == "Toggle") toggle.Invoke(rloPage, new object[] { id, id, true, null });
+        else slider.Invoke(rloPage, new object[] { id, id, 0, 100, 1, null, null });
+    service.GetMethod("Register", Any)!.Invoke(null, new[] { (object)"RealLifeOverhaul", rloPage });
+    var onRlo1 = ((IEnumerable<string>)P("SeriesSettingsButton").GetMethod("Preview")!.Invoke(null, null)!).ToList();
+    foreach (var line in onRlo1) Console.WriteLine("  " + line);
+    Check(offences.All(o => onRlo1.Contains("Real Life Overhaul " + o + " -> m:RealLifeOverhaul:" + o + " = 0")) && !onRlo1.Any(l => l.Contains("player_offences")),
+        "RLO 1.0: the eight offence_* toggles are written to 0 instead of player_offences");
+    Check(!onRlo1.Any(l => l.StartsWith("HART. Mod Pack factory_diplomas")) && onRlo1.Contains((string)P("Core.RloLine").GetField("SeriesDiplomasOff")!.GetRawConstantValue()!),
+        "RLO 1.0: the button leaves factory_diplomas alone and says it is off on RLO 1.0");
+    Check(!onRlo1.Any(l => l.Contains(": skipped,")), "RLO 1.0 with its option set: nothing skipped, so no 'some options weren't found' notice");
+    Check(!onRlo1.Any(l => l.Contains("living_population") || l.Contains("ui_interface") || l.Contains("start_debt")), "RLO 1.0's new options are not written");
+}
 var drPage = entries["Dynamic Rivals"]!;
 var drOptions = (IEnumerable)drPage.GetType().GetProperty("Options")!.GetValue(drPage)!;
 var wholesale = drOptions.Cast<object>().First(o => (string)o.GetType().GetProperty("Id")!.GetValue(o)! == "wholesale_rival_count");

@@ -49,6 +49,16 @@ namespace HardModePatch
             catch (Exception) { return false; }
         }
 
+        public static bool OffOnRlo1 { get; private set; }
+
+        internal static bool StandDown(Assembly rlo)
+        {
+            if (!IdsTakenBy(rlo)) return false;
+            OffOnRlo1 = true;
+            Log.Info(RloLine.DiplomasOff);
+            return true;
+        }
+
         static MethodInfo Method(Type type, string name, Type result, bool isStatic, params Type[] parameters)
         {
             var method = type == null ? null : AccessTools.DeclaredMethod(type, name, parameters);
@@ -200,7 +210,7 @@ namespace HardModePatch
 
         public static void ReportAvailability()
         {
-            if (Rules.FactoryDiplomas.Enabled && (!active || failed) && !RloGate.Refused) WarnOnce("RLO is missing, not loaded or incompatible");
+            if (Rules.FactoryDiplomas.Enabled && (!active || failed) && !RloGate.Refused && !OffOnRlo1) WarnOnce("RLO is missing, not loaded or incompatible");
         }
 
         static void WarnOnce(string reason)

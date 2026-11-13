@@ -67,13 +67,14 @@ namespace HardModePatch
                 if (ReferenceEquals(rlo, seen)) return accepted;
                 seen = rlo;
                 string hash = Patcher.HashOf(rlo);
-                accepted = TargetGate.Reviewed(hash, Targets.RealLifeOverhaul.VerifiedHashes);
                 var version = rlo.GetName().Version;
+                accepted = RloLine.Accepts(hash, Targets.RealLifeOverhaul.VerifiedHashes, version);
                 string described = "Real Life Overhaul " + (version == null ? "?" : version.ToString(3)) + " (" + (hash ?? "hash unreadable") + ")";
                 if (accepted)
                 {
                     Message = null;
-                    Log.Info(described + ": a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.");
+                    if (!TargetGate.Reviewed(hash, Targets.RealLifeOverhaul.VerifiedHashes)) Log.Info(described + ": " + RloLine.Accepted);
+                    else Log.Info(described + ": a reviewed version; factory diplomas, running costs, owner job pay, utility closure reasons, night chirping mute and the hotel rule can run.");
                 }
                 else
                 {

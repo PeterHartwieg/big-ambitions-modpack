@@ -48,7 +48,8 @@ namespace HardModePatch.Core
         // A hooked method is gone or changed: left unpatched.
         Incompatible,
         // A target patched only in reviewed versions (Real Life Overhaul) at a version not reviewed yet: left unpatched.
-        Refused
+        Refused,
+        OffOnRlo1
     }
 
     public static class TargetGate
