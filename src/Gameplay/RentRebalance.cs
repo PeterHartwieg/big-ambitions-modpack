@@ -152,9 +152,10 @@ namespace HardModePatch
         // A class of its own: Harmony keeps one __state type per patch class.
         static class Roommates
         {
-            static void Prefix(BuildingRegistration home, out float __state)
+            // Null means this prefix left the lease alone. It stays null when an earlier prefix skips or throws.
+            static void Prefix(BuildingRegistration home, out float? __state)
             {
-                __state = -1f;
+                __state = null;
                 try
                 {
                     if (!Rules.RentRebalance.Enabled || livingBlocked || home == null || home.RentPerDay <= 0f || home.BuildingOwnedByPlayer) return;
@@ -172,9 +173,9 @@ namespace HardModePatch
                 catch (Exception ex) { Log.Error("Rent rebalance roommates: " + ex.Message); }
             }
 
-            static Exception Finalizer(Exception __exception, BuildingRegistration home, float __state)
+            static Exception Finalizer(Exception __exception, BuildingRegistration home, float? __state)
             {
-                if (__state >= 0f && home != null) home.RentPerDay = __state;
+                if (__state.HasValue && home != null) home.RentPerDay = __state.Value;
                 return __exception;
             }
         }

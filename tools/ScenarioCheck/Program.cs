@@ -244,6 +244,17 @@ if (rloPath != null)
         Check(Roommate(78f) == 39f && (int)weekly.Invoke(null, new object[] { Roommate(78f), 50 }) == (int)weekly.Invoke(null, new object[] { 39f, 50 }),
             "rent rule: roommates on a scaled 78/day lease pay on the game's 39/day, not twice that");
         Check(Roommate(30f) == 30f, "rent rule: roommates on a lease below the game's rent pay on the lease");
+        // An earlier prefix that skips or throws skips ours, but our finalizer still runs: the lease must stay.
+        foreach (var (stub, what) in new[] { ("Skip", "skips"), ("Throw", "throws") })
+        {
+            var earlier = new Harmony("scenariocheck.rent.earlier");
+            earlier.Patch(roommateRent, prefix: new HarmonyMethod(typeof(RoommateStub).GetMethod(stub)) { priority = Priority.First });
+            Set(home, "RentPerDay", 78f);
+            try { roommateRent.Invoke(null, new object[] { home, null }); }
+            catch (TargetInvocationException) { }
+            finally { earlier.UnpatchAll(earlier.Id); }
+            Check((float)Get(home, "RentPerDay") == 78f, "rent rule: the 78/day lease stays when an earlier roommate prefix " + what);
+        }
         SetRule(false);
         Check(Roommate(78f) == 78f, "rent rule off: roommates pay on the stored lease");
         SetRule(true);
@@ -352,4 +363,9 @@ public static class MenuHappinessProbe
 public static class RentStub
 {
     public static bool Prefix(ref int __result) { __result = 39; return false; }
+}
+public static class RoommateStub
+{
+    public static bool Skip(ref float __result) { __result = 0f; return false; }
+    public static void Throw() { throw new InvalidOperationException("earlier prefix"); }
 }
