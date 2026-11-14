@@ -32,7 +32,7 @@ The optional house rules start off, just as in Patch 0.5.0. The series button en
 [*][b]Indebted start[/b]: a new game starts with $551 cash and a $75,454 student loan at a city bank. Your difficulty settings stay as you chose them.
 [*][b]Economy Expansion running costs[/b]: on RLO, equipment and opening hours shape utility bills. Every office needs internet and pays $150 per computer each game month, adjusted by RLO's price level. RLO handles bills, late fees and cuts. The series button disables the former flat 2x/3x rent increase; existing signed leases keep their stored rent. Economy Expansion itself is not required.
 [*][b]Happiness[/b]: home tops out around 60; cinema, golf, the beach and other outside activities carry you for days, so a mix of them beats a routine.
-[*][b]Real Life Overhaul[/b]: jobs pay in full when you run businesses, power and water follow your appliances and opening hours, offices need an internet connection and pay for their computers, and the sewing, kiln and polishing machines need a trade diploma from RLO's school.
+[*][b]Real Life Overhaul[/b]: jobs pay in full when you run businesses, power and water follow your appliances and opening hours, and offices need an internet connection and pay for their computers. On RLO 0.50.0 the sewing, kiln and polishing machines also need a trade diploma from RLO's school. Factory diplomas are off on RLO 1.0.x, because RLO 1.0 uses those course ids for its own building-trade courses.
 [/list]
 
 [h2]Fixes for other mods[/h2]
